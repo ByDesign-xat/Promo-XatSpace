@@ -1,0 +1,9 @@
+body {
+      background-image: url("https://xatimg.com/image/i2Y9MoBwNCH1.gif");
+      background-size: cover;
+          /* Para ajustar la imagen al tamaño de la ventana del navegador */
+    }
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+    }
