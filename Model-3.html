@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="icon" type="image/x-icon" href="assets/SG.ico" />
-        <meta charset="UTF-8">
-        <title>ByDesign</title>
-    </head>
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/SG.ico" />
+    <meta charset="UTF-8">
+    <title>ByDesign</title>
+
+<style>
+body {
+    background-image: url('https://xatimg.com/image/TSEmuWjJd2SO.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* particles */
+#particle-container{
+  width:100vw;
+  height:100vh;
+  position: fixed;
+  overflow: hidden;
+  pointer-events:none;
+  z-index:0;
+}
+
+iframe{
+  position:relative;
+  z-index:2;
+}
+</style>
+</head>
+
+<body>
+
 
 <div id="particle-container">
 	<div class="particle"></div>
@@ -39,13 +66,6 @@
 	<div class="particle"></div>
 </div>
 <style>
-
- body {
-     background-image: url('https://xatimg.com/image/TSEmuWjJd2SO.gif');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-    }
 
     @keyframes particle-animation-1 {
 	 100% {
