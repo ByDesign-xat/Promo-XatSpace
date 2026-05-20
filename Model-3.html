@@ -516,7 +516,7 @@
 
 
 <!-- REPRODUCTOR -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hghqd1eBTYQ?si=0TPYgEooKg7vbJ2X&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hghqd1eBTYQ?si=O7-Lr4pEfP4NQs1n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <link rel="StyleSheet" href="Model-3.css">
 </html>
@@ -531,6 +531,30 @@
 <script>
   document.getElementById("year").textContent =
     new Date().getFullYear();
+</script>
+<script>
+document.addEventListener('keydown', function(e) {
+
+  // Blochează F12
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+
+  // Blochează Ctrl+U
+  if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+
+  // Blochează Ctrl+Shift+I
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+});
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
 </script>
 </body>
 </html>
