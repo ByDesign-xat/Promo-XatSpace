@@ -536,45 +536,22 @@ iframe{
 
 
 <!-- REPRODUCTOR -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hghqd1eBTYQ?si=O7-Lr4pEfP4NQs1n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<link rel="StyleSheet" href="Model-3.css">
-</html>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/hghqd1eBTYQ"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
 <footer>
-<a href="https://xat.me/xDesignx" target="_ByDesignnk">
-  &copy; Copyright -
-    ByDesign
+<a href="https://xat.me/xDesignx" target="_blank">
+    &copy; Copyright - ByDesign
   </a>
   <span id="year"></span>
 </footer>
-
-<script>
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
-</script>
-<script>
-document.addEventListener('keydown', function(e) {
-
-  // Blochează F12
-  if (e.key === 'F12') {
-    e.preventDefault();
-  }
-
-  // Blochează Ctrl+U
-  if (e.ctrlKey && e.key.toLowerCase() === 'u') {
-    e.preventDefault();
-  }
-
-  // Blochează Ctrl+Shift+I
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
-    e.preventDefault();
-  }
-
-});
-
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-});
-</script>
+<link rel="StyleSheet" href="Model-3.css">
+<script src="Model-3.js"></script>
+</html>
 </body>
 </html>
