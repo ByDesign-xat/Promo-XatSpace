@@ -102,8 +102,29 @@
     }
   }
 </script>
-        
-</body>
-    
-</html>
+<script>
+document.addEventListener('keydown', function(e) {
 
+  // Blochează F12
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+
+  // Blochează Ctrl+U
+  if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+
+  // Blochează Ctrl+Shift+I
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+});
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+</script>    
+</body>
+</html>
