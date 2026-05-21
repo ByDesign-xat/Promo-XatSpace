@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="assets/SG.ico" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="ByDesign">
+  <title>ByDesign</title>
+  <!-- Estilos externos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="Model-5.css">
+  <!-- Scripts Externos -->
+  <script src="Repro9.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- BLOCK -->
+  <script type="text/javascript">
+  document.onkeydown = function(){return false};
+  document.oncontextmenu = function(){return false}
+  </script>
+
+</head>
+    
+<body>
+
+    <!-- Contenedor principal -->
+<div class="main-wrapper">
+  <!-- Card -->
+  <div class="card">
+    <!-- Sección Header -->
+    <div class="card-header">
+      <div class="card-story-image-wrapper">
+        <img src="https://xatimg.com/image/gRvDr124IMNk.png" alt="Photo" class="story-image" id="mainImage">
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- Sección Body -->
+    <div class="card-body">
+      <span class="card-nick">ᑎᗩᗰᕮ</span>
+      <small class="card-name">xDesignx</small>
+      <p class="card-id">(1515147447)</p>
+      <div class="card-emoji">
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div class="card-zodiac">Mʊs̱ɪc̱</div>
+    </div>
+	 <div class="card-emoji">
+        <i class="fa-brands fa-youtube"></i>
+      </div>
+
+    <!-- Sección Footer -->
+    <div class="card-footer">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/hghqd1eBTYQ?si=u2iGrHTFRpDO92Cf" 
+                title="YouTube video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+	
+  </div>
+
+</div>
+
+<!-- Copyright -->
+<div id="footer-lord">
+  <footer style="text-align: center; padding: 30px;">
+<a href="https://xat.me/xDesignx" target="_blank">
+    &copy; Copyright - ByDesign
+  </a>
+  <span id="year"></span>
+</footer>
+</div>
+
+    
+<script>
+  // Obtener elementos
+  const modal = document.getElementById("imageModal");
+  const mainImage = document.getElementById("mainImage");
+  const modalImg = document.getElementById("modalImg");
+  const closeBtn = document.querySelector(".close");
+
+  // Abrir modal al clicar la imagen
+  mainImage.onclick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src; // usa la misma imagen
+  }
+
+  // Cerrar modal al clicar la X
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Cerrar modal al clicar fuera de la imagen
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+        
+</body>
+    
+</html>
+
