@@ -1,0 +1,1396 @@
+
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <title>ByDesign</title>
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/alq7yTJkYQ9K.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●↓↓🔔Scroll to Ǥɨfs🔔↓↓◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> <!-- Font Horror -->
+  <style>
+    body {
+      background-color: black; /* Imposta lo sfondo a nero */
+    }
+  </style>
+</head>
+<body translate="no">
+  <canvas id="canvas" width="1890" height="500"></canvas>
+  <script id="rendered-js">
+    var txt = "๖ۣۜBʏDᴇsɪɢɴۣۜ"; // Testo aggiornato
+    var txtH = 75;
+    var font = "'Roboto', sans-serif"; // Applica il font horror
+    var rayColor1 = "#ffffff";
+    var rayColor2 = "#ffffff";
+    var rayColor3 = "#ffffff";
+	var rayColor1 = "#ffffff";
+    var rayColor2 = "#ffffff";
+    var rayColor3 = "#ffffff";
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var cw = canvas.width = window.innerWidth;
+    var ch = canvas.height = window.innerHeight;
+    var w2 = cw / 2;
+    var h2 = ch / 2;
+    var pi = Math.PI;
+    var pi2 = pi * .5;
+    var txtCanvas = document.createElement("canvas");
+    var txtCtx = txtCanvas.getContext("2d");
+    txtCtx.font = txtH + "px " + font;
+    txtCtx.textBaseline = "middle";
+    var txtW = Math.floor(txtCtx.measureText(txt).width);
+    txtCanvas.width = txtW;
+    txtCanvas.height = txtH * 1.5;
+    var gradient = ctx.createRadialGradient(w2, h2, 0, w2, h2, txtW);
+    gradient.addColorStop(0, rayColor3);
+    gradient.addColorStop(.5, rayColor2);
+    gradient.addColorStop(1, rayColor1);
+    ctx.strokeStyle = gradient;
+    txtCtx.fillStyle = gradient;
+    txtCtx.font = txtH + "px " + font;
+    txtCtx.textBaseline = "middle";
+    txtCtx.fillText(txt, 0, txtH * .5);
+    txtH *= 1.5;
+
+    var bufferCanvas = document.createElement("canvas");
+    bufferCanvas.width = txtW;
+    bufferCanvas.height = txtH;
+    var buffer = bufferCanvas.getContext("2d");
+
+    var sx = (cw - txtW) * 0.5;
+    var sy = (ch - txtH) * 0.5;
+
+    var rays = [];
+    var txtData = txtCtx.getImageData(0, 0, txtW, txtH);
+    for (var i = 0; i < txtData.data.length; i += 4) {
+      var ii = i / 4;
+      var row = Math.floor(ii / txtW);
+      var col = ii % txtW;
+      var alpha = txtData.data[i + 3];
+      if (alpha !== 0) {
+        var c = "rgba(";
+        c += [txtData.data[i], txtData.data[i + 1], txtData.data[i + 2], alpha / 255];
+        c += ")";
+        rays.push(new Ray(Math.floor(ii / txtW), ii % txtW, c));
+      }
+    }
+
+    var current = 0;
+    tick();
+
+    function tick() {
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(bufferCanvas, 0, 0, current, txtH, sx, sy, current, txtH);
+      ctx.save();
+      ctx.globalAlpha = .05;
+      ctx.globalCompositeOperation = "lighter";
+      if (drawRays(current)) {
+        current++;
+        current = Math.min(current, txtW);
+        window.requestAnimationFrame(tick);
+      } else {
+        fadeOut();
+      }
+      ctx.restore();
+    }
+
+    function fadeOut() {
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.globalAlpha *= .95;
+      ctx.drawImage(bufferCanvas, 0, 0, current, txtH, sx, sy, current, txtH);
+      if (ctx.globalAlpha > .01) {
+        window.requestAnimationFrame(fadeOut);
+      } else {
+        window.setTimeout(restart, 500);
+      }
+    }
+
+    function restart() {
+      for (var i = 0; i < rays.length; i++) {
+        rays[i].reset();
+      }
+      ctx.globalAlpha = 1;
+      buffer.clearRect(0, 0, txtW, txtH);
+      current = 0;
+      tick();
+    }
+
+    function drawRays(c) {
+      var count = 0;
+      ctx.beginPath();
+      for (var i = 0; i < rays.length; i++) {
+        var ray = rays[i];
+        if (ray.col < c) {
+          count += ray.draw();
+        }
+      }
+      ctx.stroke();
+      return count !== rays.length;
+    }
+
+    function Ray(row, col, f) {
+      this.col = col;
+      this.row = row;
+
+      var xp = sx + col;
+      var yp = sy + row;
+      var fill = f;
+
+      var ath = txtH / 1.5;
+
+      var a = pi2 * (this.row - ath * .5) / ath;
+      if (a === 0) {
+        a = (Math.random() - .5) * pi2;
+      }
+      var da = .02 * Math.sign(a);
+
+      var q = 2 * pi * (this.col - txtW * .5) / txtW;
+      if (q === 0) {
+        q = (Math.random() - .5) * pi;
+      }
+      var dq = .02 * Math.sign(q);
+
+      da += (Math.random() - .5) * .005;
+      var l = 0;
+      var dl = Math.random() * 2 + 2;
+
+      var buffered = false;
+
+      this.reset = function () {
+        q = 2 * pi * (this.col - txtW * .5) / txtW;
+        a = pi2 * (this.row - ath * .5) / ath;
+        if (a === 0) {
+          a = -pi2 * .5;
+        }
+        l = 0;
+        buffered = false;
+      };
+
+      this.draw = function () {
+        if (l < 0) {
+          if (!buffered) {
+            buffer.fillStyle = fill;
+            buffer.fillRect(this.col, this.row, 1, 1);
+            buffered = true;
+          }
+          return 1;
+        } else {
+          ctx.moveTo(xp, yp);
+          ctx.quadraticCurveTo(
+            xp + Math.cos(q) * l * .5,
+            yp + Math.sin(q) * l * .5,
+            xp + Math.cos(a) * l,
+            yp + Math.sin(a) * l
+          );
+          a += da;
+          q += dq;
+          l += Math.cos(a) * dl;
+          return 0;
+        }
+      };
+    }
+  </script>
+  
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/E325sIbO98c9.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉⭐🔔𝑮𝒊𝒇𝒔 New Style Exclusive🔔⭐◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 1</b></font> <img src="https://i.imgur.com/kCHPefP.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 2</b></font> <img src="https://i.imgur.com/QkhkYXo.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 3</b></font> <img src="https://i.imgur.com/LyUeb2P.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 4</b></font> <img src="https://i.imgur.com/bpD4knA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 5</b></font> <img src="https://i.imgur.com/6M1IatR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 6</b></font> <img src="https://i.imgur.com/PnNRIRp.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 7</b></font> <img src="https://i.imgur.com/xSfIc0i.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 8</b></font> <img src="https://i.imgur.com/G5KUUU6.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 9</b></font> <img src="https://i.imgur.com/wk9x2tw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 10</b></font> <img src="https://i.imgur.com/ceUKI7W.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 11</b></font> <img src="https://i.imgur.com/HWVjruy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 12</b></font> <img src="https://i.imgur.com/wFkwFsX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 13</b></font> <img src="https://i.imgur.com/yWkfDty.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 14</b></font> <img src="https://i.imgur.com/mletRiu.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 15</b></font> <img src="https://i.imgur.com/YvqCkKE.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 16</b></font> <img src="https://i.imgur.com/ePic3W3.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 17</b></font> <img src="https://i.imgur.com/JSi1q0q.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 18</b></font> <img src="https://i.imgur.com/RPbYpBL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 19</b></font> <img src="https://i.imgur.com/ExFe6iv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 20</b></font> <img src="https://i.imgur.com/2LwXYtA.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 21</b></font> <img src="https://i.imgur.com/4h804a0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 22</b></font> <img src="https://i.imgur.com/8EDNM1L.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 23</b></font> <img src="https://i.imgur.com/zc3oHtB.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 24</b></font> <img src="https://i.imgur.com/f3EL9VX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 25</b></font> <img src="https://i.imgur.com/P9V2kA7.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 26</b></font> <img src="https://i.imgur.com/oLNbQe6.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 27</b></font> <img src="https://i.imgur.com/qgE8LxH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 28</b></font> <img src="https://i.imgur.com/GEeU7QH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 29</b></font> <img src="https://i.imgur.com/E40aqN9.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 30</b></font> <img src="https://i.imgur.com/Bu5ktFZ.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 31</b></font> <img src="https://i.imgur.com/VQdrW6O.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 32</b></font> <img src="https://i.imgur.com/n9SnGTA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 33</b></font> <img src="https://i.imgur.com/Yc7YWGR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 34</b></font> <img src="https://i.imgur.com/ngBrFUT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 35</b></font> <img src="https://i.imgur.com/5zVy7Gn.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 36</b></font> <img src="https://i.imgur.com/vCNHIOr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 37</b></font> <img src="https://i.imgur.com/6pUm6z7.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 38</b></font> <img src="https://i.imgur.com/FJKvbon.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 39</b></font> <img src="https://i.imgur.com/6maXR0q.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 40</b></font> <img src="https://i.imgur.com/WhV0YBq.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 41</b></font> <img src="https://i.imgur.com/zTV5rDb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 42</b></font> <img src="https://i.imgur.com/MXQP96b.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 43</b></font> <img src="https://i.imgur.com/qf653hR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 44</b></font> <img src="https://i.imgur.com/LoTu3WO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 45</b></font> <img src="https://i.imgur.com/LixtvqW.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 46</b></font> <img src="https://i.imgur.com/GCSPd8R.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 47</b></font> <img src="https://i.imgur.com/mw9IlIs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 48</b></font> <img src="https://i.imgur.com/PXz3sef.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 49</b></font> <img src="https://i.imgur.com/Uk65EWw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 50</b></font> <img src="https://i.imgur.com/DUxUjju.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 51</b></font> <img src="https://i.imgur.com/GddNFrX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 52</b></font> <img src="https://i.imgur.com/fmNNEev.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 53</b></font> <img src="https://i.imgur.com/28xWcym.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 54</b></font> <img src="https://i.imgur.com/lZLq1wZ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 55</b></font> <img src="https://i.imgur.com/Crf2TeQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 56</b></font> <img src="https://i.imgur.com/lF7ai1B.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 57</b></font> <img src="https://i.imgur.com/TUy90JQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 58</b></font> <img src="https://i.imgur.com/EThwGWl.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 59</b></font> <img src="https://i.imgur.com/Loycdqf.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 60</b></font> <img src="https://i.imgur.com/R3VLKBg.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 61</b></font> <img src="https://i.imgur.com/SZkfl8R.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 62</b></font> <img src="https://i.imgur.com/m1bvgGW.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 63</b></font> <img src="https://i.imgur.com/O72Yruj.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 64</b></font> <img src="https://i.imgur.com/hwHHlLM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 65</b></font> <img src="https://i.imgur.com/OjC0FxI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 66</b></font> <img src="https://i.imgur.com/oPEYrAi.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 67</b></font> <img src="https://i.imgur.com/9dWhELb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 68</b></font> <img src="https://i.imgur.com/cniolLC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 69</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 70</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 71</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 72</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 73</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 74</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 75</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 76</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 77</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 78</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 79</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>New - 80</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+
+
+
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/E325sIbO98c9.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+<marquee>
+       ◦•●◉👑𝑮𝒊𝒇𝒔 for Girls👑◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 1</b></font> <img src="https://i.imgur.com/hljCHn0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 2</b></font> <img src="https://i.imgur.com/iPNKu8I.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 3</b></font> <img src="https://i.imgur.com/jrhJ9sQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 4</b></font> <img src="https://i.imgur.com/D2hTohw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 5</b></font> <img src="https://i.imgur.com/oA4sgqt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 6</b></font> <img src="https://i.imgur.com/YTYq7OD.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 7</b></font> <img src="https://i.imgur.com/n5p2E2P.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 8</b></font> <img src="https://i.imgur.com/3UD4XlM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 9</b></font> <img src="https://i.imgur.com/Tg7W0LL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 10</b></font> <img src="https://i.imgur.com/gXW8FH7.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 11</b></font> <img src="https://i.imgur.com/l3QJXgL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 12</b></font> <img src="https://i.imgur.com/dlZzgeM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 13</b></font> <img src="https://i.imgur.com/jNpzP8i.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 14</b></font> <img src="https://i.imgur.com/zc3eY7Z.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 15</b></font> <img src="https://i.imgur.com/yU6yqeY.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 16</b></font> <img src="https://i.imgur.com/MAJx1v0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 17</b></font> <img src="https://i.imgur.com/z5koUrZ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 18</b></font> <img src="https://i.imgur.com/ajBigWC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 19</b></font> <img src="https://i.imgur.com/uHG384A.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 20</b></font> <img src="https://i.imgur.com/xs1kO1v.gif" style="font-size: 1rem;"> </div></td>
+ <tr>       
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 21</b></font> <img src="https://i.imgur.com/WSuhXTu.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 22</b></font> <img src="https://i.imgur.com/0c4sf5l.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 23</b></font> <img src="https://i.imgur.com/KhXXHRX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 24</b></font> <img src="https://i.imgur.com/ZYaq0Bt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 25</b></font> <img src="https://i.imgur.com/tjVoTWm.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 26</b></font> <img src="https://i.imgur.com/Kx3eVnH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 27</b></font> <img src="https://i.imgur.com/zfpFc0A.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 28</b></font> <img src="https://i.imgur.com/5iM7gQc.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 29</b></font> <img src="https://i.imgur.com/VwzUKXO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 30</b></font> <img src="https://i.imgur.com/ZMmMdHu.gif" style="font-size: 1rem;"> </div></td>
+ <tr>       
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 31</b></font> <img src="https://i.imgur.com/RRATvoT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 32</b></font> <img src="https://i.imgur.com/0968338.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 33</b></font> <img src="https://i.imgur.com/ScwX2Sv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 34</b></font> <img src="https://i.imgur.com/PIh7bwF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 35</b></font> <img src="https://i.imgur.com/0ROUn89.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 36</b></font> <img src="https://i.imgur.com/zKBHrro.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 37</b></font> <img src="https://i.imgur.com/NM241AE.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 38</b></font> <img src="https://i.imgur.com/xQJp9wy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 39</b></font> <img src="https://i.imgur.com/xQPAC11.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 40</b></font> <img src="https://i.imgur.com/cu1hNRa.gif" style="font-size: 1rem;"> </div></td>
+ <tr>       
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 41</b></font> <img src="https://i.imgur.com/sBnZxNs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 42</b></font> <img src="https://i.imgur.com/8INdOsC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 43</b></font> <img src="https://i.imgur.com/hXB3F3n.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 44</b></font> <img src="https://i.imgur.com/QDABLUC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 45</b></font> <img src="https://i.imgur.com/zmuvx3y.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 46</b></font> <img src="https://i.imgur.com/AMesDKy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 47</b></font> <img src="https://i.imgur.com/58GJz5L.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 48</b></font> <img src="https://i.imgur.com/VOWb9I2.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 49</b></font> <img src="https://i.imgur.com/c2dUY15.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 50</b></font> <img src="https://i.imgur.com/zJkz3e9.gif" style="font-size: 1rem;"> </div></td>
+ <tr>      
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 51</b></font> <img src="https://i.imgur.com/XeMZCHN.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 52</b></font> <img src="https://i.imgur.com/97xe3Dt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 53</b></font> <img src="https://i.imgur.com/mAIhWet.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 54</b></font> <img src="https://i.imgur.com/IhitbRa.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 55</b></font> <img src="https://i.imgur.com/QCC3mM9.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 56</b></font> <img src="https://i.imgur.com/safiJWf.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 57</b></font> <img src="https://i.imgur.com/Pjdh7wA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 58</b></font> <img src="https://i.imgur.com/phT5aCv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 59</b></font> <img src="https://i.imgur.com/ge95rJA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 60</b></font> <img src="https://i.imgur.com/Q0PPlBv.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 61</b></font> <img src="https://i.imgur.com/nRx0Q92.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 62</b></font> <img src="https://i.imgur.com/SGkO1pK.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 63</b></font> <img src="https://i.imgur.com/6Fy84K5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 64</b></font> <img src="https://i.imgur.com/g5X0Rf7.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 65</b></font> <img src="https://i.imgur.com/lmjn7AV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 66</b></font> <img src="https://i.imgur.com/G67ztcQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 67</b></font> <img src="https://i.imgur.com/Q3DZG4r.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 68</b></font> <img src="https://i.imgur.com/61NIDPD.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 69</b></font> <img src="https://i.imgur.com/MJRbWU2.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 70</b></font> <img src="https://i.imgur.com/azK1pdo.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 71</b></font> <img src="https://i.imgur.com/zZX3aPR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 72</b></font> <img src="https://i.imgur.com/TZqGXAs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 73</b></font> <img src="https://i.imgur.com/b4KKgqa.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 74</b></font> <img src="https://i.imgur.com/QD2aTju.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 75</b></font> <img src="https://i.imgur.com/QkzMOdY.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 76</b></font> <img src="https://i.imgur.com/QWcXFwT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 77</b></font> <img src="https://i.imgur.com/nYdhej3.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 78</b></font> <img src="https://i.imgur.com/RzQZjMh.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 79</b></font> <img src="https://i.imgur.com/4y6fWgu.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 80</b></font> <img src="https://i.imgur.com/lh70FEu.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 81</b></font> <img src="https://i.imgur.com/DOUxCAL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 82</b></font> <img src="https://i.imgur.com/VnJ9OzG.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 83</b></font> <img src="https://i.imgur.com/NYC8pII.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 84</b></font> <img src="https://i.imgur.com/U1x9gXv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 85</b></font> <img src="https://i.imgur.com/ZucTPyh.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 86</b></font> <img src="https://i.imgur.com/HUjQxNI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 87</b></font> <img src="https://i.imgur.com/990QsjZ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 88</b></font> <img src="https://i.imgur.com/5xJKDXt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 89</b></font> <img src="https://i.imgur.com/il1i8PI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 90</b></font> <img src="https://i.imgur.com/t2hV0yU.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 91</b></font> <img src="https://i.imgur.com/nbGGLyp.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 92</b></font> <img src="https://i.imgur.com/AuW5aEi.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 93</b></font> <img src="https://i.imgur.com/5XE8t7a.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 94</b></font> <img src="https://i.imgur.com/0RJQfgL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 95</b></font> <img src="https://i.imgur.com/1g7uriO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 96</b></font> <img src="https://i.imgur.com/X7hYsz5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 97</b></font> <img src="https://i.imgur.com/l8XqWZI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 98</b></font> <img src="https://i.imgur.com/6aBV4Av.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 99</b></font> <img src="https://i.imgur.com/MpHWoFp.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 100</b></font> <img src="https://i.imgur.com/eiWLyvq.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 101</b></font> <img src="https://i.imgur.com/TAFtumH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 102</b></font> <img src="https://i.imgur.com/MgybwWH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 103</b></font> <img src="https://i.imgur.com/GcJ26xH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 104</b></font> <img src="https://i.imgur.com/M4PYkas.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 105</b></font> <img src="https://i.imgur.com/rGYp7le.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 106</b></font> <img src="https://i.imgur.com/e8lRhDB.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 107</b></font> <img src="https://i.imgur.com/hKz3xRV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 108</b></font> <img src="https://i.imgur.com/t1oSaUF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 109</b></font> <img src="https://i.imgur.com/zCJejfQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 110</b></font> <img src="https://i.imgur.com/BhI9Dlk.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 111</b></font> <img src="https://i.imgur.com/pHrsg60.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 112</b></font> <img src="https://i.imgur.com/mkpnAJr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 113</b></font> <img src="https://i.imgur.com/BgecBgN.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 114</b></font> <img src="https://i.imgur.com/HNjo15T.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 115</b></font> <img src="https://i.imgur.com/JXdnDRy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 116</b></font> <img src="https://i.imgur.com/9IYRMVa.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 117</b></font> <img src="https://i.imgur.com/BI8Hm4p.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 118</b></font> <img src="https://i.imgur.com/vF9QqkZ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 119</b></font> <img src="https://i.imgur.com/4w9Ul0n.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 120</b></font> <img src="https://i.imgur.com/9IQgTVt.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 121</b></font> <img src="https://i.imgur.com/rcNYyvR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 122</b></font> <img src="https://i.imgur.com/9QyIStJ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 123</b></font> <img src="https://i.imgur.com/RX22QkK.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 124</b></font> <img src="https://i.imgur.com/Yaa8V9q.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 125</b></font> <img src="https://i.imgur.com/K5bqyAb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 126</b></font> <img src="https://i.imgur.com/gEHkfsy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 127</b></font> <img src="https://i.imgur.com/34z4Ddu.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 128</b></font> <img src="https://i.imgur.com/W7rjDOq.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 129</b></font> <img src="https://i.imgur.com/5rbixh4.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 130</b></font> <img src="https://i.imgur.com/vSf8LwZ.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 131</b></font> <img src="https://i.imgur.com/BifRlbI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 132</b></font> <img src="https://i.imgur.com/pSlfHBx.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 133</b></font> <img src="https://i.imgur.com/dI1IJIv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 134</b></font> <img src="https://i.imgur.com/ClEfL14.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 135</b></font> <img src="https://i.imgur.com/Aa6wBTq.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 136</b></font> <img src="https://i.imgur.com/rwq3PVT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 137</b></font> <img src="https://i.imgur.com/Yz0tsk0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 138</b></font> <img src="https://i.imgur.com/kxyilF1.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 139</b></font> <img src="https://i.imgur.com/KDL5J9Q.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 140</b></font> <img src="https://i.imgur.com/OydaR24.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 141</b></font> <img src="https://i.imgur.com/cieRDxo.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 142</b></font> <img src="https://i.imgur.com/PD49Qgp.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 143</b></font> <img src="https://i.imgur.com/XD6r8hy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 144</b></font> <img src="https://i.imgur.com/GuNLwe7.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 145</b></font> <img src="https://i.imgur.com/k8c4xBX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 146</b></font> <img src="https://i.imgur.com/dwVv3Np.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 147</b></font> <img src="https://i.imgur.com/Ppe0d7W.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 148</b></font> <img src="https://i.imgur.com/lxdNE2N.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 149</b></font> <img src="https://i.imgur.com/jIROKzV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 150</b></font> <img src="https://i.imgur.com/QRvQqnP.gif" style="font-size: 1rem;"> </div></td>
+ <tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 151</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 152</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 153</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 154</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 155</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 156</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 157</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 158</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 159</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Girls - 160</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <tr>
+
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/alq7yTJkYQ9K.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉⚽𝑮𝒊𝒇𝒔 for Boys⚽◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 1</b></font> <img src="https://i.imgur.com/TuM4M0Y.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 2</b></font> <img src="https://i.imgur.com/Efq83dj.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 3</b></font> <img src="https://i.imgur.com/2sST25I.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 4</b></font> <img src="https://i.imgur.com/owUDph9.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 5</b></font> <img src="https://i.imgur.com/AfYHp9I.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 6</b></font> <img src="https://i.imgur.com/2p3LqTb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 7</b></font> <img src="https://i.imgur.com/PzBq5cQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 8</b></font> <img src="https://i.imgur.com/aZqpfXn.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 9</b></font> <img src="https://i.imgur.com/w8PLjgH.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 10</b></font> <img src="https://i.imgur.com/8Mdqo6S.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 11</b></font> <img src="https://i.imgur.com/8IQ7rkO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 12</b></font> <img src="https://i.imgur.com/6FyQWXx.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 13</b></font> <img src="https://i.imgur.com/PEtWkQQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 14</b></font> <img src="https://i.imgur.com/UaVZDVR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 15</b></font> <img src="https://i.imgur.com/7o6JiVs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 16</b></font> <img src="https://i.imgur.com/42hhrTx.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 17</b></font> <img src="https://i.imgur.com/Ual7U1b.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 18</b></font> <img src="https://i.imgur.com/ORNyPoo.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 19</b></font> <img src="https://i.imgur.com/uLch4gh.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 20</b></font> <img src="https://i.imgur.com/cn99itV.gif" style="font-size: 1rem;"> </div></td>
+</tr>        
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 21</b></font> <img src="https://i.imgur.com/rjUotMM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 22</b></font> <img src="https://i.imgur.com/k0IBNXr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 23</b></font> <img src="https://i.imgur.com/8BBQd0U.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 24</b></font> <img src="https://i.imgur.com/s5JY6KC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 25</b></font> <img src="https://i.imgur.com/41J6p8H.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 26</b></font> <img src="https://i.imgur.com/MLyoMwc.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 27</b></font> <img src="https://i.imgur.com/bM3EV99.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 28</b></font> <img src="https://i.imgur.com/RD5TBCC.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 29</b></font> <img src="https://i.imgur.com/cOozjHQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 30</b></font> <img src="https://i.imgur.com/e9eEEwO.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 31</b></font> <img src="https://i.imgur.com/tKJ6yHn.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 32</b></font> <img src="https://i.imgur.com/eufJQoB.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 33</b></font> <img src="https://i.imgur.com/sDMDlGy.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 34</b></font> <img src="https://i.imgur.com/QsjULQQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 35</b></font> <img src="https://i.imgur.com/aCPefwY.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 36</b></font> <img src="https://i.imgur.com/p2xjO2k.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 37</b></font> <img src="https://i.imgur.com/hCInipp.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 38</b></font> <img src="https://i.imgur.com/tvvApvD.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 39</b></font> <img src="https://i.imgur.com/3Mt9UNv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 40</b></font> <img src="https://i.imgur.com/TfARJjn.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 41</b></font> <img src="https://i.imgur.com/dR3CxCN.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 42</b></font> <img src="https://i.imgur.com/8gfbsdF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 43</b></font> <img src="https://i.imgur.com/GhSz4Tm.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 44</b></font> <img src="https://i.imgur.com/tQUkifV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 45</b></font> <img src="https://i.imgur.com/WbAm6EF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 46</b></font> <img src="https://i.imgur.com/A6pBzZ2.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 47</b></font> <img src="https://i.imgur.com/pxRvTLF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 48</b></font> <img src="https://i.imgur.com/NBZRESL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 49</b></font> <img src="https://i.imgur.com/qXdhY7k.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 50</b></font> <img src="https://i.imgur.com/qRKBupx.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 51</b></font> <img src="https://i.imgur.com/VYzO4af.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 52</b></font> <img src="https://i.imgur.com/296olmQ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 53</b></font> <img src="https://i.imgur.com/TUQlHZG.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 54</b></font> <img src="https://i.imgur.com/c75lqAO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 55</b></font> <img src="https://i.imgur.com/byDQC25.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 56</b></font> <img src="https://i.imgur.com/CsBqooA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 57</b></font> <img src="https://i.imgur.com/1rVeohN.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 58</b></font> <img src="https://i.imgur.com/JTNs7O5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 59</b></font> <img src="https://i.imgur.com/E161qFF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 60</b></font> <img src="https://i.imgur.com/BXHH620.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 61</b></font> <img src="https://i.imgur.com/Z3wkqGh.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 62</b></font> <img src="https://i.imgur.com/z8cFNUw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 63</b></font> <img src="https://i.imgur.com/JLu7n4L.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 64</b></font> <img src="https://i.imgur.com/K8Q1FrS.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 65</b></font> <img src="https://i.imgur.com/OKeupng.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 66</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 67</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 68</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 69</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 70</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 71</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 72</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 73</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 74</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 75</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 76</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 77</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 78</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 79</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Boys - 80</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ 
+ 
+
+  <body>
+
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉🎧 DJ 🎧◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 1</b></font> <img src="https://i.imgur.com/aEWCfBv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 2</b></font> <img src="https://i.imgur.com/S1JdH9n.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 3</b></font> <img src="https://i.imgur.com/XsFu89U.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 4</b></font> <img src="https://i.imgur.com/9KIlnTT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 5</b></font> <img src="https://i.imgur.com/TSKKzEh.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 6</b></font> <img src="https://i.imgur.com/iDIQvMr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 7</b></font> <img src="https://i.imgur.com/wa8jTmW.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 8</b></font> <img src="https://i.imgur.com/NXgQlle.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 9</b></font> <img src="https://i.imgur.com/fWhcjua.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 10</b></font> <img src="https://i.imgur.com/jgTSZZY.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 11</b></font> <img src="https://i.imgur.com/VXFoIQM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 12</b></font> <img src="https://i.imgur.com/ukS74e8.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 13</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 14</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 15</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 16</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 17</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 18</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 19</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>DJ - 20</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+
+
+
+ 
+ 
+
+  <body>
+  
+  
+  <table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉❤️𝑮𝒊𝒇𝒔 for Lovers❤️◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 1</b></font> <img src="https://i.imgur.com/Ep5rHb0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 2</b></font> <img src="https://i.imgur.com/C6k7ZqD.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 3</b></font> <img src="https://i.imgur.com/5mOjvLd.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 4</b></font> <img src="https://i.imgur.com/GV09kK0.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 5</b></font> <img src="https://i.imgur.com/mrSg7lE.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 6</b></font> <img src="https://i.imgur.com/aKcDvFs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 7</b></font> <img src="https://i.imgur.com/pnD2aI6.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 8</b></font> <img src="https://i.imgur.com/C8QLl5R.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 9</b></font> <img src="https://i.imgur.com/t64DLkv.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 10</b></font> <img src="https://i.imgur.com/vqhkiDt.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 11</b></font> <img src="https://i.imgur.com/DWNZZAw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 12</b></font> <img src="https://i.imgur.com/ega8lnz.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 13</b></font> <img src="https://i.imgur.com/1XgqvGq.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 14</b></font> <img src="https://i.imgur.com/8C5CM5l.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 15</b></font> <img src="https://i.imgur.com/GG9FWLE.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 16</b></font> <img src="https://i.imgur.com/3D2EGuq.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 17</b></font> <img src="https://i.imgur.com/RB9hBXI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 18</b></font> <img src="https://i.imgur.com/sw8xynw.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 19</b></font> <img src="https://i.imgur.com/zGwllEx.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 20</b></font> <img src="https://i.imgur.com/An7GVDw.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 21</b></font> <img src="https://i.imgur.com/oAQ7ZKY.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 22</b></font> <img src="https://i.imgur.com/W2Ik2ii.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 23</b></font> <img src="https://i.imgur.com/TsrKndW.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 24</b></font> <img src="https://i.imgur.com/oIHksVr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 25</b></font> <img src="https://i.imgur.com/DUbooaj.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 26</b></font> <img src="https://i.imgur.com/FrM3Ofc.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 27</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 28</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 29</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 30</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 31</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 32</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 33</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 34</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 35</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 36</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 37</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 38</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 39</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Love - 40</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+
+ 
+ 
+
+  <body>
+  
+  
+  <table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉🎅🏻𝑮𝒊𝒇𝒔 for Christmas🎅🏻◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-1</b></font> <img src="https://i.imgur.com/scFUgeO.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-2</b></font> <img src="https://i.imgur.com/C2IlOHP.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-3</b></font> <img src="https://i.imgur.com/eg68Ecf.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-4</b></font> <img src="https://i.imgur.com/WDqAEGt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-5</b></font> <img src="https://i.imgur.com/UYihg7u.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-6</b></font> <img src="https://i.imgur.com/8TTBlP3.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-7</b></font> <img src="https://i.imgur.com/pMISF5C.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-8</b></font> <img src="https://i.imgur.com/t9DUoYB.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-9</b></font> <img src="https://i.imgur.com/LltFIjJ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-10</b></font> <img src="https://i.imgur.com/C1GKTUp.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-11</b></font> <img src="https://i.imgur.com/lgDQ9xV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-12</b></font> <img src="https://i.imgur.com/B6mFraA.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-13</b></font> <img src="https://i.imgur.com/e65XgqR.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-14</b></font> <img src="https://i.imgur.com/zEcR46h.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-15</b></font> <img src="https://i.imgur.com/jziuHfV.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-16</b></font> <img src="https://i.imgur.com/i7U9ne1.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-17</b></font> <img src="https://i.imgur.com/ZjBgtDn.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-18</b></font> <img src="https://i.imgur.com/Zk4NxmP.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-19</b></font> <img src="https://i.imgur.com/QCUo3JL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-20</b></font> <img src="https://i.imgur.com/RslU5NE.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-21</b></font> <img src="https://i.imgur.com/XuTa0A3.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-22</b></font> <img src="https://i.imgur.com/ZhxY9yY.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-23</b></font> <img src="https://i.imgur.com/wQKCFYN.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-24</b></font> <img src="https://i.imgur.com/Xec6iR5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-25</b></font> <img src="https://i.imgur.com/gaqAFSz.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-26</b></font> <img src="https://i.imgur.com/4d2hV6U.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-27</b></font> <img src="https://i.imgur.com/7kZUGXu.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-28</b></font> <img src="https://i.imgur.com/v8D3w3m.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-29</b></font> <img src="https://i.imgur.com/wi1UzvB.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-30</b></font> <img src="https://i.imgur.com/nb5PWLW.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-31</b></font> <img src="https://i.imgur.com/6q8KyXL.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-32</b></font> <img src="https://i.imgur.com/vz6tFYD.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-33</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-34</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-35</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-36</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-37</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-38</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-39</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-40</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-41</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-42</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-43</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-44</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-45</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-46</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-47</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-48</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-49</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Santa-50</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ 
+ 
+
+  <body>
+  
+  
+  <table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉🤡𝑮𝒊𝒇𝒔 for Halloween🤡◉●•◦
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-1</b></font> <img src="https://i.imgur.com/mUyGHFF.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-2</b></font> <img src="https://i.imgur.com/cgzae5r.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-3</b></font> <img src="https://i.imgur.com/Dppu6pE.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-4</b></font> <img src="https://i.imgur.com/2nvsLCI.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-5</b></font> <img src="https://i.imgur.com/Ht5XcEc.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-6</b></font> <img src="https://i.imgur.com/OettBBr.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-7</b></font> <img src="https://i.imgur.com/rYCjFFq.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-8</b></font> <img src="https://i.imgur.com/iJVwNxa.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-9</b></font> <img src="https://i.imgur.com/5Rr1Y1j.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-10</b></font> <img src="https://i.imgur.com/kZs9z55.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-11</b></font> <img src="https://i.imgur.com/EbfHYIt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-12</b></font> <img src="https://i.imgur.com/QBFbahJ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-13</b></font> <img src="https://i.imgur.com/U7N9f1o.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-14</b></font> <img src="https://i.imgur.com/dMwhgcn.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-15</b></font> <img src="https://i.imgur.com/tmZpDTT.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-16</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-17</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-18</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-19</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-20</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-21</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-22</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-23</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-24</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-25</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-26</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-27</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-28</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-29</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Hall-30</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+
+
+ 
+ 
+
+  <body>
+  
+  
+  <table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+</style>
+
+
+ <body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       ◦•●◉🏆𝑮𝒊𝒇𝒔 Mixed🏆◉●•
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ 
+
+<tbody> 
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-1</b></font> <img src="https://i.imgur.com/2bISAr5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-2</b></font> <img src="https://i.imgur.com/S9MdkJ5.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-3</b></font> <img src="https://i.imgur.com/7DUEwLS.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-4</b></font> <img src="https://i.imgur.com/W333chJ.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-5</b></font> <img src="https://i.imgur.com/Ssb3929.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-6</b></font> <img src="https://i.imgur.com/RQHM46D.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-7</b></font> <img src="https://i.imgur.com/lGQJNX1.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-8</b></font> <img src="https://i.imgur.com/lJiLGQ8.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-9</b></font> <img src="https://i.imgur.com/w4Sci6P.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-10</b></font> <img src="https://i.imgur.com/ugX43iJ.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-11</b></font> <img src="https://i.imgur.com/AkNqNY1.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-12</b></font> <img src="https://i.imgur.com/aSobzUt.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-13</b></font> <img src="https://i.imgur.com/INt3jug.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-14</b></font> <img src="https://i.imgur.com/zpFsVAz.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-15</b></font> <img src="https://i.imgur.com/PJesNbS.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-16</b></font> <img src="https://i.imgur.com/VO0ieCW.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-17</b></font> <img src="https://i.imgur.com/kuqjWLl.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-18</b></font> <img src="https://i.imgur.com/fPot2Xs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-19</b></font> <img src="https://i.imgur.com/IlobBuk.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-20</b></font> <img src="https://i.imgur.com/EKEhV21.gif" style="font-size: 1rem;"> </div></td>
+</tr>        
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-21</b></font> <img src="https://i.imgur.com/nmsv6jb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-22</b></font> <img src="https://i.imgur.com/IdXSX1G.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-23</b></font> <img src="https://i.imgur.com/SN9H6sb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-24</b></font> <img src="https://i.imgur.com/glj9d5s.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-25</b></font> <img src="https://i.imgur.com/uatKnzK.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-26</b></font> <img src="https://i.imgur.com/J1rgeOX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-27</b></font> <img src="https://i.imgur.com/N9pTpyb.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-28</b></font> <img src="https://i.imgur.com/BlD5Z0H.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-29</b></font> <img src="https://i.imgur.com/9jFdr5h.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>M-A-30</b></font> <img src="https://i.imgur.com/9jQbyrA.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-31</b></font> <img src="https://i.imgur.com/e1VjaA1.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-32</b></font> <img src="https://i.imgur.com/nLUJ9zd.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-33</b></font> <img src="https://i.imgur.com/3P5qIfz.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-34</b></font> <img src="https://i.imgur.com/EAmV3X8.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-35</b></font> <img src="https://i.imgur.com/4LqAKYX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-36</b></font> <img src="https://i.imgur.com/OiPsJkK.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-37</b></font> <img src="https://i.imgur.com/bjHShWs.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-38</b></font> <img src="https://i.imgur.com/2TwOTwM.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-39</b></font> <img src="https://i.imgur.com/z81fxbX.gif" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-40</b></font> <img src="https://i.imgur.com/iqtI1Bu.gif" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-41</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-42</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-43</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-44</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-45</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-46</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-47</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-48</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-49</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-50</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-51</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-52</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-53</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-54</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-55</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-56</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-57</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-58</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-59</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+ <td><div style="text-align: center; width: 110px; height: 120px; background-color:#1b1b1b; border: 1px solid rgb(82, 82, 82); border-radius:15px;"><font color="#ffffff"><b>Mix-A-60</b></font> <img src="https://i.imgur.com/AKsLGM7.png" style="font-size: 1rem;"> </div></td>
+</tr>
+
+
+  <body>
+ 
+   <table cellpadding="0" cellspacing="0" width="100%">
+<tbody> 
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@1,700&display=swap');
+*{padding:0; margin:0; font-family: 'Agbalumo'; color:#fff; text-shadow: 0 0 5px #f00; font-size:20px; }
+
+.Mesaj {
+  margin:20px;
+  float: left;
+  padding:5px;
+  width: 95%;
+    max-width: 95%;
+    height:30px;
+    text-align: center;
+    background: url('https://xatimg.com/image/eQclCkaKDJdZ.gif');
+    background-repeat:repeat;
+    background-size:1850px 50px;
+    border-radius:7px;
+    display:block;
+    border: 2px solid #525252;
+    position:relative;
+    box-shadow: rgba(82, 82, 82, 0.1) 0px 8px 24px, rgba(82, 82, 82, 0.1) 0px 16px 56px, rgba(82, 82, 82 0.1) 0px 24px 80px;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="Mesaj">
+
+
+
+<marquee>
+       🔴⚠️Made ByDesign, Stop Copyright⚠️🔴
+</marquee>
+
+           
+  </div>
+
+  
+
+</body></html>
+ <center><span style="color: rgb(255, 255, 255); font-size: 24px;"><!-- ByDesign, Stop Copyright --> </span></center>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+		<script>
+
+    var message = "Stop Copyright ByDesign";
+
+    function clickIE4() {
+        if (event.button == 2) {
+            alert(message);
+            return false;
+        }
+    }
+
+    function clickNS4(e) {
+        if (document.layers || document.getElementById && !document.all) {
+            if (e.which == 2 || e.which == 3) {
+                alert(message);
+                return false;
+            }
+        }
+    }
+
+    if (document.layers) {
+        document.captureEvents(Event.MOUSEDOWN);
+        document.onmousedown = clickNS4;
+    } else if (document.all && !document.getElementById) {
+        document.onmousedown = clickIE4;
+    }
+
+    document.oncontextmenu = new Function("alert(message);return false")
+</script>
+<script>
+
+    function disableselect(e) {
+        return false
+    }
+    function reEnable() {
+        return true
+    }
+    document.onselectstart = new Function("return false")
+    if (window.sidebar) {
+        document.onmousedown = disableselect
+        document.onclick = reEnable
+    }
+</script>
+<script>
+        window.oncontextmenu = function () {
+            console.log("Right Click Disabled");
+            return false;
+        }
+    </script> 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</script></head><body> </div> </div> <style> </div> </div> <style> <!-- body { background:url() repeat-x, url('') }*{ cursor:url(https://xatimg.com/image/qcge7iRhO3IU.png),auto} --> <!-- ByDesign, Stop Copyright --> 
+
+
+
+
+

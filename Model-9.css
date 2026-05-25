@@ -1,0 +1,178 @@
+        /* Stiluri generale */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000001; /* Fundal Negru */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Stiluri pentru titlu */
+        h1 {
+            margin: 0;
+            color: #b1b1b1; /* Albastru deschis */
+            text-shadow: 0 0 10px rgba(177, 177, 177, 0.7); /* Glow albastru */
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(#383838, #b1b1b1, #ffffff); /* Tonuri de albastru */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(177, 177, 177, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(177, 177, 177, 1); }
+            100% { text-shadow: 0 0 5px rgba(177, 177, 177, 0.5); }
+        }
+
+        /* Container profil */
+        .profile-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(25, 25, 25, 0.8); /* Fundal albastru transparent */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(168, 168, 168, 0.7); /* Glow albastru */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .profile-cover {
+            width: 100%;
+            height: 150px;
+            background: url('') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            border-bottom: 5px solid #141414; /* negru */
+        }
+
+        .avatar-container {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 5%;
+            overflow: hidden;
+            border: 5px solid #000001; /* negru */
+            box-shadow: 0 0 15px rgba(168, 168, 168, 0.7); /* Glow albastru */
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .profile-details h1 {
+            color: #b1b1b1; /* Albastru deschis */
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #D3D3D3; /* Gri deschis */
+            font-style: italic;
+        }
+
+        .profile-buttons {
+            margin-top: 20px;
+        }
+
+        .profile-buttons a {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #606060; /* grey inchis */
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .profile-buttons a:hover {
+            background-color: #000001; /* Negru închis */
+            transform: scale(1.05);
+        }
+
+        /* Carduri informații */
+        .info-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .info-card {
+            background-color: rgba(96, 96, 96, 0.9); /* Fundal gry */
+            border: 1px solid #000001; /* Albastru închis */
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 30%;
+            box-shadow: 0 4px 8px rgba(168, 168, 168, 0.7); /* Glow alb */
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            min-width: 280px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(229, 229, 229, 1); /* Glow albastru intens */
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: #191919; /* Albastru deschis */
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            margin: 10px 0;
+            color: #ffffff; /* Gri deschis */
+        }
+
+.profile-container {
+    position: relative;
+    width: 900px;
+    margin: 40px auto;
+    padding-bottom: 30px;
+}
+
+footer {
+    position: relative; /* NU fixed / absolute */
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+#year {
+    margin-left: 4px;
+	color: #b1b1b1;
+}
