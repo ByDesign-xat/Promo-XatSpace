@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href=".ico" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Rick">
+  <title>ByDesign</title>
+  <!-- Estilos externos -->
+  <link href="Model-10.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- Scripts externos -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="Model-10.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <!-- BLOCK -->
+  <script type="text/javascript">
+  document.onkeydown = function(){return false};
+  document.oncontextmenu = function(){return false}
+  </script>
+
+</head>
+<body>
+    
+    <div class="access-screen">
+      <h1 class="access-title">You Name</h1>
+      <button class="access-btn">Enter</button>
+	  <h6 class="access-title1">Welcome</h6>
+    </div>
+
+    <div class="heart-background">
+      <span class="heart">♥</span>
+      <span class="heart burst-small">♥</span>
+      <span class="heart burst-big">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart burst-small">♥</span>
+      <span class="heart burst-big">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart burst-small">♥</span>
+      <span class="heart burst-big">♥</span>
+	  <span class="heart">♥</span>
+      <span class="heart burst-small">♥</span>
+      <span class="heart burst-big">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart burst-small">♥</span>
+      <span class="heart burst-big">♥</span>
+    </div>
+    
+    <!-- MAIN -->
+    <div class="card-vertical">
+    <section class="image-stage" id="water">
+        <div id="bg-1" class="bg-layer active" style="background-image: url('https://xatimg.com/image/4zJvDTAIDUA3.png');"></div>
+        <div id="bg-2" class="bg-layer"></div>
+        
+        <div class="signature-wrapper">
+            <div class="model-signature">You Name</div>
+            <div class="origin-capsule">
+                <span>Made in United Kingdom</span> 
+                <img src="https://xatimg.com/image/GwsSQDnsvxzI.png" alt="VZLA" class="mini-flag">
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <nav class="side-menu">
+        <!-- Header -->
+        <div class="menu-header">
+            <div class="birthday-main">
+                <div class="date-container">
+                    <div class="day">1</div>
+                    <div class="date-divider"></div>
+                    <div class="month">01</div>
+                </div>
+                <div class="year-row">2027</div>
+
+                <div class="countdown-box">
+                    <span id="countdown-timer">00d 00h 00m 00s</span>
+                </div>
+            </div>
+        </div>
+	
+<ul class="social-icons1">
+    <li class="gallery-title">Galerie</li>
+</ul>
+
+
+        <!-- Buttons -->
+        <div class="menu-content">
+            <ul class="social-icons">
+                <li onclick="changeCover('https://santi-graphics.vercel.app/assets/photo/Vic2.png', event)"><i class="fa-regular fa-images"></i><span>Foto 1</span></li>
+
+                <li onclick="changeCover('https://santi-graphics.vercel.app/assets/photo/Vic4.png', event)"><i class="fa-regular fa-images"></i> <span>Foto 2</span></li>
+
+                <li onclick="changeCover('https://santi-graphics.vercel.app/assets/photo/Vic8.png', event)"><i class="fa-regular fa-images"></i> <span>Foto 3</span></li>
+
+                <li onclick="changeCover('https://santi-graphics.vercel.app/assets/photo/Vic5.png', event)"><i class="fa-regular fa-images"></i> <span>Foto 4</span></li>
+          </ul>
+        </div>
+		
+<ul class="social-icons2">
+    <li class="gallery-title1">Frends</li>
+</ul>
+				
+		 <!-- Buttons -->
+        <div class="menu-content">
+            <ul class="social-icons3">
+                <li onclick="window.open('https://xat.me/xDesignx', event)"><i class="fa-solid fa-heart"></i> <span>My Love</span></li>
+				<li onclick="window.open('https://xat.me/xDesignx', event)"><i class="fa-solid fa-user-group"></i> <span>BFF 1</span></li>
+				<li onclick="window.open('https://xat.me/xDesignx', event)"><i class="fa-solid fa-user-group"></i> <span>BFF 2</span></li>
+				
+
+                <li class="spotune-item" onclick="openSpotune(null, event)">
+                    <i class="fa-solid fa-music"></i> <span>My Music</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <!-- PLAYER -->
+        <div id="spotune-player" class="jarvis-ui">
+            <div class="hud-header">
+                <div class="hud-close-btn" onclick="closeSpotune(event)">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            
+            <div class="hud-main-wrapper">
+                <div class="hud-queue">
+                    <span class="hud-label">♥ PLAYLIST ♥</span>
+                    <ul id="playlist-data">
+                        <li><span>01</span> Cyber-Symphony.mp3</li>
+                        <li><span>02</span> Night_City_Vibes.wav</li>
+                        <li><span>03</span> Digital_Vic_X.mp3</li>
+                    </ul>
+                </div>
+
+                <div class="hud-footer-meta">
+                    <div class="hud-cd-case">
+                        <img src="https://santi-graphics.vercel.app/assets/img/CD.png" class="cd-vinyl">
+                    </div>
+
+                    <div class="hud-track-info">
+                        <span class="track-artist" id="hud-artist">RICK_GRAPHICS</span>
+                        <span class="track-title" id="hud-title">SINFONÍA VENEZUELA</span>
+                    </div>
+
+                    <div class="hud-thumb-wrapper">
+                        <img id="hud-cover-img" src="" alt="Cover">
+                    </div>
+                </div>
+            </div>
+
+            <div class="hud-controls">
+                <button class="hud-btn btn-repeat"><i class="fa-solid fa-repeat"></i></button>
+                <button class="hud-btn btn-rwd"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="hud-btn btn-play"><i class="fa-solid fa-play"></i></button>
+                <button class="hud-btn btn-fwd"><i class="fa-solid fa-forward-step"></i></button>
+                <button class="hud-btn btn-shuffle"><i class="fa-solid fa-shuffle"></i></button>
+            </div>
+        </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <a href="https://xat.me/xDesignx" target="_blank">
+        &copy; Copyright - ByDesign
+    </a>
+    <span id="year"></span>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+
+</html>
