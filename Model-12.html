@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href=".ico" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ByDesign</title>
+    <!-- BLOCK RIGHT CLICK -->
+    <script type="text/javascript">
+        document.onkeydown = function(){return false};
+        document.oncontextmenu = function(){return false}
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--  Thanks to frontendmentor.io for the challenge.  -->
+  <link rel="stylesheet" href="Model-12.css">
+</head>
+
+<body>
+  <div class="bg">
+    <h1></h1>
+  </div>
+  <div class="nft">
+    <div class='main'>
+      <img class='tokenImage' src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&amp;W=80&amp;H=80&amp;U=https://xatimg.com/image/TTCxdIfiBlcl.png" id="avaShow" class="rounded-circle nosel imgcolor avamax avamob">
+      <h2>☆┋ ๖ۣۜByDesignۣۜ ┋☆</h2>
+      <p class='description'>Age - Enough</p>
+      <p class='description'>Sign - Cancer♋</p>
+      <p class='description'>My love - Name</p>
+      <p class='description'>Favorite color - The color of your eyes</p>
+      <div class='tokenInfo'>
+        <div class="price">
+          <ins>ID</ins>
+          <p>xDesignx (1515147447)</p>
+        </div>
+        <div class="duration">
+        </div>
+      </div>
+
+      <hr />
+
+      <div class='creator'>
+        <div class='wrapper'>
+          <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&amp;W=80&amp;H=80&amp;U=https://xatimg.com/image/TTCxdIfiBlcl.png" id="avaShow" class="rounded-circle nosel imgcolor avamax avamob">
+        </div>
+        <p><ins></ins> I am the daily bread</p>
+      </div>
+    </div>
+  </div>
+    <script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script src="Model-12-Player"></script>
+        <link href="Model-12-Player.css" rel="stylesheet">
+
+        <style element="Model-12-Player">
+        :root {
+            --MusicPlayer-Distance-From-Bottom:30px;
+            --MusicPlayer-Frame-Thickness:12px;
+            --MusicPlayer-Frame-Color:#transparent;
+            --MusicPlayer-Frame-Transparency:40%;
+            --MusicPlayer-Text-Background:#transparent;
+            --MusicPlayer-Text-Padding:12px;
+            --MusicPlayer-Text-Align:right;
+            --MusicPlayer-Text-TOP-Size:0px;
+            --MusicPlayer-Text-TOP-Color:#c8cdb3;
+            --MusicPlayer-Text-BOTTOM-Size:0px;
+            --MusicPlayer-Text-BOTTOM-Color:#c8cdb3;
+            --MusicPlayer-Circle-Size:50px;
+            --MusicPlayer-Circle-Background:#transparent;
+            --MusicPlayer-PlayButton-Size:12px;
+            --MusicPlayer-PlayButton-Color:#00BFFF;
+            --MusicPlayer-Bar-Thickness:2px;
+            --MusicPlayer-Bar-Spacing:2px;
+            --MusicPlayer-Bar-Color:#c8cdb3;
+            --MusicPlayer-SlideIn-Speed:0.69s;
+            --MusicPlayer-SlideOut-Speed:1s;
+        }
+        </style>
+
+    <!-- FOOTER AICI -->
+    <footer>
+        <a href="https://xat.me/xDesignx" target="_blank">
+            &copy; Copyright - ByDesign
+        </a>
+        <span id="year"></span>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+});
+</script>
+
+<audio id="bg-music" loop>
+  <source src="Model-12.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bg-music");
+
+function startMusic() {
+  music.play().catch(err => {
+    console.log("Autoplay blocat:", err);
+  });
+
+  // după ce a pornit o dată, scoatem listener-ele
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("scroll", startMusic);
+  document.removeEventListener("touchstart", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("scroll", startMusic);
+document.addEventListener("touchstart", startMusic);
+</script>
+
+
+		
+		
+</body>
+</html>

@@ -1,0 +1,177 @@
+/*---------------------------------------------------
+    
+    MUSIC PLAYER #01 by glenthemes
+
+    Initial release: 2017/04/10
+    Major code update: 2021/08/12
+    Last updated: 2021/08/12
+
+    Credits:
+    "Tenon" font by Max Phillips & Seán Mongey
+    https://fonts.adobe.com/fonts/tenon
+    
+---------------------------------------------------*/
+
+@font-face { font-family: "tenon light"; src: url("//glen-assets.github.io/fonts/tenon-light.ttf"); }
+
+[glenplayer01]{
+    position:fixed;
+    bottom:0;margin-bottom:var(--MusicPlayer-Distance-From-Bottom);
+    left:0;
+    font-size:var(--MusicPlayer-Text-BOTTOM-Size);
+    line-height:1.6em;
+    transition:margin-left var(--MusicPlayer-SlideOut-Speed) ease-in-out, opacity .420s ease-in-out; /* slide-out */
+    visibility:hidden;
+    opacity:0;
+	z-index:69;
+}
+
+[glenplayer01]:hover {
+    margin-left:0px!important;
+    transition-duration:var(--MusicPlayer-SlideIn-Speed); /* slide-in */
+}
+
+.ridic {
+    position:relative;
+}
+
+.fryingpan {
+    position:absolute;
+    border-radius:0 var(--MusicPlayer-Circle-Size) var(--MusicPlayer-Circle-Size) 0;
+    background:var(--MusicPlayer-Frame-Color);
+    opacity:calc(100% - var(--MusicPlayer-Frame-Transparency));
+    width:100%;
+    height:100%;
+    padding:var(--MusicPlayer-Frame-Thickness);
+    padding-right:0;
+    margin-top:calc(0px - var(--MusicPlayer-Frame-Thickness));
+	filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.07));
+    z-index:-1;
+}
+
+.cereal {
+    display:flex;
+    align-items:center;
+}
+
+.gouache {
+    
+}
+
+.musictext {
+    margin-left:var(--MusicPlayer-Frame-Thickness);
+    background:var(--MusicPlayer-Text-Background);
+    padding:calc(var(--MusicPlayer-Text-Padding) - 3px) var(--MusicPlayer-Text-Padding);
+    text-align:var(--MusicPlayer-Text-Align);
+}
+
+.musictext [top-text]{
+    font-family:tenon light;
+    font-size:var(--MusicPlayer-Text-TOP-Size);
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--MusicPlayer-Text-TOP-Color);
+}
+
+.musictext [bottom-text]{
+    font-family:tenon light;
+    font-size:var(--MusicPlayer-Text-BOTTOM-Size);
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    color:var(--MusicPlayer-Text-BOTTOM-Color);
+}
+
+.circ {
+    margin-left:calc(var(--MusicPlayer-Frame-Thickness) - 3px);
+    width:var(--MusicPlayer-Circle-Size);
+    height:var(--MusicPlayer-Circle-Size);
+    border-radius:100%;
+    background:var(--MusicPlayer-Circle-Background);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.macaroni {
+    margin-right:-2px;
+    width:0;height:0;
+    border-top:calc(var(--MusicPlayer-PlayButton-Size) * 0.6) solid transparent;
+    border-bottom:calc(var(--MusicPlayer-PlayButton-Size) * 0.6) solid transparent;
+    border-left:var(--MusicPlayer-PlayButton-Size) solid var(--MusicPlayer-PlayButton-Color);
+}
+
+.cheese {display:none;}
+
+.bartender {
+    display:flex;
+    align-items:flex-end;
+}
+
+.vodka {
+    margin-right:var(--MusicPlayer-Bar-Spacing);
+    width:var(--MusicPlayer-Bar-Thickness);
+    height:calc(var(--MusicPlayer-Bar-Thickness) * 5);
+    -webkit-mask-repeat:no-repeat;
+    -webkit-mask-size:contain;
+    -webkit-mask-position:center;
+    -webkit-mask-image:var(--barvert);
+    background:var(--MusicPlayer-Bar-Color);
+    transform-origin:bottom;
+}
+
+.vodka:first-of-type {
+    transform:scaleY(0.4);
+    animation:fiz 1s 0s infinite;
+}
+
+@keyframes fiz {
+    33% {transform:scaleY(0.4)}
+    69% {transform:scaleY(0.8)}
+    85% {transform:scaleY(0.2)}
+}
+
+.vodka:nth-of-type(2){
+    animation:seb 0.8s 0s infinite;
+}
+
+@keyframes seb {
+    25% {transform:scaleY(0.25)}
+    50% {transform:scaleY(0.65)}
+    75% {transform:scaleY(0.4)}
+}
+
+.vodka:nth-of-type(3){
+    transform:scaleY(0.8);
+    animation:troy 1.2s 0s infinite;
+}
+
+@keyframes troy {
+    20% {transform:scaleY(0.5)}
+    42% {transform:scaleY(0.9)}
+    80% {transform:scaleY(0.2)}
+}
+
+.vodka:nth-of-type(4){
+    transform:scaleY(0.8);
+    animation:phor 0.8s 0s infinite;
+}
+
+@keyframes phor {
+    30% {transform:scaleY(0.6)}
+    40% {transform:scaleY(0.8)}
+    65% {transform:scaleY(0.35)}
+}
+
+.vodka:nth-of-type(5){
+    transform:scaleY(0.8);
+    animation:fae 0.69s 0s infinite;
+}
+
+@keyframes fae {
+    25% {transform:scaleY(0.25)}
+    50% {transform:scaleY(0.65)}
+    75% {transform:scaleY(0.4)}
+}
+
+.vodka:last-child {margin-right:0;}
