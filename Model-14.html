@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href=".ico" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByDesign</title>
+  <!-- Estilos externos -->
+  <link href="Model-14.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Scripts externos -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="Model-14.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+  <!-- BLOCK -->
+  <script type="text/javascript">
+  document.onkeydown = function(){return false};
+  document.oncontextmenu = function(){return false}
+  </script>
+
+</head>
+
+<body>
+    
+  <!-- Particles -->
+  <canvas id="canv"></canvas>
+
+  <!-- FX -->
+  <canvas id="heartsCanvas"></canvas>
+    
+  <div class="cyber-overlay"></div>
+  <!-- Control de Seguridad -->
+  <div id="lock-screen" class="lock-overlay">
+  <div class="lock-card">
+    <div class="flare flare-left"></div>
+    <div class="flare flare-right"></div>
+
+    <div class="lock-header">
+      <div class="fingerprint-circle">
+        <i class="fa-solid fa-fingerprint"></i>
+      </div>
+      <p class="lock-status">Restricted Access</p>
+    </div>
+
+    <div class="pin-display">
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+    </div>
+
+    <div class="numpad">
+      <button class="num-btn" data-val="1">1</button>
+      <button class="num-btn" data-val="2">2</button>
+      <button class="num-btn" data-val="3">3</button>
+      <button class="num-btn" data-val="4">4</button>
+      <button class="num-btn" data-val="5">5</button>
+      <button class="num-btn" data-val="6">6</button>
+      <button class="num-btn" data-val="7">7</button>
+      <button class="num-btn" data-val="8">8</button>
+      <button class="num-btn" data-val="9">9</button>
+      <button class="num-btn btn-special" data-val="*">#</button>
+      <button class="num-btn" data-val="0">0</button>
+      <button class="num-btn btn-clear"><i class="fa-solid fa-delete-left"></i></button>
+    </div>
+  </div>
+</div>
+
+  <!-- MAIN -->
+  <main class="main-container">
+    
+    <!-- Switch -->
+    <header class="glass-header">
+      <div class="nav-switch">
+        <div class="switch-slider"></div>
+        <button class="switch-btn active" data-section="home">Home</button>
+        <button class="switch-btn" data-section="gallery">Gallery</button>
+        <button class="switch-btn" data-section="profile">Profile</button>
+      </div>
+    </header>
+
+    <div id="spa-content">
+    <!-- Magazine -->
+    <section id="sec-home" class="spa-section">
+            <div class="magazine-body">
+			
+			                <div id="revista-switch-palette">
+                    <div id="revista-cl-cont" class="switch-round">
+                        <p>COLOR SWAP</p>
+                        <div class="switch-dot"></div>
+                    </div>
+                </div>
+                <div class="magazine-home-inner"> <div class="main-bg-image"></div>
+                    <div class="glass-slider"></div>
+                    <div class="signature-container">
+                        <img src="https://xatimg.com/image/vOM07ftCcTzO.png" alt="Firma" class="signature-img">
+                    </div>
+                </div>
+                
+
+                
+            </div>
+    </section>
+      
+    <!-- Gallery -->
+    <section id="sec-gallery" class="spa-section" style="display:none;">
+        <div class="gallery-placeholder">
+            <div class="ms-gallery-container">
+			
+					<div id="revista-switch-palette">
+                    <div id="revista-cl-cont" class="switch-round">
+                        <p>COLOR SWAP</p>
+                        <div class="switch-dot"></div>
+                    </div>
+                </div>
+                
+                <div class="ms-flex-container">
+                    
+                    <div class="ms-card active" style="--bg: url('https://xatimg.com/image/rybfwVo2HfnT.png');">
+                        <div class="ms-card-content">
+                            <div class="ms-icon"><i class="fas fa-image"></i></div>
+                            <div class="ms-info">
+                                <div class="ms-main">Foto 1</div>
+                                <div class="ms-sub">ByDesign</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ms-card" style="--bg: url('https://xatimg.com/image/w8vPia1bGm0Z.png');">
+                        <div class="ms-card-content">
+                            <div class="ms-icon"><i class="fas fa-image"></i></div>
+                            <div class="ms-info">
+                                <div class="ms-main">Foto 2</div>
+                                <div class="ms-sub">ByDesign</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ms-card" style="--bg: url('https://xatimg.com/image/Ij243LrCiYVu.png');">
+                        <div class="ms-card-content">
+                            <div class="ms-icon"><i class="fas fa-image"></i></div>
+                            <div class="ms-info">
+                                <div class="ms-main">Foto 3</div>
+                                <div class="ms-sub">ByDesign</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ms-card" style="--bg: url('https://xatimg.com/image/oIYPztTbDNpr.png');">
+                        <div class="ms-card-content">
+                            <div class="ms-icon"><i class="fas fa-image"></i></div>
+                            <div class="ms-info">
+                                <div class="ms-main">Foto 4</div>
+                                <div class="ms-sub">ByDesign</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+        
+    <!-- Profile -->
+    <section id="sec-profile" class="spa-section" style="display:none;">
+        <div class="profile-placeholder">
+            <div id="revista-main" class="magazine-layout">
+
+                <div id="revista-switch-palette">
+                    <div id="revista-cl-cont" class="switch-round">
+                        <p>COLOR SWAP</p>
+                        <div class="switch-dot"></div>
+                    </div>
+                </div>
+
+                <div id="revista-num-box">
+                    <p>12</p>
+                </div>
+
+                <div id="revista-header">
+                    <h1 id="revista-titulo-bg">YOU NAME</h1>
+                    <h2 id="revista-titulo-front">YOU NAME</h2>
+
+                    <div id="revista-about-container">
+                        <h3 id="revista-about-title">About Me</h3>
+                        <p id="revista-about-text">
+Loyalty as her guiding principle, maturity evident in every gesture, and an allure that needs no artifice. Her character is defined by Capricorn, the sign of discipline and ambition, with a quiet elegance that becomes magnetic. Purple is her chosen color: a symbol of mystery, spirituality, and inner strength that accompanies her presence. She is a figure who balances passion and firmness, inspiring confidence and forging a silent pact with those around her.                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+        
+</div><!-- Cierre SPA -->
+
+    <!-- Card -->
+    <div class="personal-card floating-3d">
+        <div class="card-header-pic"></div>
+
+        <div class="avatar-wrapper">
+            <img src="https://xatimg.com/image/k6LuRMJ0Bwu3.png" alt="Avatar" class="avatar-img">
+        </div>
+
+        <div class="card-content-bottom">
+            <h3 class="card-love-title">You Name</h3>
+            <p class="card-phrase">"If you need me, you don't need me"</p>
+        </div>
+    </div>
+
+    <!-- Counter -->
+    <div class="visit-counter">
+      <div style="text-align:center;"><img src="https://s01.flagcounter.com/mini/dUMG/bg_000000/txt_995FD8/border_995FD8/flags_0/" /></div>
+    </div>
+
+    <!-- Contacts -->
+    <div class="friends-vertical-strip">
+    
+        <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="friend-link-wrapper">
+            <div class="friend-item" data-status="online">
+                <div class="avatar-container">
+                    <img src="https://xatimg.com/image/Qox69EYc0Owk.png" class="circle-avatar" alt="Friend 1">
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="name-pill">
+                    <span class="pill-text">Friend 1</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="friend-link-wrapper">
+        <div class="friend-item" data-status="online">
+            <div class="avatar-container">
+                <img src="https://xatimg.com/image/GYWzT2oqa82z.png" class="circle-avatar">
+                <span class="status-indicator"></span>
+            </div>
+            <div class="name-pill">
+                <span class="pill-text">Friend 2</span>
+            </div>
+        </div>
+        </a>
+		
+		        <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="friend-link-wrapper">
+            <div class="friend-item" data-status="online">
+                <div class="avatar-container">
+                    <img src="https://xatimg.com/image/Qox69EYc0Owk.png" class="circle-avatar" alt="Friend 1">
+                    <span class="status-indicator"></span>
+                </div>
+                <div class="name-pill">
+                    <span class="pill-text">Friend 3</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="friend-link-wrapper">
+        <div class="friend-item" data-status="online">
+            <div class="avatar-container">
+                <img src="https://xatimg.com/image/GYWzT2oqa82z.png" class="circle-avatar">
+                <span class="status-indicator"></span>
+            </div>
+            <div class="name-pill">
+                <span class="pill-text">Friend 4</span>
+            </div>
+        </div>
+        </a>
+
+    </div>
+
+    <!-- Player -->
+    <div class="minimal-player-horizontal">
+        
+        <audio id="main-audio" preload="auto"></audio>
+    
+        <div class="vinyl-top-section">
+            <img src="https://xatimg.com/image/U6bAhSJn3gVE.png" class="vinyl-mega-img">
+        </div>
+
+        <div class="player-chassis-bottom">
+
+            <div class="side-bar-fixed vol-bar">
+                <div class="bar-fill" style="height: 70%;"></div>
+                <i class="fa-solid fa-volume-high bar-anchor-icon"></i>
+            </div>
+
+            <div class="controls-stack">
+                <div class="meta-row-expanded">
+                    <img src="https://xatimg.com/image/k6LuRMJ0Bwu3.png" class="meta-thumb-lg">
+                    <div class="meta-info-main">
+                        <span class="artist-txt">La Calle</span>
+                        <span class="title-txt">Lov3</span>
+                    </div>
+                </div>
+
+                <div class="buttons-row-slim">
+                    <button class="btn-ctrl btn-sm"><i class="fa-solid fa-repeat"></i></button>
+                    <button class="btn-ctrl btn-md"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="btn-play-hub"><i class="fa-solid fa-play"></i></button>
+                    <button class="btn-ctrl btn-md"><i class="fa-solid fa-forward-step"></i></button>
+                    <button class="btn-ctrl btn-sm"><i class="fa-solid fa-shuffle"></i></button>
+                </div>
+            </div>
+
+            <div class="side-bar-fixed time-bar">
+                <div class="bar-fill" style="height: 45%;"></div>
+                <span class="bar-anchor-txt">3:42</span>
+            </div>
+
+        </div>
+    </div>
+	    <!-- FOOTER AICI -->
+    <footer>
+        <a href="https://xat.me/xDesignx" target="_blank">
+            &copy; Copyright - ByDesign
+        </a>
+        <span id="year"></span>
+    </footer>
+	<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+  </main>
+  
+</body>
+</html>
