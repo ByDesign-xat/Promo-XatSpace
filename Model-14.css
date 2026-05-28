@@ -888,8 +888,8 @@ body.palette-pink .switch-slider {
 
 .friends-vertical-strip {
     position: absolute;
-    top: 50%;
-    right: 30px;
+    top: 25%;
+    right: -80px;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
