@@ -3,10 +3,14 @@
     "pages": [
       {
         "left": { "image": "https://xatimg.com/image/VtZf08K8am6B.png" },
-        "right": null
+        "right": {
+		  "author": "Name",
+          "authorFont": "AdineKirnberg-Alternate",
       },
       {
-        "left": null,
+        "left": {
+		  "author": "Name",
+          "authorFont": "AdineKirnberg-Alternate",
         "right": { "image": "https://xatimg.com/image/NHOcfCvz8RFB.png" }
       },
       {
