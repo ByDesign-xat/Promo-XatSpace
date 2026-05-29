@@ -11,7 +11,7 @@
       },
       {
         "left": {
-          "title": "Un amor que no se copia",
+          "title": "A love that cannot be copied",
           "author": "You Name",
           "authorFont": "AdineKirnberg-Alternate",
           "authorId": "You ID"
@@ -23,27 +23,27 @@
         "right": {
           "title": "Índice",
           "entries": [
-            { "chapter": "• Declaración inicial de amor", "page": 2 },
-            { "chapter": "• Lo que para mí significas", "page": 3 },
-            { "chapter": "• Comparaciones poéticas", "page": 4 },
-            { "chapter": "• La historia única e irrepetible", "page": 5 },
-            { "chapter": "• Encuentro y destino", "page": 7 },
-            { "chapter": "• El hombre esperado", "page": 8 },
-            { "chapter": "• La llegada divina", "page": 9 },
-            { "chapter": "• La esperanza compartida", "page": 10 },
-            { "chapter": "• La voz de la poetisa", "page": 11 },
-            { "chapter": "• Capítulo 2: Amor en la distancia", "page": 13 },
-            { "chapter": "• Capítulo 3: Amor eterno", "page": 17 },
-            { "chapter": "• Capítulo 4: Frases de amor", "page": 21 },
-            { "chapter": "• Capítulo 5: Mejor decir adiós", "page": 30 }
+            { "chapter": "• Initial declaration of love", "page": 2 },
+            { "chapter": "• Chapter 1: What you mean to me", "page": 3 },
+            { "chapter": "• Poetic comparisons", "page": 4 },
+            { "chapter": "• The unique and unrepeatable story", "page": 5 },
+            { "chapter": "• Encounter and Destination", "page": 7 },
+            { "chapter": "• The man awaited", "page": 8 },
+            { "chapter": "• The divine arrival", "page": 9 },
+            { "chapter": "• Shared hope", "page": 10 },
+            { "chapter": "• The Poet's Voice", "page": 11 },
+            { "chapter": "• Chapter 2: Love at a Distance", "page": 13 },
+            { "chapter": "• Chapter 3: Eternal Love", "page": 17 },
+            { "chapter": "• Chapter 4: Love Quotes", "page": 21 },
+            { "chapter": "• Chapter 5: It's best to say goodbye", "page": 30 }
           ],
           "pageNumberRight": 1
         }
       },
       {
         "left": {
-          "title": "Capítulo 1: Lo que para mí significas",
-          "photo": "https://i.postimg.cc/x891tsC7/Conny3.png",
+          "title": "Chapter 1: What you mean to me",
+          "photo": "https://xatimg.com/image/LrjgK2zznOpa.png",
           "pageNumberLeft": 2
         },
         "right": null
@@ -51,22 +51,22 @@
       {
         "left": null,
         "right": {
-          "title": "Lo que para mí significas",
+          "title": "What you mean to me",
           "text": [
-            "Tú y yo sabemos que hay algo especial que nos cuida y conduce desde arriba.",
-            "Nuestra historia es única y bonita, no se repite dos veces, no se puede copiar, ni utilizando la misma tinta.",
-            "Y es que personas como tú se conocen solo una vez en la vida.",
-            "Solo tú sabes lo mucho que te quiero y lo importante que eres… Solo tú sabes lo que para mí significas."
+            "You and I know that there is something special that watches over us and guides us from above.",
+            "Our story is unique and beautiful, it does not repeat itself twice, it cannot be copied, not even using the same ink.",
+            "Because people like you only meet once in a lifetime.",
+            "Only you know how much I love you and how important you are… Only you know what you mean to me."
           ],
           "pageNumberRight": 3
         }
       },
       {
         "left": {
-          "title": "Comparaciones poéticas",
+          "title": "Poetic comparisons",
           "text": [
-            "Porque siempre serás mi gran amor, el hombre que vale oro, el hombre perfecto.",
-            "Eres único y nunca habrá otro hombre como tú en el mundo. 🖋🥀💔"
+            "Because you will always be my great love, the man worth his weight in gold, the perfect man.",
+            "You are unique and there will never be another man like you in the world. 🖋🥀💔"
           ],
           "pageNumberLeft": 4
         },
@@ -75,10 +75,10 @@
       {
         "left": null,
         "right": {
-          "title": "La voz de la poetisa",
+          "title": "The Poet's Voice",
           "text": [
-            "Quisiera escribir como una poetisa, llena de poesía que inunda de sentimientos al lector que lee con emoción.",
-            "De esas que sacan suspiros al terminar un verso y dicen: “Me leíste el pensamiento, es lo que siento yo.”"
+            "I would like to write like a poet, full of poetry that floods the reader with feelings who reads with emotion.",
+            "The kind that make you sigh when you finish a verse and say: ”You read my mind, that's what I feel.”"
           ],
           "pageNumberRight": 5
         }
@@ -87,20 +87,20 @@
         "right": null,
         "left": {
           "text": [
-            "Quisiera ser esa poetisa que envuelve tus suspiros, sucumbiendo tus anhelos, sacudiendo tus instintos, penetrándome en tu pecho, dejándote sin aliento."
+            "I wish I were that poetess who envelops your sighs, succumbing to your desires, shaking your instincts, penetrating your chest, leaving you breathless."
           ],
           "pageNumberLeft": 6
         }
       },
       {
         "right": {
-          "title": "Reflexiones sobre el tiempo",
+          "title": "Reflections on time",
           "text": [
-            "Sentada en una escalera, como si cada peldaño fueran los años.",
-            "Para arriba, un futuro incierto.",
-            "Donde estoy sentada, mi presente, del que disfruto todo lo que me da.",
-            "Para abajo… sí, para abajo, solo recuerdos: algunos muy felices, otros dejaron mal sabor de boca, pero de todos aprendí y me llevaron al escalón de mi presente.",
-            "Y si aprendí, me valió la pena."
+            "Sitting on a staircase, as if each step represented a year.",
+            "Upwards, an uncertain future.",
+            "Where I am sitting, my present, which I enjoy everything it gives me.",
+            "Downwards… yes, downwards, only memories: some very happy, others left a bad taste in my mouth, but I learned from all of them and they led me to the step of my present.",
+            "And if I learned, it was worth it."
           ],
           "pageNumberRight": 7
         },
@@ -109,7 +109,7 @@
       {
         "left": {
           "text": [
-            "Quisiera ser sencilla, fresca, clara, vistiéndote de gala, siendo la única ladrona de tu corazón, para que me des en versos todo tu amor. 🖋🥀"
+            "I would like to be simple, fresh, clear, dressing you in finery, being the only thief of your heart, so that you give me all your love in verses. 🖋🥀"
           ],
           "pageNumberLeft": 8
         },
@@ -118,26 +118,26 @@
       {
         "left": null,
         "right": {
-          "title": "Mensaje que nunca llega",
+          "title": "Message that never arrives",
           "text": [
-            "No duermo, me siento como una estúpida e ignorante al esperarte, sí, al esperar ese mensaje que sé que no va a llegar.",
-            "Qué iluso es mi corazón, abrigando la esperanza del amor.",
-            "Qué difícil es no gritar, dejar el orgullo y hablar."
+            "I can't sleep, I feel stupid and ignorant waiting for you, yes, waiting for that message that I know will never arrive.",
+            "How naive my heart is, harboring the hope of love.",
+            "How difficult it is not to shout, to put aside pride and speak."
           ],
           "pageNumberRight": 9
         }
       },
       {
         "left": {
-          "title": "Metáforas intensas",
+          "title": "Intense metaphors",
           "text": [
-            "Pero… ¿para qué hablar? ¿Cómo le escribes al ciego?",
-            "¿Cómo le gritas al sordo?",
-            "¿Cómo amas sin amor?",
-            "¿Cómo acaricias un témpano de hielo sin quemarte las manos, sin derretir ni la primera capa en su exterior?",
-            "¿Cómo le enseñas el sol si solo ve en la oscuridad?",
-            "¿Cómo le enseñas la luna y su brillo si solo ve el piso y su carboncillo?",
-            "¿Cómo pintas colores si te los hace todos mil horrores?"
+            "But… what's the point of talking? How do you write to a blind person?",
+            "How do you shout at a deaf person?",
+            "How can you love without love?",
+            "How do you caress an iceberg without burning your hands, without melting even the first layer on its exterior?",
+            "How can you show him the sun if he only sees in the dark?",
+            "How can you show him the moon and its brightness if all he sees is the floor and his charcoal?",
+            "How can you paint colors if it makes them all look awful?"
           ],
           "pageNumberLeft": 10
         },
@@ -146,12 +146,12 @@
       {
         "left": null,
         "right": {
-          "title": "El corazón que late",
+          "title": "The beating heart",
           "text": [
-            "Cómo cerrar mis ojos si te veo ahí, despierto, navegando sin sentido y yo tan perdida por no tener tu cariño.",
-            "Cómo le digo al corazón que deje de latir por ese amor que tengo clavado entre el pecho y la espalda y que duele en el alma.",
-            "Cómo hago para cerrar los ojos y tener un espejismo de un mensaje de amor.",
-            "Cómo amordazo a la razón, cómo castigo al corazón, cómo quemo mi alma de esto que siento yo. 🖋🥀"
+            "How can I close my eyes when I see you there, awake, sailing aimlessly, and me so lost for not having your love?",
+            "How do I tell my heart to stop beating for that love that's stuck between my chest and back and that hurts my soul?",
+            "How can I close my eyes and have a mirage of a love message?",
+            "How can I close my eyes and have a mirage of a love message? 🖋🥀"
           ],
           "pageNumberRight": 11
         }
@@ -160,8 +160,8 @@
 
 {
         "left": {
-          "title": "Capítulo 2: Amor en la distancia",
-          "photo": "https://i.postimg.cc/cCdLXDHp/Conny4.png",
+          "title": "Chapter 2: Love at a Distance",
+          "photo": "https://xatimg.com/image/DVIEFbOLIplc.png",
           "pageNumberLeft": 12
         },
         "right": null
@@ -169,11 +169,11 @@
       {
         "left": null,
         "right": {
-          "title": "Amor en la distancia",
+          "title": "Love in the distance",
           "text": [
-            "Tu habitas en mi mente a toda hora del día, y me muerdes los labios sin mirar el reloj.",
-            "Yo te siento muy cerca cuando estás muy distante, porque encuentro tu huella junto a cada rincón.",
-            "¡Ámame sin miedos! ¡Ámame sin condiciones! ¡Ámame sin egoísmos!"
+            "You live in my mind at all hours of the day, and you bite my lips without looking at the clock.",
+            "I feel you very close when you are very far away, because I find your trace next to every corner.",
+            "Love me without fear! Love me unconditionally! Love me selflessly!"
           ],
           "pageNumberRight": 13
         }
@@ -181,9 +181,9 @@
       {
         "left": {
           "text": [
-            "¡Ámame sin absorberme! ¡Ámame libremente!",
-            "Yo puedo hacer que tu camino sea igualito al mío, que tus tristezas sean mis tristezas.",
-            "Amor que padece por esa distancia, de dulce fragancia que incita a lo lejos."
+            "Love me without possessing me! Love me freely!",
+            "I can make your path exactly like mine, and make your sorrows my sorrows.",
+            "Love that suffers from that distance, of sweet fragrance that entices from afar."
           ],
           "pageNumberLeft": 14
         },
@@ -193,10 +193,10 @@
         "left": null,
         "right": {
           "text": [
-            "Quisiera de besos y caricias colmarte, pero estás ausente… y solo recordarte pueden mis adentros.",
-            "Pero si piensas volver algún día, será mejor que venda la tristeza y deje paso a la alegría.",
-            "Claro está, la soledad es tan amiga mía, que no sé si cuando vengas serás mejor compañía.",
-            "Ya que el corazón se lo han comido los gusanos, se mueren las mariposas que había en mi estómago."
+            "I would like to shower you with kisses and caresses, but you are absent… and my soul can only remember you.",
+            "But if you plan to return someday, you'd better sell off the sadness and make way for joy.",
+            "Of course, loneliness is such a good friend of mine, that I don't know if you'll be better company when you come.",
+            "Since the worms have eaten my heart, the butterflies in my stomach are dying."
           ],
           "pageNumberRight": 15
         }
@@ -204,9 +204,9 @@
       {
         "left": {
           "text": [
-            "Juego a imaginarme lo que nunca me ha pasado, este sábado que el corazón me dio entera la vuelta.",
-            "Tan lejos o tan cerca… yo te amo. Yo te amo sin importar la distancia.",
-            "Puedes pensar que la distancia puede separar nuestro abrazo, que el tiempo hará más lejano nuestro encuentro… pero pensar que te he olvidado… nunca. ♞💘🌹"
+            "I play at imagining what has never happened to me, this Saturday when my heart turned completely upside down.",
+            "Whether you're far away or near... I love you. I love you regardless of the distance.",
+            "You may think that distance can separate our embrace, that time will make our meeting further away… but to think that I have forgotten you… never. ♞💘🌹"
           ],
           "pageNumberLeft": 16
         },
@@ -214,8 +214,8 @@
       },
       {
         "right": {
-          "title": "Capítulo 3: Amor eterno",
-          "photo": "https://i.ibb.co/ccw73LH/Pcconngrs.png",
+          "title": "Chapter 3: Eternal Love",
+          "photo": "https://xatimg.com/image/nhnuih2OwXDy.png",
           "pageNumberRight": 17
         },
         "left": null
@@ -225,12 +225,12 @@
         "left": {
           "title": "Amor eterno",
           "text": [
-            "No hay palabras más claras para expresar lo que siento por ti.",
-            "Solo quiero que pasen los años y estar todavía a tu lado.",
-            "Solo quiero que te quedes conmigo para siempre y vivamos nuestra vida dándonos mucho amor.",
-            "Quiero quererte y sé que te voy a querer todos los días de mi vida.",
-            "Acordarme de ti, amore, no es llamarte ni escribirte, ni verte o estar pendiente de ti.",
-            "Es mirar al cielo y pedirle a Dios que te cuide, que te proteja donde quiera que estés"
+            "There are no clearer words to express what I feel for you.",
+            "I just want the years to pass and for me to still be by your side.",
+            "I just want you to stay with me forever and for us to live our lives giving each other lots of love.",
+            "I want to love you and I know I will love you every day of my life.",
+            "Remembering you, my love, doesn't mean calling you, writing to you, seeing you, or being attentive to you.",
+            "It's looking up at the sky and asking God to take care of you, to protect you wherever you are."
           ],
           "pageNumberLeft": 18
         }
@@ -238,12 +238,12 @@
       {
         "right": {
           "text": [
-            "que te mande su bendición. ♞💘🌹",
-            "Un amor verdadero espera lo imposible, sueña lo inalcanzable y se conforma con solo saber que la persona amada esté bien y sea feliz, aunque no esté con ella.",
-            "¡Ti amo, mi bello ángel! ஜ ᶫᵒᵛᵉ ᵧₒᵤ ♞",
-            "Amor mío, esta noche déjame estar en tus sueños.",
-            "Esta noche quiero abrazar tu corazón, acariciar tu alma, abrazarte fuerte y no dejarte escapar.",
-            "Amor, esta noche olvidemos todo. Esta noche solo existimos tú y yo."
+            "May He send you His blessing. ♞💘🌹",
+            "True love hopes for the impossible, dreams of the unattainable, and is content just knowing that the loved one is well and happy, even if they are not with them.",
+            "I love you, my beautiful angel! ஜ ᶫᵒᵛᵉ ᵧₒᵤ ♞",
+            "My love, tonight let me be in your dreams.",
+            "Tonight I want to embrace your heart, caress your soul, hold you tight and never let you go.",
+            "My love, let's forget everything tonight. Tonight, it's just you and me."
           ],
           "pageNumberRight": 19
         },
@@ -253,12 +253,12 @@
         "right": null,
         "left": {
           "text": [
-            "♞ Vuelvo a verte otra vez, vuelvo a respirar profundo,",
-            "y que se entere el mundo que de amor también se puede vivir.",
-            "Gracias a ti, mi bello ángel, aprendí de nuevo a creer en el amor.",
-            "Hiciste que este corazón muerto en vida volviera a dar sus latidos.",
-            "Tan solo basta estar cerca de ti: late a mil por hora.",
-            "¡Arreeee! Ti amo, mi bello ángel. ஜ"
+            "♞ I see you again, I breathe deeply again,",
+            "And let the world know that one can also live on love.",
+            "Thanks to you, my beautiful angel, I learned to believe in love again.",
+            "You made this heart, dead while still alive, beat again.",
+            "Just being near you is enough: it beats a thousand miles an hour.",
+            "Arreeee! I love you, my beautiful angel. ஜ"
           ],
           "pageNumberLeft": 20
         }
@@ -267,8 +267,8 @@
 
       {
         "right": {
-          "title": "Capítulo 4: Frases de amor",
-          "photo": "https://i.ibb.co/P9jC1q2/Pcconnazl.png",
+          "title": "Chapter 4: Love Quotes",
+          "photo": "https://xatimg.com/image/mewbMxU7Z8z0.png",
           "pageNumberRight": 21
         },
         "left": null
@@ -276,12 +276,12 @@
       {
         "right": null,
         "left": {
-          "title": "Frases de amor",
+          "title": "Love quotes",
           "text": [
-            "♡ La frase más bonita, del poema más sincero que encontré, solo tiene tres palabras: Yo te quiero.",
-            "♡ Cuando andes en el campo y sientas un aire frío, no le eches la culpa al viento, porque es un suspiro mío.",
-            "♡ Desde marzo te amo, llegará diciembre y aún te sigo amando. Es curioso cómo pasan los meses y sigo de ti enamorada.",
-            "♡ Eres la luz de mi vida, eres el dueño de mi amor, eres el único en mi mente y el primero en mi corazón."
+            "♡ The most beautiful phrase, from the most sincere poem I found, only has three words: I love you.",
+            "♡ When you walk in the countryside and feel a cold breeze, don't blame it on the wind, because it's my sigh.",
+            "♡ I've loved you since March, December will come and I'll still love you. It's funny how the months go by and I'm still in love with you.",
+            "♡ You are the light of my life, you are the owner of my love, you are the only one on my mind and the first in my heart."
           ],
           "pageNumberLeft": 22
         }
@@ -289,10 +289,10 @@
       {
         "right": {
           "text": [
-            "♡ Te amo más que a mi vida porque te llevo en mi mente, y si de algo estoy segura es que te amaré hasta la muerte.",
-            "♡ Quiero ser el pensamiento de todos tus instantes, saborearte cada momento, viviéndote cada instante. Eso quiero.",
-            "♡ Si juntáramos tus sueños con los míos, no querríamos volvernos a dormir.",
-            "♡ Me estoy ahogando con las palabras que no te he dicho y los besos que no te he dado."
+            "♡ I love you more than my life because I carry you in my mind, and if there's one thing I'm sure of, it's that I will love you until death.",
+            "♡ I want to be the thought of all your moments, to savor every moment with you, to live every instant with you. That's what I want.",
+            "♡ If we combined your dreams with mine, we wouldn't want to go back to sleep.",
+            "♡ I'm drowning in the words I haven't said to you and the kisses I haven't given you."
           ],
           "pageNumberRight": 23
         },
@@ -302,10 +302,10 @@
         "right": null,
         "left": {
           "text": [
-            "♡ No me digas “mi vida”, dime “mi cielo”, porque la vida se acaba y el cielo es eterno.",
-            "♡ Si no fui la bandida que asaltó tu mansión, déjame ser la ladrona que robe tu corazón.",
-            "♡ Si mi alma fuera pluma y mi corazón tintero, con sangre de mis venas escribiría: Te quiero.",
-            "♡ Si tu cuerpo fuera cárcel y tu corazón cadena, orgullosa estaría de cumplir con mi condena."
+            "♡ Don't call me "my life", call me "my heaven", because life ends and heaven is eternal.",
+            "♡ If I wasn't the bandit who raided your mansion, let me be the thief who steals your heart.",
+            "♡ If my soul were a feather and my heart an inkwell, with the blood of my veins I would write: I love you.",
+            "♡ If your body were a prison and your heart a chain, I would be proud to serve my sentence."
           ],
           "pageNumberLeft": 24
         }
@@ -313,10 +313,10 @@
       {
         "right": {
           "text": [
-            "♡ Si tú fueras el sol, yo quisiera ser la luna, para formar un eclipse y estar juntos los dos.",
-            "♡ Quisiera ser el lucero que guía la senda que caminas, la rosa encendida que miras, la suave brisa que aspiras… en definitiva: Quisiera que fueras mío.",
-            "♡ Tú eres esa cara que nunca dejaré de buscar entre la multitud, dondequiera que vaya.",
-            "♡ Penetras en mi torrente sanguíneo, circulando directo al corazón."
+            "♡ If you were the sun, I would want to be the moon, to form an eclipse and be together.",
+            "♡ I would like to be the star that guides the path you walk, the burning rose you gaze upon, the soft breeze you breathe in… in short: I would like you to be mine.",
+            "♡ You are that face I will never stop looking for in the crowd, wherever I go.",
+            "♡ You penetrate my bloodstream, circulating directly to my heart."
           ],
           "pageNumberRight": 25
         },
@@ -326,10 +326,10 @@
         "right": null,
         "left": {
           "text": [
-            "♡ Cuando me vaya de aquí estarás en mis recuerdos, e incluso cuando yo muera serás eterno en mis sueños.",
-            "♡ Un beso dice más que cien versos, una mirada más que mil palabras, y cada latido mío expresa que mi corazón con locuras te ama.",
-            "♡ Te amo, no sé cuánto. Yo misma me asombro del impacto que has causado en mi corazón solitario.",
-            "♡ Ni aunque el cielo fuera hecho de papel y los océanos fueran de tinta, habría lugar para escribir todo lo que me haces sentir."
+            "♡ When I leave here you will be in my memories, and even when I die you will be eternal in my dreams.",
+            "♡ A kiss says more than a hundred verses, a look more than a thousand words, and every heartbeat of mine expresses that my heart loves you madly.",
+            "♡ I love you, I don't know how much. I myself am amazed at the impact you have had on my lonely heart.",
+            "♡ Even if the sky were made of paper and the oceans of ink, there wouldn't be enough room to write down everything you make me feel."
           ],
           "pageNumberLeft": 26
         }
@@ -337,10 +337,10 @@
       {
         "right": {
           "text": [
-            "♡ Ser esclava de tu amor sería como tener el paraíso de prisión.",
-            "♡ Quisiera ser el viento para acariciar tu rostro, rozar tu piel y tus labios, para soplarte al oído lo mucho que te quiero.",
-            "♡ Te pienso más de lo que respiro. Perdóname, pero este es mi mejor argumento para demostrarte mi amor.",
-            "♡ Si algún día despiertas en un cuarto rojo con puertas y ventanas cerradas, no te asustes: estás en mi corazón encerrado."
+            "♡ Being a slave to your love would be like having paradise as a prison.",
+            "♡ I wish I were the wind to caress your face, to brush against your skin and your lips, to whisper in your ear how much I love you.",
+            "♡ I think about you more than I breathe. Forgive me, but this is my best way to show you my love.",
+            "♡ If you ever wake up in a red room with closed doors and windows, don't be alarmed: you are locked in my heart."
           ],
           "pageNumberRight": 27
         },
@@ -349,10 +349,10 @@
       {
         "left": {
           "text": [
-            "♡ Aún sin sentido, sin razón ni pensamiento, aún sin saber por qué te amo o por qué te pienso, sé que existes y que eres mi sueño.",
-            "♡ Si la vida me diera un deseo, sería volverte a conocer, para volverte a amar y besarte otra vez, porque tú eres lo mejor que me puede suceder.",
-            "♡ Tres cosas a ti te entrego, sin condiciones y sin pedir nada: quererte como te quiero, amarte de verdad, serte fiel hasta la muerte.",
-            "♡ Querer sin esperanza es el más bello querer. Yo te quiero y nada espero, fíjate si te querré."
+            "♡ Even without sense, without reason or thought, even without knowing why I love you or why I think of you, I know that you exist and that you are my dream.",
+            "♡ If life granted me one wish, it would be to meet you again, to love you again and kiss you again, because you are the best thing that could ever happen to me.",
+            "♡ Three things I give to you, unconditionally and without asking for anything: to love you as I love you, to truly love you, to be faithful to you until death.",
+            "♡ To love without hope is the most beautiful kind of love. I love you and expect nothing in return; that's how much I love you."
           ],
           "pageNumberLeft": 28
         },
@@ -361,10 +361,10 @@
       {
         "right": {
           "text": [
-            "♡ Quién fuera agua para evaporarse, convertirse en nube y caer desde el cielo sobre tu cuerpo, recorriéndolo por completo.",
-            "♡ Dicen que soy una niña, será por mi forma de ser, pero aun siendo niña, te quiero como una mujer.",
-            "♡ Quisiera ser pensamiento y estar dentro de ti, y así saber el momento en que te acuerdas de mí.",
-            "♡ Ayer te soñé, hoy te conocí, mañana te querré y ya nunca te olvidaré."
+            "♡ I wish I were water so I could evaporate, become a cloud, and fall from the sky onto your body, covering it completely.",
+            "♡ They say I'm a girl, maybe it's because of the way I am, but even though I'm a girl, I love you like a woman.",
+            "♡ I wish I could be a thought and be inside you, and thus know the moment when you remember me.",
+            "♡ Yesterday I dreamed of you, today I met you, tomorrow I will love you and I will never forget you."
           ],
           "pageNumberRight": 29
         },
@@ -372,8 +372,8 @@
       },
       {
         "left": {
-          "title": "Capítulo 5: Mejor decir adiós",
-          "photo": "https://xatimg.com/image/WDuBYqv8FfuU.jpg",
+          "title": "Chapter 5: It's best to say goodbye",
+          "photo": "https://xatimg.com/image/W7oMXTcfIPoC.png",
           "pageNumberLeft": 30
         },
         "right": null
@@ -381,14 +381,14 @@
       {
         "left": null,
         "right": {
-          "title": "Mejor decir adiós 🐎💋",
+          "title": "It's best to say goodbye 🐎💋",
           "text": [
-            "Se te murió el amor hacia mí, se fue alejando un hielo entre los dos.",
-            "Nos hace daño el fuego y la pasión de ayer, de golpe se nos fue de frente.",
-            "Mírame, un beso y márchate, aunque yo no siento igual que tú.",
-            "Frío en el aire, el corazón puede cambiar.",
-            "No somos culpables, lo siento.",
-            "Es que el calor de ayer hoy ya no puede ser, y tengo que aceptar que tu amor se fue."
+            "Your love for me died, an ice grew between us.",
+            "The fire and passion of yesterday hurt us; suddenly it went straight to our heads.",
+            "Look at me, give me a kiss and leave, even though I don't feel the same way you do.",
+            "Cold in the air, the heart can change.",
+            "We are not guilty, I'm sorry.",
+            "The warmth of yesterday can no longer be today, and I have to accept that your love is gone."
           ],
           "pageNumberRight": 31
         }
@@ -396,11 +396,11 @@
       {
         "left": {
           "text": [
-            "Yo no podría hacerte mal, ni herir a alguien como tú.",
-            "Siempre en mí estarás, y yo estaré ahí para ti cuando quieras y me necesites.",
-            "Jamás te olvidaré.",
-            "No queda más de aquel amor, otro camino hay que intentar.",
-            "Me tienes que creer: mejor decir adiós."
+            "I could never hurt you, or harm someone like you.",
+            "You will always be in my heart, and I will be there for you whenever you want and need me.",
+            "I will never forget you.",
+            "That love is gone, we must try another path.",
+            "You have to believe me: it's better to say goodbye."
           ],
           "pageNumberLeft": 32
         },
@@ -409,11 +409,11 @@
       {
         "left": null,
         "right": {
-          "title": "Oración nocturna",
+          "title": "Night prayer",
           "text": [
-            "Señor, te doy las buenas noches y las gracias por darme la oportunidad de terminar un día más de vida.",
-            "Gracias por todas las bendiciones que derramaste sobre mí hoy.",
-            "Señor, bajo tu gracia divina y de manera perfecta, en el poderoso nombre de nuestro Señor Jesucristo y por obra y gracia de tu Santo Espíritu, te pido que envíes al Arcángel Miguel con sus legiones de ángeles."
+            "Lord, I say goodnight and thank you for giving me the opportunity to finish another day of life.",
+            "Thank you for all the blessings you showered upon me today.",
+            "Lord, under your divine grace and in a perfect way, in the powerful name of our Lord Jesus Christ and by the work and grace of your Holy Spirit, I ask you to send the Archangel Michael with his legions of angels."
           ],
           "pageNumberRight": 33
         }
@@ -421,12 +421,12 @@
       {
         "left": {
           "text": [
-            "Señor, envía cuatro ángeles, que cada uno se quede en cada lado de mi cama y me ayuden a descansar entre tus brazos.",
-            "Yo te entrego mis preocupaciones, enfermedades, angustias, cansancio y tristezas.",
-            "Lléname con tu esencia divina, tu luz infinita, tu amor incondicional, tu sabiduría, tu paz y tu misericordia.",
-            "Bendice mi sueño, bendice mi descanso, bendice mi cama.",
-            "Envía a los ángeles del amor divino, de la paz, la tranquilidad y la armonía, para que me acompañen y me den un despertar hermoso.",
-            "Señor, en tus manos pongo mi vida, mi familia, mi hogar, mi trabajo y mi salud."
+            "Lord, send four angels, one to stand on each side of my bed and help me rest in your arms.",
+            "I give you my worries, illnesses, anxieties, tiredness, and sadness.",
+            "Fill me with your divine essence, your infinite light, your unconditional love, your wisdom, your peace, and your mercy.",
+            "Bless my sleep, bless my rest, bless my bed.",
+            "Send the angels of divine love, peace, tranquility, and harmony to accompany me and give me a beautiful awakening.",
+            "Lord, into your hands I place my life, my family, my home, my work, and my health."
           ],
           "pageNumberLeft": 34
         },
@@ -437,11 +437,11 @@
 {
         "right": {
           "text": [
-            "Que permanezca siempre en la puerta de mi hogar y me rodee con su luz infinita y su amor incondicional.",
-            "Protégeme de todo mal y peligro, a mí y a mis seres queridos.",
-            "Si alguien me hace daño, perdónales, porque no saben lo que hacen.",
-            "Que en mí se cumpla tu perfecta voluntad y no la mía.",
-            "Que la presencia y la bendición de Dios Padre, Dios Hijo y Dios Espíritu Santo nos acompañe siempre."
+            "May He always remain at the door of my home and surround me with His infinite light and unconditional love.",
+            "Protect me and my loved ones from all evil and danger.",
+            "If someone hurts me, forgive them, for they do not know what they are doing.",
+            "May your perfect will be done in me, not mine.",
+            "May the presence and blessing of God the Father, God the Son, and God the Holy Spirit always be with us."
           ],
           "pageNumberRight": 35
         },
@@ -450,14 +450,14 @@
       {
         "right": null,
         "left": {
-          "title": "Plegaria a la Virgen",
+          "title": "Prayer to the Virgin",
           "text": [
-            "Madre, tú que eres la Reina del Cielo, que estás ante Dios Padre Todopoderoso y tu amado Hijo Jesús.",
-            "Te pido que intercedas por todas mis necesidades, que escuches mis plegarias.",
-            "Que el Espíritu Santo ilumine mis pensamientos para tomar decisiones adecuadas en mi vida.",
-            "Morenita, te necesito, ayúdame.",
-            "Te amo.",
-            "Amén. 🙏"
+            "Mother, you who are the Queen of Heaven, who stand before God the Almighty Father and your beloved Son Jesus.",
+            "I ask you to intercede for all my needs, to hear my prayers.",
+            "May the Holy Spirit illuminate my thoughts so that I may make appropriate decisions in my life.",
+            "Morenita, I need you, help me.",
+            "I love you.",
+            "Amen. 🙏"
           ],
           "pageNumberLeft": 36
         }
