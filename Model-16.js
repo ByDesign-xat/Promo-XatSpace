@@ -6,7 +6,7 @@ const BASE_FONT_SIZE = 15; // Tamaño base coherente para todas las páginas
 
 // ===== Inicialización =====
 $(document).ready(function () {
-  $.getJSON("https://bydesign-xat.github.io/Promo-XatSpace/Model-16-book.json", function (json) {
+  $.getJSON("https://bydesign-xat.github.io/Promo-XatSpace/Model-16.json", function (json) {
     book = json.book;
     renderPage(currentPage);
   });
