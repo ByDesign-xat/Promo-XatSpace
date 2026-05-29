@@ -1,0 +1,40 @@
+{
+  "hits": [
+    {
+      "caratula": "https://files.catbox.moe/50zeh3.jpg",
+      "artista": "HUGEL & SOLTO",
+      "nombre": "Jamaican",
+      "enlace": "https://files.catbox.moe/3ceaw0.mp3",
+      "seccion": "hits",
+      "duracion": "4:07",
+      "genero": "USA"
+    },
+    {
+      "caratula": "https://files.catbox.moe/7h17j2.jpg",
+      "artista": "MANDA",
+      "nombre": "Mala"",
+      "enlace": "https://files.catbox.moe/zdn6ft.mp3",
+      "seccion": "hits",
+      "duracion": "4:23",
+      "genero": "European"
+    },
+	{
+      "caratula": "https://files.catbox.moe/i352r6.jpg",
+      "artista": "Noizy x Loredana",
+      "nombre": "Heart attack",
+      "enlace": "https://files.catbox.moe/pb536t.mp3",
+      "seccion": "hits",
+      "duracion": "2:37",
+      "genero": "European"
+    },
+    {
+      "caratula": "https://files.catbox.moe/fda537.jpg",
+      "artista": "Fantomel x Kate Linn",
+      "nombre": "Dame Un Grrr",
+      "enlace": "https://files.catbox.moe/bs1muu.mp3",
+      "seccion": "hits",
+      "duracion": "3:23",
+      "genero": "European"
+    }
+  ]
+}
