@@ -3,18 +3,18 @@
     "pages": [
       {
         "left": { "image": "https://xatimg.com/image/VtZf08K8am6B.png" },
-        "right": { "image": "https://xatimg.com/image/NHOcfCvz8RFB.png" }
+        "right": null
       },
       {
-        "left": { "image": "https://xatimg.com/image/NHOcfCvz8RFB.png" },
-        "right": { "image": "https://xatimg.com/image/VtZf08K8am6B.png" }
+        "left": null,
+        "right": { "image": "https://xatimg.com/image/NHOcfCvz8RFB.png" }
       },
       {
         "left": {
           "title": "Un amor que no se copia",
-          "author": "You Name",
+          "author": "Name",
           "authorFont": "AdineKirnberg-Alternate",
-          "authorId": "You ID"
+          "authorId": "ID"
         },
         "right": null
       },
@@ -43,7 +43,7 @@
       {
         "left": {
           "title": "Capítulo 1: Lo que para mí significas",
-          "photo": "https://i.postimg.cc/x891tsC7/Conny3.png",
+          "photo": "https://xatimg.com/image/LrjgK2zznOpa.png",
           "pageNumberLeft": 2
         },
         "right": null
@@ -161,7 +161,7 @@
 {
         "left": {
           "title": "Capítulo 2: Amor en la distancia",
-          "photo": "https://i.postimg.cc/cCdLXDHp/Conny4.png",
+          "photo": "https://xatimg.com/image/DVIEFbOLIplc.png",
           "pageNumberLeft": 12
         },
         "right": null
@@ -215,7 +215,7 @@
       {
         "right": {
           "title": "Capítulo 3: Amor eterno",
-          "photo": "https://i.ibb.co/ccw73LH/Pcconngrs.png",
+          "photo": "https://xatimg.com/image/nhnuih2OwXDy.png",
           "pageNumberRight": 17
         },
         "left": null
@@ -268,7 +268,7 @@
       {
         "right": {
           "title": "Capítulo 4: Frases de amor",
-          "photo": "https://i.ibb.co/P9jC1q2/Pcconnazl.png",
+          "photo": "https://xatimg.com/image/mewbMxU7Z8z0.png",
           "pageNumberRight": 21
         },
         "left": null
