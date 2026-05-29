@@ -1,0 +1,919 @@
+{
+ 
+  "book": {
+ 
+    "pages": [
+ 
+      {
+ 
+        "left": { "image": "https://xatimg.com/image/VtZf08K8am6B.png" },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": { "image": "https://xatimg.com/image/NHOcfCvz8RFB.png" }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "title": "A love that is not copied",
+ 
+          "author": "You Name",
+ 
+          "authorFont": "AdineKirnberg-Alternate",
+ 
+          "authorId": "You ID"
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "Index",
+ 
+          "entries": [
+ 
+            { "chapter": "• Initial declaration of love", "page": 2 },
+ 
+            { "chapter": "• What you mean to me", "page": 3 },
+ 
+            { "chapter": "• Poetic Comparisons", "page": 4 },
+ 
+            { "chapter": "• The Unique and Unrepeatable Story", "page": 5 },
+ 
+            { "chapter": "• Encounter and Destiny", "page": 7 },
+ 
+            { "chapter": "• The Awaited Man", "page": 8 },
+ 
+            { "chapter": "• The Divine Arrival", "page": 9 },
+ 
+            { "chapter": "• Shared Hope", "page": 10 },
+ 
+            { "chapter": "• The Voice of the Poetess", "page": 11 },
+ 
+            { "chapter": "• Chapter 2: Love in the Distance", "page": 13 },
+ 
+            { "chapter": "• Chapter 3: Eternal Love", "page": 17 },
+ 
+            { "chapter": "• Chapter 4: Love Phrases", "page": 21 },
+ 
+            { "chapter": "• Chapter 5: Better to Say goodbye", "page": 30 }
+ 
+          ],
+ 
+          "pageNumberRight": 1
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "title": "Chapter 1: What you mean to me",
+ 
+          "photo": "https://xatimg.com/image/LrjgK2zznOpa.png",
+          "pageNumberLeft": 2
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "What you mean to me",
+ 
+          "text": [
+ 
+            "You and I know there's something special watching over us and guiding us from above.",
+ 
+            "Our story is unique and beautiful, it doesn't repeat itself twice, it can't be copied, not even using the same ink.",
+ 
+            "Because people like you are only met once in a lifetime.",
+            "Only you know how much I love you and how important you are... Only you know what you mean to me."
+ 
+          ],
+ 
+          "pageNumberRight": 3
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "title": "Poetic Comparisons",
+ 
+          "text": [
+ 
+            "Because you will always be my great love, the man worth his weight in gold, the perfect man.",
+ 
+            "You are unique and there will never be another man like you in the world. 🖋🥀💔"
+ 
+          ],
+ 
+          "pageNumberLeft": 4
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "The Voice of the Poetess",
+ 
+          "text": [
+ 
+            "I would like to write like a poetess, full of poetry that floods the reader with feelings, who reads with emotion.",
+ 
+            "The kind that draws sighs at the end of a verse and makes them say: "You read my mind, that's what I feel.""
+ 
+          ],
+ 
+          "pageNumberRight": 5
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "I would like to be that poetess who envelops your sighs, succumbing your longings, stirring your instincts, penetrating your chest, leaving you breathless."
+ 
+          ],
+ 
+          "pageNumberLeft": 6
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "title": "Reflections on Time",
+ 
+          "text": [
+ 
+            "Sitting on a staircase, as if each step were a year.",
+ 
+            "Upwards, an uncertain future.",
+ 
+            "Where I sit, my present, which I enjoy in all it gives me.",
+ 
+            "Downwards... yes, downwards, only memories: some very happy, others left a bad taste in my mouth, but I learned from all of them and they led me to the step of my present.",
+ 
+            "And if I learned, it was worth it."
+ 
+          ],
+ 
+          "pageNumberRight": 7
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "I would like to be simple,
+Fresh, clear, dressed in your finest, being the only thief of your heart, so that you give me all your love in verses. 🖋🥀" 
+          ],
+ 
+          "pageNumberLeft": 8
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "Message That Never Arrives",
+ 
+          "text": [
+ 
+            "I don't sleep, I feel stupid and ignorant waiting for you, yes, waiting for that message I know will never arrive.",
+ 
+            "How naive my heart is, harboring the hope of love.",
+ 
+            "How difficult it is not to shout, to let go of pride and speak.
+ 
+          ] ]
+ 
+          "pageNumberRight": 9
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "title": "Intense Metaphors",
+ 
+          "text": [
+ 
+            "But... what's the point of speaking? How do you write to a blind person?",
+ 
+            "How do you shout to a deaf person?",
+ 
+            "How do you love without love?",
+ 
+            "How do you caress an iceberg without burning your hands, without melting even the first layer on its exterior?",
+ 
+            "How do you show them the sun if they only see darkness?",
+ 
+            "How do you show them the moon and its brilliance if they only see the ground and its charcoal?",
+ 
+            "How do you paint colors if they make them all into a thousand horrors?"
+ 
+          ],
+ 
+          "pageNumberLeft": 10
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "The Beating Heart",
+ 
+          "text": [
+ 
+            "How can I close my eyes when I see you there, awake, drifting aimlessly, and me so lost for not having your love.",
+ 
+            "How do I tell my heart to stop beating for this love that's stuck between my chest and back and that hurts my soul.",
+ 
+            "How can I close my eyes and have a mirage of a love message.",
+ 
+            "How do I silence reason, how do I punish my heart, how do I burn my soul with this feeling. 🖋🥀"
+ 
+          ],
+ 
+          "pageNumberRight": 11
+ 
+        }
+ 
+      },
+ 
+
+
+{
+ 
+        "left": {
+ 
+          "title": "Chapter 2: Love in the Distance",
+ 
+          "photo": "https://xatimg.com/image/DVIEFbOLIplc.png",
+ 
+          "pageNumberLeft": 12
+ 
+        },
+ 
+        "right": null
+ 
+      },
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "Love in the Distance",
+ 
+          "text": [
+ 
+            "You live in my mind at all hours of the day, and you bite my lips without looking at the clock.",
+            "I feel you very close when you are very far away, because I find your trace in every corner."
+ 
+            "Love me without fear! Love me unconditionally! Love me selflessly!"
+ 
+          ],
+ 
+          "pageNumberRight": 13
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "Love me without possessing me! Love me freely!",
+ 
+            "I can make your path just like mine, make your sorrows my sorrows.",
+ 
+            "Love that suffers from that distance, of sweet fragrance that entices from afar."
+ 
+          ],
+ 
+          "pageNumberLeft": 14
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "I would like to shower you with kisses and caresses, but you are absent… and my soul can only remember you.",
+ 
+            "But if you plan to return someday, it would be better to sell away the sadness and make way for joy.",
+ 
+            "Of course, loneliness is such a good friend of mine, that I don't know if when you come you will be better company.",
+ 
+            "Since the worms have eaten my heart, the butterflies that were in my stomach are dying."
+ 
+          ],
+ 
+          "pageNumberRight": 15
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "I play at imagining what has never happened to me, this Saturday when my heart turned completely upside down.",
+ 
+            "So far away or so near... I love you. I love you regardless of the distance.",
+ 
+            "You may think that distance can separate our embrace, that time will make our meeting further away... but to think that I have forgotten you... never. ♞💘🌹"
+ 
+          ],
+ 
+          "pageNumberLeft": 16
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "title": "Chapter 3: Eternal Love",
+ 
+          "photo": "https://xatimg.com/image/nhnuih2OwXDy.png",
+ 
+          "pageNumberRight": 17
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "title":
+"Eternal love", 
+          "text": [
+ 
+            "There are no clearer words to express what I feel for you.",
+ 
+            "I just want the years to pass and still be by your side.",
+            "I just want you to stay with me forever and for us to live our lives giving each other lots of love.",
+ 
+            "I want to love you and I know I will love you every day of my life.",
+ 
+            "Remembering you, my love, isn't about calling you or writing to you, or seeing you or being attentive to you.",
+ 
+            "It's about looking to the sky and asking God to take care of you, to protect you wherever you are."
+ 
+          ],
+ 
+          "pageNumberLeft": 18
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "that He sends you His blessing. ♞💘🌹",
+ 
+            "True love hopes for the impossible, dreams of the unattainable, and is content just knowing that the loved one is well and happy, even if they are not with them.",
+ 
+            "I love you, my beautiful angel! ஜ ᶫᵒᵛᵉ ᵧₒᵤ ♞",
+ 
+            "My love, tonight let me be in your dreams.",
+ 
+            "Tonight I want to hug "Your heart, caress your soul, hold you tight and never let you go."
+ 
+            "My love, tonight let's forget everything. Tonight, only you and I exist."
+ 
+          ],
+ 
+          "pageNumberRight": 19
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "♞ I see you again, I breathe deeply again,",
+ 
+            "and let the world know that one can also live on love.",
+ 
+            "Thanks to you, my beautiful angel, I learned to believe in love again.",
+ 
+            "You made this heart, dead while still alive, beat again.",
+ 
+            "Just being near you is enough: it beats a thousand miles an hour.",
+ 
+            "Arreeee! I love you, my beautiful angel. ஜ"
+ 
+          ],
+ 
+          "pageNumberLeft": 20
+ 
+        }
+ 
+      },
+ 
+
+
+      {
+ 
+        "right": {
+ 
+          "title": "Chapter 4: Love Phrases",
+ 
+          "photo": "https://xatimg.com/image/nhnuih2OwXDy.png",
+ 
+          "pageNumberRight": 21
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "title": "Love phrases",
+ 
+          "text":
+[ 
+            "♡ The most beautiful phrase, from the most sincere poem I found, only has three words: I love you."]
+ 
+            "♡ When you walk in the countryside and feel a cold breeze, don't blame the wind, because it's my sigh."]
+            "♡ I've loved you since March, December will come and I'll still love you. It's funny how the months go by and I'm still in love with you.",
+ 
+            "♡ You are the light of my life, you own my love, you are the only one on my mind and the first in my heart."
+ 
+          ],
+ 
+          "pageNumberLeft": 22
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "♡ I love you more than my life because I carry you in my mind, and if there's one thing I'm sure of, it's that I will love you until death.",
+ 
+            "♡ I want to be the thought of all your moments, to savor you every moment, living you every instant. That's what I want.",
+ 
+            "♡ If we joined your dreams with mine, we wouldn't want to go back to sleep.",
+ 
+            "♡ I'm drowning in the words I haven't told you and the kisses I haven't given you."
+ 
+          ],
+ 
+          "pageNumberRight": 23
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "♡ Don't call me "my life", call me "my heaven", because life ends and heaven is eternal.",
+ 
+            "♡ If I wasn't the bandit who raided your mansion, let me be the thief who steals your heart.",
+ 
+            "♡ If my soul were a pen and my heart an inkwell, with the blood of my veins I would write: I love you.",
+ 
+            "♡ If your body were a prison and your heart a chain, I would be proud to serve my sentence."
+ 
+          ],
+ 
+          "pageNumberLeft": 24
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "♡ If you were the sun, I would want to be the moon, to form an eclipse and be together.",
+ 
+            "♡ I would want to be the morning star that guides the path you walk, the burning rose you gaze upon, the soft breeze you breathe in… in short: I would want you to be mine.",
+ 
+            "♡ You are that face I will never stop searching for in the crowd, wherever I go.",
+ 
+            "♡ You penetrate my bloodstream, circulating straight to my heart.
+ 
+          ]
+ 
+          "pageNumberRight": 25
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left":
+{ 
+          "text": [
+ 
+            "♡ When I leave here you will be in my memories, and even when I die you will be eternal in my dreams.",
+            "♡ A kiss says more than a hundred verses, a look more than a thousand words, and every heartbeat of mine expresses that my heart loves you madly.",
+ 
+            "♡ I love you, I don't know how much. I myself am amazed by the impact you have had on my lonely heart.",
+ 
+            "♡ Even if the sky were made of paper and the oceans of ink, there wouldn't be enough room to write all that you make me feel."
+ 
+          ],
+ 
+          "pageNumberLeft": 26
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "♡ To be a slave to your love would be like having paradise as a prison.",
+ 
+            "♡ I wish I were the wind to caress your face, brush against your skin and your lips, to whisper in your ear how much I love you.",
+ 
+            "♡ I think of you more than I breathe. Forgive me, but this is my best argument to show you my love.",
+ 
+            "♡ If one day you wake up in a red room with closed doors and windows, don't be afraid: you are locked in my heart."
+ 
+          ],
+ 
+          "pageNumberRight": 27
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "♡ Even without sense, without reason or thought, even without knowing why I love you or why I think of you, I know that you exist and that you are my dream.",
+ 
+            "♡ If life granted me one wish, it would be to meet you again, to love you again and kiss you once more, because you are the best thing that could ever happen to me.",
+ 
+            "♡ Three things I give you, unconditionally and without asking for anything: to love you as I love you, to truly love you, to be faithful to you until death.",
+ 
+            "♡ To love without hope is the most beautiful kind of love. I love you and expect nothing, that's how much I will love you."
+ 
+          ],
+ 
+          "pageNumberLeft": 28
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "♡ I wish I were water so I could evaporate, become a cloud, and fall from the sky onto your body, covering it completely.",
+ 
+            "♡ They say I'm a girl, maybe it's because of the way I am, but even as a girl, I love you like a woman.",
+ 
+            "♡ I wish I were a thought and could be inside you, so I could know the moment you remember me.",
+ 
+            "♡ Yesterday I dreamed of you, today I met you,
+Tomorrow I will love you and I will never forget you." 
+          ],
+ 
+          "pageNumberRight": 29
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+        "left": {
+ 
+          "title": "Chapter 5: Better to Say Goodbye",
+ 
+          "photo": "https://xatimg.com/image/W7oMXTcfIPoC.png",
+ 
+          "pageNumberLeft": 30
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "Better to Say Goodbye 🐎💋",
+ 
+          "text": [
+ 
+            "Your love for me died, an ice has grown between us.",
+ 
+            "The fire and passion of yesterday hurt us, it suddenly left us.",
+ 
+            "Look at me, a kiss and leave, even though I don't feel the same as you.",
+ 
+            "Cold in the air, the heart can change.",
+ 
+            "We are not guilty, I'm sorry.",
+ 
+            "It's just that the warmth of yesterday can no longer be today, and I have to accept that your love is gone."
+ 
+          ],
+ 
+          "pageNumberRight": 31
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "I could never hurt you, or harm someone like you.",
+ 
+            "You will always be in my heart, and I will be there for you whenever you want and need me.",
+ 
+            "I will never forget you.",
+ 
+            "That love is gone, we must try another path.",
+ 
+            "You have to believe me: it's better to say goodbye. ]
+ 
+          ],
+ 
+          "pageNumberLeft": 32
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+      {
+ 
+        "left": null,
+ 
+        "right": {
+ 
+          "title": "Night Prayer",
+ 
+          "text": [
+ 
+            "Lord, I give you good night and thank you for giving me the opportunity to finish another day of life.",
+ 
+            "Thank you for all the blessings you poured out on me today.",
+ 
+            "Lord, under your divine grace and in a perfect way, in the powerful name of our Lord Jesus Christ and by the work and grace of your Holy Spirit, I ask you to send the Archangel Michael with his legions of angels."
+ 
+          ],
+ 
+          "pageNumberRight": 33
+ 
+        }
+ 
+      },
+ 
+      {
+ 
+        "left": {
+ 
+          "text": [
+ 
+            "Sir,
+"Send four angels, one to stand on each side of my bed and help me rest in your arms." 
+            "I surrender to you my worries, illnesses, anxieties, weariness, and sorrows."
+            "Fill me with your divine essence, your infinite light, your unconditional love, your wisdom, your peace, and your mercy."
+ 
+            "Bless my sleep, bless my rest, bless my bed."
+ 
+            "Send the angels of divine love, peace, tranquility, and harmony to accompany me and grant me a beautiful awakening."
+ 
+            "Lord, into your hands I place my life, my family, my home, my work, and my health."
+ 
+          ]
+ 
+          "pageNumberLeft": 34
+ 
+        },
+ 
+        "right": null
+ 
+      },
+ 
+
+
+{
+ 
+        "right": {
+ 
+          "text": [
+ 
+            "May you always remain at the door of my home and surround me with your infinite light and unconditional love."
+ 
+            "Protect me and my loved ones from all evil and danger."
+ 
+            "If anyone harms me, forgive them, for they know not what they do."
+ 
+            "May your perfect will be done in me, not mine."
+ 
+            "May the presence and blessing of God the Father, God the Son, and God the Holy Spirit always be with us."
+ 
+          ],
+ 
+          "pageNumberRight": 35
+ 
+        },
+ 
+        "left": null
+ 
+      },
+ 
+      {
+ 
+        "right": null,
+ 
+        "left": {
+ 
+          "title": "Prayer to the Virgin",
+ 
+          "text": [
+ 
+            "Mother, you who are the Queen of Heaven, who stand before God the Almighty Father and your beloved Son Jesus.",
+ 
+            "I ask you to intercede for all my needs, to hear my prayers.",
+ 
+            "May the Holy Spirit illuminate my thoughts to make appropriate decisions in my life.",
+ 
+            "Dark-skinned Virgin, I need you, help me.",
+ 
+            "I love you.",
+ 
+            "Amen. 🙏"
+ 
+          ],
+ 
+          "pageNumberLeft": 36
+ 
+        }
+ 
+      }
+ 
+
+
+    ]
+ 
+  }
+ 
+}
