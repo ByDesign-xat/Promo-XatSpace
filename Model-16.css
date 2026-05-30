@@ -66,7 +66,7 @@ ul{
     height:710px;
 
     position:absolute;
-    top:150px;
+    top:50px;
     left:50%;
 
     transform:translate(-50%,0);
@@ -808,4 +808,35 @@ canvas{
     -o-transition: all 1s ease-in-out;
     -ms-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
+}
+
+
+footer{
+    position:fixed;
+    bottom:8px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    z-index:10;
+
+    text-shadow:
+        0 0 5px rgba(252,101,189,.7),
+        0 0 10px rgba(24,213,221,.5);
+}
+
+footer a{
+    color:#fc65bd;
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+footer a:hover{
+    color:#18d5dd;
+}
+
+#year{
+    color:#18d5dd;
+    margin-left:4px;
 }
