@@ -1,0 +1,519 @@
+/*------- GLOBAL RESET --------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:before,
+:after {
+  content: '';
+  position: absolute;
+}
+
+/*------- ROOT VARIABLES --------*/
+:root {
+  --font-1: Dosis, sans-serif;
+  --font-2: Quicksand, sans-serif;
+  --font-3: Cookie, cursive;
+  --font-4: 'Archivo Black', sans-serif;
+}
+
+/*------- BODY BACKGROUND --------*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* ← evita scroll global */
+    overflow-y: auto;
+}
+
+body {
+  background-image: url("https://xatimg.com/image/O9haniHR3qY4.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/*------- TYPOGRAPHY --------*/
+a {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+h1,
+h2 {
+  font-weight: 300;
+}
+
+/*------- MAIN CONTAINER --------*/
+#main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  font-size: 1em;
+  font-family: var(--font-2);
+  color: #ff5d75;
+  overflow: visible;
+}
+
+/*------- OBJECT --------*/
+object {
+  display: flex;
+  justify-content: center;
+}
+
+/*------- APP CONTAINER --------*/
+.app {
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+.app:after {
+  width: 90%;
+  height: 100px;
+  background: #000;
+  left: 5%;
+  bottom: -50px;
+  border-radius: 50%;
+  filter: blur(25px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/*------- ASIDE --------*/
+.aside {
+  width: 280px;
+  height: 460px;
+  background: #FFB6C1;
+  text-align: center;
+}
+.img-user {
+  width: 170px;
+  height: 170px;
+  padding: 10px;
+  background: #ff8e9f;
+  border-radius: 50%;
+  margin-top: 40px;
+}
+.title-user,
+.aside p {
+  font-family: var(--font-3);
+}
+.aside p {
+  font-size: 1.6em;
+  margin-top: 20px;
+}
+.aside a {
+  color: #ff5d75;
+  margin-top: 20px;
+}
+
+/*------- SECTION  SECTION  SECTION  SECTION  SECTION  SECTION --------*/
+.section {
+  width: 520px;
+  height: 460px;
+  background: #fff;
+  position: relative;
+  overflow: visible;
+}
+
+/*------- SLIDE CONTAINER --------*/
+.slyde {
+  width: 1040px;
+  height: 460px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s cubic-bezier(255, 255, 255);
+  display: flex;
+}
+
+/*------- NAVIGATION PANEL --------*/
+.nav {
+  width: 520px;
+  height: 460px;
+  position: relative;
+  overflow: visible;
+}
+
+.box-nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row-nav {
+  width: 100%;
+  height: calc(100% / 4);
+  display: flex;
+  overflow: hidden;
+}
+
+/*------- NAV LEFT PARTE 1************************************** --------*/
+.nav-left {
+  width: 70px;
+  line-height: 114px;
+  font-size: 2em;
+  color: #fff;
+  opacity: 0.6;
+  transition: all 0.3s ease-out;
+}
+
+/*------- NAV RIGHT --------*/
+.nav-right {
+  width: calc(100% - 70px);
+  border-bottom: solid 1px rgb(255, 255, 255);
+  text-transform: uppercase;
+  color: #fff;
+  background: rgb(255, 182, 193);
+  position: relative;
+}
+
+.nav-right span {
+  display: block;
+  height: 100%;
+  line-height: 114px;
+  position: relative;
+}
+
+.nav-right span:nth-of-type(1) {
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 0;
+  font-size: 1.4em;
+  transition: all 0.3s ease-out;
+}
+
+.nav-right span:nth-of-type(2) {
+  font-family: var(--font-4);
+  font-size: 4em;
+  color: rgb(255, 142, 159);
+  text-shadow: 2px 2px rgba(255, 182, 193);
+}
+
+/*------- HOVER EFFECTS --------*/
+.row-nav:hover .nav-right span:nth-of-type(1) {
+  margin-top: -115px;
+}
+-
+.row-nav:hover .nav-left {
+  color: #fff;
+}
+
+.row-nav:hover .nav-right {
+  animation: flash 0.2s ease-out;
+  animation-fill-mode: forwards;
+}
+
+.row-nav:nth-of-type(4) .nav-right {
+  border: none;
+}
+
+/*------- FLASH ANIMATION --------*/
+@keyframes flash {
+  0% {
+    background: rgba(255, 182, 193);
+  }
+  100% {
+    background: rgba(255, 255, 255);
+  }
+}
+
+/*------- PAGES SECTION --------*/
+.pages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 520px; /* igual al ancho de .section */
+  height: 460px; /* igual al alto de .section */
+  background: #FFDADF;
+  display: none;
+  z-index: 5;
+  overflow: visible;
+}
+
+/* Activar contenedor cuando está en target */
+#content-1:target,
+#content-2:target,
+/* Activación por target */
+#content-3:target {
+  display: block;
+}
+#content-4:target {
+  display: block;
+}
+
+/* Ocultar contenido interno por defecto */
+.about,
+.friend,
+.music,
+.gallery {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-left: solid 10px #fff;
+  transition: all 0.5s;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Mostrar contenido interno cuando está activo */
+#content-1:target .about,
+#content-2:target .friend,
+#content-3:target .music,
+#content-4:target .gallery {
+  visibility: visible;
+  display: block;
+}
+
+/*------- TARGET STATES --------*/
+#content-1:target .slyde {
+  left: -520px;
+}
+#content-1:target .about {
+  visibility: visible;
+}
+#content-2:target .slyde {
+  left: -520px;
+}
+#content-2:target .friend {
+  visibility: visible;
+}
+#content-3:target .slyde {
+  left: -520px;
+}
+#content-3:target .music {
+  visibility: visible;
+}
+#content-4:target .slyde {
+  left: -520px;
+}
+#content-4:target .gallery {
+  visibility: visible;
+}
+
+/*------- PAGE CONTENT PARTE 2*************************************** --------*/
+.title-page {
+  color: #FFB6C1;
+  font-size: 1.5em;
+}
+
+.btn-prev {
+  position: absolute;
+  width: 24px;
+  font-size: 1.6em;
+  line-height: 24px;
+  top: 0;
+  right: 5px;
+  color: #FFB6C1;
+}
+
+.btn-prev:hover {
+  color: #fff;
+}
+
+.block {
+  width: 100%;
+  height: 410px;
+  border: solid 1px #fff;
+  padding: 5px;
+}
+
+.about .block {
+  display: flex;
+}
+
+/*------- ABOUT SECTION --------*/
+.col-about {
+  text-align: center;
+  padding: 10px;
+  overflow-y: auto;
+}
+.col-about h2 {
+  color: #FFB6C1;
+  margin: 10px 0;
+  line-height: 36px;
+  border: solid 1px #FFDADF;
+}
+.desc {
+  color: #fff;
+  font-size: 0.9em;
+}
+
+/*------- FRIEND & GALLERY COLUMNS --------*/
+.col-friend {
+  height: 398px;
+  overflow-y: auto;
+  background: #FF8E9F;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  gap: 10px;
+}
+
+.col-gallery {
+  height: 398px;
+  overflow-y: auto;
+}
+
+/*------- FRIEND ROW --------*/
+.row-friend {
+  width: 220px;
+  height: 110px;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.row-friend img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #FFDADF;
+  margin-left: 10px;
+}
+.row-friend span {
+  position: absolute;
+  left: 200px;
+  top: 20px;
+  padding: 5px 10px;
+  background: #FFB6C1;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(173, 92, 92, 0.3);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.row-friend:hover span {
+  opacity: 1;
+  left: 140px;
+}
+
+/*------- BUTTON --------*/
+.btn-me {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  transform: rotate(45deg);
+  position: absolute;
+  background: #FFB6C1;
+  color: #fff;
+  font-size: 0.8em;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(177, 104, 104, 0.4);
+  top: 10px;
+  left: 90px;
+  z-index: 100;
+}
+.btn-me:hover {
+  background: #fff;
+  color: #FFB6C1;
+}
+
+/*------- ********************** REPRO MUSIC SECTION ********************** --------*/
+.block {
+  width: 100%;
+  height: 410px;
+  border: solid 1px #fff;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.col-music {
+  height: 398px;
+  background: #E4565B;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.radio-player {
+  width: 100%;
+  max-width: 520px; /* ajusta según tu diseño */
+  height: 640px;
+  transform: scale(0.7);
+  transform-origin: top center;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 1);
+  pointer-events: auto;
+  margin: 0 auto; /* centra horizontalmente */
+}
+
+.radio-scaled {
+  width: 460px;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/*------- VIDEO --------*/
+.video {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 1);
+  box-sizing: border-box;
+  display: block;
+}
+
+/*------- GALLERY ROW PARTE 3********************************************* --------*/
+.row-gallery {
+  width: 99%;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.row-gallery img {
+  width: 100%;
+  height: auto;
+  filter: blur(5px) grayscale(1);
+  transition: all 0.3s ease-out;
+}
+.row-gallery:hover img {
+  filter: blur(0) grayscale(0);
+}
+
+/*------- SCROLLBAR --------*/
+::-webkit-scrollbar {
+  width: 5px;
+  background: #fff;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF69B4;
+}
+
+.footer{
+    width:100%;
+    height:40px;
+    background:#ff8e9f;
+    line-height:40px;
+    font-size:.75em;
+    color:#FFDADF;
+    text-align:left;
+    padding-left:10px;
+}
