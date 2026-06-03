@@ -368,3 +368,47 @@
         background-position:-200% center;
     }
 }
+
+footer{
+    margin-top:25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+
+    padding:15px 20px;
+
+    border:1px solid var(--border);
+    border-radius:14px;
+
+    background:var(--panel-bg);
+    backdrop-filter:blur(10px);
+
+    color:var(--muted);
+
+    font-family:'Montserrat', sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+
+    box-shadow:var(--shadow);
+}
+
+footer a{
+    color:var(--text);
+    text-decoration:none;
+
+    transition:.3s ease;
+}
+
+footer a:hover{
+    color:#ffffff;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,.5),
+        0 0 10px rgba(255,255,255,.25);
+}
+
+#year{
+    color:rgba(255,255,255,.65);
+}
