@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="icon" type="image/x-icon" href="assets/SG.ico" />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <!-- BLOCK RIGHT CLICK -->
+        <script type="text/javascript">
+            document.onkeydown = function(){return false};
+            document.oncontextmenu = function(){return false}
+        </script>
+        <title>ByDesign</title>
+		<script src="Model-20.js" defer></script>
+        <link rel="stylesheet" href="Model-20.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-star" id="cursorStar">✦</div>
+
+  <!-- Lightbox de Zoom -->
+  <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+    <img src="" alt="Zoom" class="lightbox-img" id="lightboxImg">
+  </div>
+
+  <div class="service-banner">Xatspace — ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋</div>
+  
+  <div class="wrapper">            
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="avatar-wrap">
+        <div class="avatar-ring">
+          <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Cliente" referrerpolicy="no-referrer">
+        </div>
+        <div class="online-dot"></div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋</div>
+        <div class="profile-handle"></div>
+        <div class="profile-bio">𝕿𝖍𝖊 𝖕𝖊𝖗𝖋𝖊𝖈𝖙 𝖈𝖔𝖒𝖇𝖎𝖓𝖆𝖙𝖎𝖔𝖓 𝖔𝖋 𝖍𝖎𝖌𝖍-𝖖𝖚𝖆𝖑𝖎𝖙𝐲 𝖘𝖙𝖗𝖊𝖆𝖒𝖎𝖓𝖌, 𝖙𝖊𝖈𝖍𝖓𝖔𝖑𝖔𝖌𝖎𝖈𝖆𝖑 𝖕𝖊𝖗𝖋𝖔𝖗𝖒𝖆𝖓𝖈𝖊, 𝖆𝖓𝖉 𝖆 𝖉𝖊𝖘𝖎𝖌𝖓 𝖙𝖍𝖆𝖙 𝖎𝖒𝖕𝖗𝖊𝖘𝖘𝖊𝖘 𝖋𝖗𝖔𝖒 𝖙𝖍𝖊 𝖋𝖎𝖗𝖘𝖙 𝖈𝖑𝖎𝖈𝐤. ✨</div>
+        <div class="profile-tags">
+          <span class="ptag">Quality</span>
+          <span class="ptag">Dedication</span>
+          <span class="ptag">Efficiency</span>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-box"><span class="stat-num">United Kingdom</span><span class="stat-label">London</span></div>
+        <div class="stat-box"><span class="stat-num"></span><span class="stat-label"></span></div>
+        <div class="stat-box"><span class="stat-num stat-num-neon color-verde-neon">Online</span><span class="stat-label">Now</span></div>
+      </div>
+    </div>
+
+    <!-- Tabs Navegação Principal (Invertido: Fotos Zoom primeiro que Galeria) -->
+    <nav class="tab-nav" role="tablist">
+      <button class="tab-btn active" onclick="showTab('inicio', this)">Hoຕᥱ</button>
+      <button class="tab-btn" onclick="showTab('Friendss', this)">Fɾɩᥱᥒᑯ⳽</button>
+      <button class="tab-btn" onclick="showTab('fotos-zoom', this)">Mყ ρᖾoto⳽</button>
+      <button class="tab-btn" onclick="showTab('galeria', this)">Giƒs Gallɛrɣ</button>
+      <button class="tab-btn" onclick="showTab('musica', this)">Mυѕιc</button>
+      <button class="tab-btn" onclick="showTab('sobre', this)">Aвσυт Mε</button>
+    </nav>
+
+    <!-- INICIO -->
+    <div class="tab-content active" id="tab-inicio">
+      <div class="content-card">
+        <div class="card-title">𝖂𝖊𝖑𝖈𝖔𝖒𝖊 𝖙𝖔 𝖒𝖞 𝖃𝖆𝖙𝕾𝖕𝖆𝖈𝖊</div>
+        <div class="about-text" style="text-align:center; font-style:italic; color:#fff; margin-bottom:16px;">
+          <p>“𝕯𝖗𝖊𝖆𝖒 𝖆𝖘 𝖎𝖋 𝐲𝖔𝖚'𝖑𝖑 𝖑𝖎𝖛𝖊 𝖋𝖔𝖗𝖊𝖛𝖊𝖗✨”</p>
+        </div>
+        <div class="about-text">
+          <p>Hi! I'm <strong>┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋</strong>, </p>
+        </div>
+        <div class="info-grid">
+          <div class="info-row"><span class="info-key">Community</span><span class="info-val">Music and Fun</span></div>
+          <div class="info-row"><span class="info-key">Friends</span><span class="info-val">5 Online</span></div>
+          <div class="info-row"><span class="info-key">Chat</span><span class="info-val">xat.com/Fondos</span></div>
+          <div class="info-row"><span class="info-key">Rank</span><span class="info-val">Moderator</span></div>
+        </div>
+      </div>
+      <div class="xat-card">
+        <h3>Come and enjoy great music and good company.🎵</h3>
+        <p>Join fun conversations in our community chat<br><br><strong>Join us now at xat.com/fondos</strong></p>
+        <a href="https://xat.com/fondos" target="_blank" style="display:inline-block; margin-top:16px; padding:8px 16px; background:rgba(0,240,255,0.2); border:1px solid rgba(0,240,255,0.4); border-radius:8px; color:#fff; text-decoration:none; font-weight:700; font-size:0.85rem; text-align:center; box-shadow: 0 0 10px rgba(0,240,255,0.3);">Go to Chat</a>
+        <p style="margin-top:12px; font-size:0.82rem; color:#b0c2ee;">This is how your text looks with different fonts. <a href="https://xat.com/fondos" target="_blank" style="color:#fff; text-decoration:underline;">xat.com/Fondos</a>.A community chat for music lovers and making new friends.</p>
+      </div>
+    </div>
+
+    <!-- FriendsS -->
+    <div class="tab-content" id="tab-Friendss">
+      <div class="content-card">
+        <div class="card-title">F<span class="neon-text-span">ɾɩᥱᥒᑯ⳽</span><span style="font-size:0.8rem;font-family:'Nunito';font-weight:700;color:#697da7">(5)</span></div>
+        <div class="friends-grid">                    
+          <a class="friend-card" href="https://xat.me/1" target="_blank" rel="noopener">
+            <div class="friend-avatar-wrap">
+              <div class="friend-initial">
+                <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Avatar">
+              </div>
+              <span class="friend-online on"></span>
+            </div>
+            <div class="friend-name">Nome1</div>
+            <div class="friend-id">ID:</div>
+            <div class="friend-status">Friends</div>
+            <span class="friend-xat-badge">xat.com</span>
+          </a>
+          <a class="friend-card" href="https://xat.me/2" target="_blank" rel="noopener">
+            <div class="friend-avatar-wrap"> <div class="friend-initial"><img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png"></div> <span class="friend-online on"></span> </div>
+            <div class="friend-name">Nome2</div><div class="friend-id">ID:</div><div class="friend-status">Friends</div><span class="friend-xat-badge">xat.com</span>
+          </a>
+          <a class="friend-card" href="https://xat.me/3" target="_blank" rel="noopener">
+            <div class="friend-avatar-wrap"> <div class="friend-initial"><img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png"></div> <span class="friend-online on"></span> </div>
+            <div class="friend-name">Nome3</div><div class="friend-id">ID:</div><div class="friend-status">Friends</div><span class="friend-xat-badge">xat.com</span>
+          </a>
+          <a class="friend-card" href="https://xat.me/4" target="_blank" rel="noopener">
+            <div class="friend-avatar-wrap"> <div class="friend-initial"><img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png"></div> <span class="friend-online on"></span> </div>
+            <div class="friend-name">Nome4</div><div class="friend-id">ID:</div><div class="friend-status">Friends</div><span class="friend-xat-badge">xat.com</span>
+          </a>
+          <a class="friend-card" href="https://xat.me/5" target="_blank" rel="noopener">
+            <div class="friend-avatar-wrap"> <div class="friend-initial"><img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png"></div> <span class="friend-online on"></span> </div>
+            <div class="friend-name">Nome5</div><div class="friend-id">ID:</div><div class="friend-status">Friends</div><span class="friend-xat-badge">xat.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOTOS ZOOM (AQUI COLOQUEI PRIMEIRO) -->
+    <div class="tab-content" id="tab-fotos-zoom">
+      <div class="content-card">
+        <div class="card-title">Mყ <span class="neon-text-span">ρᖾoto⳽</span></div>
+<div class="zoom-gallery-grid">
+          <div class="zoom-card" onclick="zoomImage(this)">
+             <div class="zoom-img-container"><img src="https://xatimg.com/image/RsuQrcimL2mX.png" alt="Design Concept 1"></div>
+                <span class="zoom-label">𝘧𝘰𝘵𝘰𝘴 1</span>
+            </div>
+            <div class="zoom-card" onclick="zoomImage(this)">
+            <div class="zoom-img-container"><img src="https://xatimg.com/image/gPNwF1hD3Dpg.png" alt="Design Concept 2"></div>
+                <span class="zoom-label">𝘧𝘰𝘵𝘰𝘴 2</span>
+             </div>
+             <div class="zoom-card" onclick="zoomImage(this)">
+             <div class="zoom-img-container"><img src="https://xatimg.com/image/gPNwF1hD3Dpg.png" alt="Design Concept 3"></div>
+                <span class="zoom-label">𝘧𝘰𝘵𝘰𝘴 3</span>
+             </div>
+             <div class="zoom-card" onclick="zoomImage(this)">
+             <div class="zoom-img-container"><img src="https://xatimg.com/image/8uzrNBuhAaah.png" alt="Design Concept 4"></div>
+                <span class="zoom-label">𝘧𝘰𝘵𝘰𝘴 4</span>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERIA DE GIFS (FICA LOGO DEPOIS DAS FOTOS ZOOM) -->
+    <div class="tab-content" id="tab-galeria">
+      <div class="content-card">
+        <div class="card-title">My GIF and Banner Gallery</div>
+        
+        <div class="inner-nav-container">
+            <button class="inner-nav-btn active" onclick="showGallerySection('sub-gifs', this)">Gifs</button>
+            <button class="inner-nav-btn" onclick="showGallerySection('sub-pcback', this)">Pcback Gif</button>
+            <button class="inner-nav-btn" onclick="showGallerySection('sub-pstyle', this)">Pstyle Gif</button>
+            <button class="inner-nav-btn" onclick="showGallerySection('sub-pcback-est', this)">Pcback</button>
+            <button class="inner-nav-btn" onclick="showGallerySection('sub-pstyle-est', this)">Pstyle</button>
+        </div>
+
+        <div id="sub-gifs" class="gallery-showcase-section active">
+            <div class="category-bar">Model After Effects <span>1000 XATS</span></div>
+            <div class="showcase-grid grid-compact">
+                <div class="item-card"><img src="https://xatimg.com/image/Fqi6FKBzepRK.gif"><span>New 1</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/X0W1Xq2zBbuT.gif"><span>New 2</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/ieVyPc8jeUOD.gif"><span>New 3</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/rMcUBX58ZIWe.gif"><span>New 4</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/BXcMhdZ9hpN0.gif"><span>New 5</span></div>
+            </div>
+            <div class="category-bar"><span></span></div>
+            <div class="showcase-grid grid-compact">
+                <div class="item-card"><img src="https://xatimg.com/image/wSEPWsJcD2T7.gif"><span>New 6</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/CGG0FTGZOdgB.gif"><span>New 7</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/R08LTEyMdDva.gif"><span>New 8</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/MZ6Ej0PEyuqS.gif"><span>New 9</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/QyH9e48T339B.gif"><span>New 10</span></div>
+            </div>
+        </div>
+
+        <div id="sub-pcback" class="gallery-showcase-section">
+            <div class="category-bar">Pcback Gifs <span>I don't do</span></div>
+            <div class="showcase-grid grid-normal">
+                <div class="item-card"><img src="https://xatimg.com/image/mewbMxU7Z8z0.png"><span>Pcback 1</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/mewbMxU7Z8z0.png"><span>Pcback 2</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/mewbMxU7Z8z0.png"><span>Pcback 3</span></div>
+            </div>
+        </div>
+
+        <div id="sub-pstyle" class="gallery-showcase-section">
+            <div class="category-bar">Pstyle GIFs <span>I don't do</span></div>
+            <div class="showcase-grid grid-normal">
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 1</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 2</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 3</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 4</span></div>
+				<div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 5</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 6</span></div>
+            </div>
+        </div>
+
+        <div id="sub-pcback-est" class="gallery-showcase-section">
+            <div class="category-bar">Pcback<span>1000 XATS</span></div>
+            <div class="showcase-grid grid-normal">
+                <div class="item-card"><img src="https://xatimg.com/image/nhnuih2OwXDy.png"><span>Pcback 1</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/nhnuih2OwXDy.png"><span>Pcback 2</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/nhnuih2OwXDy.png"><span>Pcback 3</span></div>
+            </div>
+        </div>
+
+        <div id="sub-pstyle-est" class="gallery-showcase-section">
+            <div class="category-bar">Pstyle<span>I don't do</span></div>
+            <div class="showcase-grid grid-normal">
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 1</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 2</span></div>
+                <div class="item-card"><img src="https://xatimg.com/image/N15G2dn82yUm.png"><span>Pstyle 3</span></div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MUSICA -->
+    <div class="tab-content" id="tab-musica">
+      <div class="music-app">
+        <div class="music-player-grid">
+          <div>
+            <div class="album-section">
+              <div class="album-art-wrap">
+                <div class="album-glow"></div>
+                <img class="album-art" id="albumArt" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400&h=400&fit=crop" alt="Caratula">
+              </div>
+              <div class="album-info">
+                <div class="song-title" id="songTitle">Loading...</div>
+                <div class="song-artist" id="songArtist">Loading...</div>
+              </div>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-title">Playlist <span>Available</span></div>
+              <div class="tracklist" id="tracklistContainer"></div>
+            </div>
+          </div>                              
+          <div class="player-panel">
+            <div class="player-meta">
+              <div>
+                <div class="player-badge">Music Player</div>
+                <div class="player-subtitle">Listen to live music</div>
+              </div>
+              <div class="player-badge color-verde-neon">Live</div>
+            </div>
+            <div class="song-actions">
+              <button class="action-btn" id="btnLike" onclick="toggleLike()" title="Me gusta">♡</button>
+              <button class="action-btn" title="Anadir a lista">+</button>
+              <button class="action-btn" title="Compartir">&#8599;</button>
+            </div>
+            <div class="progress-section" id="progressSection">
+              <div class="progress-bar-wrap" id="progressWrap">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="time-row">
+                <span class="time-label" id="currentTime">0:00</span>
+                <span class="time-label color-verde-neon" id="totalTime">Play</span>
+              </div>
+            </div>
+            <div class="controls-section">
+              <button class="ctrl" id="btnShuffle" title="Aleatorio">&#8652;</button>
+              <button class="ctrl" id="btnPrev" title="Anterior" onclick="changeTrack(-1)">&#9664;&#9664;</button>
+              <button class="ctrl-play" id="btnPlay" onclick="togglePlay()">&#9654;</button>
+              <button class="ctrl" id="btnNext" title="Siguiente" onclick="changeTrack(1)">&#9654;&#9654;</button>
+              <button class="ctrl" id="btnRepeat" title="Repetir">&#8635;</button>
+            </div>
+            <div class="volume-section">
+              <span class="vol-icon">&#128265;</span>
+              <input class="vol-slider" id="volSlider" type="range" min="0" max="100" value="100" oninput="changeVolume(this.value)">
+              <span class="vol-icon">&#128266;</span>
+			  <span id="volumeValue">100%</span>
+            </div>
+            <div class="player-panel-status">
+              <span class="status-pill" id="statusPill">Ready to play</span>
+            </div>
+			
+			  <div class="playlist-card" style="border-color: rgba(0, 240, 255, 0.1); background: rgba(0,0,0,0.2);">
+              <div class="playlist-title" style="color: #697da7;">History: <span style="color: #00f0ff; font-weight: bold;" id="historyCount">(0)</span></div>
+              <div class="tracklist" id="historyContainer" style="max-height: 140px;"></div>
+            </div>
+			
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOBRE MI -->
+    <div class="tab-content" id="tab-sobre">
+      <div class="content-card">
+        <div class="card-title"><span class="neon-text-span">United Kingdom — London</span></div>
+        <div class="about-text" style="text-align:center; font-style:italic; color:#fff;"><p>“London is a city with God's gift to Earth. 
+        United Kingdom is a country blessed by nature, shaped by human hands.
+    Divine, it is a treasure that impresses the eyes and calms the soul.”</p></div>
+        <div class="about-text" style="text-align:center; color:#fff; margin-top:20px; font-size:1.1rem;">
+          <p><img src="https://xatimg.com/image/GwsSQDnsvxzI.png" alt="Bandera Uk" style="width:50px; height:auto; vertical-align:middle; margin-right:10px;">United Kingdom</p>
+        </div>
+      </div>
+      <div class="xat-card">
+        <div class="xat-animate">
+          <div class="pulse-ring"></div>
+          <a href="https://xat.com/fondos" target="_blank" class="neon-text">
+    Active chat in xat.com/fondos
+</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER AICI -->
+    <footer>
+        <a href="https://xat.me/xDesignx" target="_blank">
+            &copy; Copyright - ByDesign
+        </a>
+        <span id="year"></span>
+    </footer>
+	<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+  </div>
+
+</body>
+</html>
