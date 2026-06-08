@@ -1,0 +1,548 @@
+
+        /* === VARIABLES Y FUENTES === */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glow-color: #00f0ff;
+            --text-main: #ffffff;
+            --menu-width: 480px; /* Ancho exacto para el menú y el cuadro de música */
+        }
+
+        /* === CURSOR PERSONALIZADO FORZADO === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            /* Cambiamos las coordenadas a 0 0. Asegúrate de que la imagen sea de 32x32px máximo */
+            cursor: url('cursor.png') 0 0, auto !important;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-main);
+            background-color: #000;
+            /* Evita que se pueda hacer scroll en toda la página en PC */
+            overflow: hidden; 
+            height: 100vh;
+        }
+        /* === FONDO DE VIDEO === */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* === CONTENEDOR PRINCIPAL === */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            /* Bajamos el contenido sumando 40px al padding superior (ahora 80px) */
+            padding: 40px 150px 40px 80px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* === PERFIL SUPERIOR === */
+        .profile-bar {
+            display: flex;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 5px 20px 5px 5px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid white;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .flag {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #4CAF50;
+        }
+
+        /* === MENÚ DE NAVEGACIÓN === */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: var(--menu-width); /* Tamaño forzado */
+            justify-content: space-evenly; /* Distribuye los botones parejo */
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.8);
+            color: #1a5b9c;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-separator {
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+
+        /* === SECCIONES === */
+        .content-section {
+            display: none;
+            flex-direction: column;
+            align-items: center; /* Alineado al centro de su propio contenedor */
+            width: var(--menu-width); /* Mismo ancho del menú para cuadrar perfecto */
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .content-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === INICIO === */
+        .inicio-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 140px;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding: 10px;
+            animation: appearText 1.5s ease-out forwards, pulseGlow 2s infinite alternate 1.5s;
+            opacity: 0; 
+        }
+
+        @keyframes appearText {
+            0% { opacity: 0; transform: scale(0.8); text-shadow: 0 0 0px transparent; }
+            100% { opacity: 1; transform: scale(1); text-shadow: 0 0 15px var(--glow-color); }
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color); }
+            to { text-shadow: 0 0 25px var(--glow-color), 0 0 50px #ffffff; }
+        }
+
+        .quote {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 24px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-align: right;
+        }
+
+        /* === BOTÓN CLICK ME === */
+        .like-btn {
+            display: flex;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            padding: 8px 25px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .like-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px var(--glow-color);
+            transform: scale(1.05);
+        }
+
+        .like-btn img {
+            width: 24px;
+            margin-left: 10px;
+            pointer-events: none;
+        }
+
+        /* === MÚSICA (Cuadro del tamaño exacto del menú) === */
+        .music-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px; 
+		    position: relative;
+            top: -27px;
+            text-align: center;
+            width:480px;
+            height:540px;
+            padding:0;
+            overflow:auto;
+        }
+
+        /* DISEÑO DE LA BARRA DE SCROLL DE MÚSICA */
+        .music-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .music-box::-webkit-scrollbar-track {
+            background: transparent;
+            margin-block: 20px; /* Aleja el scroll de los bordes redondeados arriba y abajo */
+        }
+        .music-box::-webkit-scrollbar-thumb {
+            background: var(--glow-color);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        .music-box::-webkit-scrollbar-thumb:hover {
+            background: #ffffff;
+        }
+
+        /* === SCROLL PARA LAS RADIOS === */
+        #lista-radios {
+            max-height: 50vh; /* Limita la altura a la mitad de la pantalla */
+            overflow-y: auto;
+            padding-right: 15px; /* Evita que el scroll tape el contenido */
+            padding-bottom: 10px;
+        }
+
+        #lista-radios::-webkit-scrollbar {
+            width: 8px;
+        }
+        #lista-radios::-webkit-scrollbar-track {
+            background: var(--glass-bg);
+            border-radius: 10px;
+        }
+        #lista-radios::-webkit-scrollbar-thumb {
+            background: var(--glow-color);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        #lista-radios::-webkit-scrollbar-thumb:hover {
+            background: #ffffff;
+        }
+/* === AMIGOS === */
+        .friends-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Fuerza 3 columnas exactamente */
+            gap: 15px 10px; /* Espacio vertical y horizontal */
+            width: 100%;
+        }
+
+        .friend-card {
+            display: flex;
+            flex-direction: row; /* Coloca la imagen y el texto lado a lado */
+            align-items: center; /* Centra verticalmente el contenido */
+            gap: 10px; /* Separación entre la foto y los nombres */
+            background: var(--glass-bg); /* Le da un fondo de cristal a cada amigo */
+            border: 1px solid var(--glass-border);
+            padding: 8px 10px;
+			text-decoration:none;
+            color:white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .friend-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); /* Brillo neón al pasar el mouse */
+        }
+
+        .friend-img {
+            width: 40px; /* Tamaño ajustado para que quepan bien los 3 */
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
+            flex-shrink: 0; /* Evita que la foto se deforme si el nombre es largo */
+        }
+
+        .friend-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alinea los textos a la izquierda, junto a la foto */
+            text-align: left;
+            overflow: hidden; /* Oculta el texto si es demasiado largo */
+        }
+
+        .friend-name { 
+            font-weight: bold; 
+            font-size: 13px; 
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .friend-user { 
+            font-size: 11px; 
+            color: #bdf0ff; 
+            white-space: nowrap;
+        }
+        /* === GALERÍA Y POP-UP === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 100%;
+        }
+        /* Limita la altura de la sección galería y activa su propio scroll */
+#galeria {
+    max-height: 100vh; /* Ocupa hasta la mitad de la pantalla, ajusta según necesites */
+    overflow-y: auto;
+    padding-right: 15px; /* Deja espacio para que la barra de scroll no tape las fotos */
+    padding-bottom: 10px;
+}
+
+/* === DISEÑO DE LA BARRA DE SCROLL DE LA GALERÍA === */
+#galeria::-webkit-scrollbar {
+    width: 8px;
+}
+
+#galeria::-webkit-scrollbar-track {
+    background: var(--glass-bg); /* Fondo de cristal */
+    border-radius: 10px;
+}
+
+#galeria::-webkit-scrollbar-thumb {
+    background: var(--glow-color); /* Tu color neón */
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--glow-color); /* Brillo neón en la barra */
+}
+
+#galeria::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+        .gallery-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px white;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px var(--glow-color);
+            border: 2px solid white;
+        }
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 40px;
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 10px red;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            body {
+            /* Devuelve el scroll vertical para celulares */
+            overflow-y: auto; 
+            height: auto;
+            }
+            .container {
+                align-items: center;
+                padding: 40px 20px; /* Reducido para móvil */
+            }
+            .nav-menu, .content-section {
+                width: 100%; /* Ocupa el ancho de la pantalla en celular */
+                max-width: 100%;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            .nav-separator {
+                display: none;
+            }
+            .inicio-wrapper {
+                align-items: center;
+            }
+            .signature {
+                font-size: 90px;
+            }
+            .quote {
+                text-align: center;
+            }
+            .friend-card {
+                justify-content: center;
+                flex-direction: row-reverse;
+            }
+            .friend-info {
+                align-items: flex-start;
+                text-align: left;
+            }
+            .friends-list {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
+            }
+            
+            .friend-card {
+                /* Aseguramos que siga en fila (foto a la izquierda) en celular */
+                flex-direction: row; 
+                justify-content: flex-start;
+            }
+
+            /* === CORRECCIÓN ZONA DE MÚSICA EN MÓVIL === */
+        
+        .music-box {
+            padding: 15px 10px; /* Reduce el padding para ganar espacio en pantalla */
+            max-height: 65vh; /* Ajusta la altura máxima para que el scroll fluya mejor */
+        }
+
+        .youtube-wrapper iframe {
+            height: 200px !important; /* Reduce un poco la altura de YouTube */
+            max-width: 100%;
+        }
+
+        .players-container {
+            width: 100%;
+            gap: 15px !important; /* Menos separación entre elementos */
+        }
+
+        /* Ajuste para los contenedores de los reproductores */
+        .players-container > div {
+            padding: 10px !important;
+        }
+
+        /* Contenedor interno del iframe */
+        .players-container > div > div {
+            height: auto !important; 
+            aspect-ratio: 16/9; /* Crea una caja proporcional para el contenido */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fuerza a que los iframes ignoren las medidas fijas y el scale */
+        .players-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            transform: none !important; /* Cancela el scale(0.62) que rompe el diseño */
+        }
+
+        /* === REPRODUCTORES RESPONSIVOS PARA MÓVIL === */
+        
+        /* Reducimos el espacio interno para aprovechar la pantalla */
+        .music-box {
+            padding: 15px 10px;
+            max-height: 65vh; 
+        }
+
+        /* Ajustamos la altura de YouTube */
+        .youtube-wrapper iframe {
+            height: 300px !important; 
+            max-width: 100%;
+        }
+
+        /* Contenedor general de las radios */
+        .players-container {
+            width: 100%;
+            gap: 15px !important; 
+        }
+
+        .radio-player {
+            padding: 10px !important;
+        }
+
+        /* Contenedor interno del iframe de radio */
+        .radio-player > div {
+            height: auto !important; 
+            aspect-ratio: 16/9; /* Mantiene una proporción rectangular perfecta */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Forzamos a los iframes a adaptarse al 100% y anulamos la escala */
+        .radio-player iframe {
+            width: 100% !important;
+            height: 540px !important;
+            transform: none !important; /* Esto cancela el scale(0.62) */
+        }
+        }
+
+        /* === CANVAS PARA LOS BRILLOS === */
+        #sparkleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+		
+		.music-box iframe{
+    width:100%;
+    height:650px;
+    border:none;
+    border-radius:15px;
+}

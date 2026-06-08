@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="icon" type="image/x-icon" href=".ico" />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <!-- BLOCK RIGHT CLICK -->
+        <script type="text/javascript">
+            document.onkeydown = function(){return false};
+            document.oncontextmenu = function(){return false}
+        </script>
+        <title>ByDesign</title>
+		<script src="Model-21.js" defer></script>
+        <link rel="stylesheet" href="Model-21.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Great+Vibes&family=Nunito:wght@400;700&display=swap" 
+	rel="stylesheet">
+</head>
+
+<body>
+
+    <video class="video-bg" autoplay muted loop>
+        <source src="https://bydesign-xat.github.io/Index/Model-21.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="sparkleCanvas"></canvas>
+
+    <div class="container">
+        
+        <div class="profile-bar">
+            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/5DxORHzF9NKN.png" alt="Perfil" class="profile-img">
+            <span class="profile-name">You Name</span>
+            <img src="https://xat.com/images/smw/flag/en.png" alt="UK" class="flag">
+            <div class="status-dot"></div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-target="inicio">Home</a>
+            <span class="nav-separator">•</span>
+            <a href="#" class="nav-item" data-target="musica">Music</a>
+            <span class="nav-separator">•</span>
+            <a href="#" class="nav-item" data-target="amigos">Friends</a>
+            <span class="nav-separator">•</span>
+            <a href="#" class="nav-item" data-target="galeria">Gallery</a>
+        </nav>
+
+        <section id="inicio" class="content-section active">
+            <div class="inicio-wrapper">
+                <div class="signature" id="nameText">YouName</div>
+                <p class="quote">I AM HAPPY AND SEE OTHERS<br>THE SAME WAY</p>
+                
+                <div class="like-btn" onclick="addLike(event)">
+                    <span>Click me</span>
+                    <img src="https://xatimg.com/image/AqSgHFRwU1si.png" alt="Stitch">
+                </div>
+            </div>
+        </section>
+
+<section id="musica" class="content-section">
+    <div class="music-box">
+
+        <iframe
+            src="https://bydesign-xat.github.io/Music/Model-21-repro.html"
+            width="100%"
+            height="650"
+            frameborder="0"
+            scrolling="no"
+            style="
+                border:none;
+                border-radius:15px;
+                overflow:hidden;
+                background:transparent;
+            ">
+        </iframe>
+
+    </div>
+</section>
+
+        <section id="amigos" class="content-section">
+            <div class="friends-list">
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 1</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+                
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 2</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+                
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 3</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 4</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 5</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+
+<a href="https://xat.me/USERNAME" target="_blank" class="friend-card">
+    <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/TTCxdIfiBlcl.png" alt="Amigo" class="friend-img">
+    <div class="friend-info">
+        <span class="friend-name">Friend 6</span>
+        <span class="friend-user">@xxx</span>
+    </div>
+</a>
+                
+     </div>
+        </section>
+
+        <section id="galeria" class="content-section">
+            <div class="gallery-grid">
+                <img src="https://picsum.photos/300/300?random=1" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="https://picsum.photos/300/300?random=2" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="https://picsum.photos/300/300?random=3" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="https://picsum.photos/300/300?random=4" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="https://picsum.photos/300/300?random=5" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="https://picsum.photos/300/300?random=6" class="gallery-img" onclick="openLightbox(this.src)">
+            </div>
+        </section>
+
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="Ampliada">
+    </div>
+
+</body>
+</html>
