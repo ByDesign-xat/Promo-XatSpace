@@ -1,0 +1,246 @@
+/* RESET GENERAL */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* CONTENEDOR PRINCIPAL: FONDO DEGRADADO MORADO A MORADO CLARO PASTEL */
+.xat-space-escenario {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: linear-gradient(to top, #283b4a, #3b4f61, #718593, #aebecc);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+    
+    animation: xatFadeInSpace 2.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes xatFadeInSpace {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* =======================================================
+   NUEVO SISTEMA: ESTRELLAS REALES DE 4 PUNTAS CON DESTELLO
+   ======================================================= */
+.xat-cielo-estrellado {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.estrella-real {
+    position: absolute;
+    background-color: #fff7db; /* Color de base a juego */
+    /* El truco mágico: clip-path esculpe una estrella de 4 puntas perfecta y nítida */
+    clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+    opacity: 0.8;
+    /* Aura luminosa champaña a su alrededor */
+    filter: drop-shadow(0 0 5px rgba(253, 240, 195, 0.9));
+}
+
+/* Ritmos de titileo asíncronos para que unas brillen mientras otras descansan */
+.est-a { animation: xatTwinkleA 4s infinite ease-in-out alternate; }
+.est-b { animation: xatTwinkleB 3s infinite ease-in-out alternate; }
+.est-c { animation: xatTwinkleC 5s infinite ease-in-out alternate; } /* Brillo fijo calmo */
+
+@keyframes xatTwinkleA {
+    0% { opacity: 0.2; transform: scale(0.6); filter: drop-shadow(0 0 2px rgba(253,240,195,0.3)); }
+    50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(253,240,195,1)); }
+    100% { opacity: 0.4; transform: scale(0.7); filter: drop-shadow(0 0 3px rgba(253,240,195,0.4)); }
+}
+
+@keyframes xatTwinkleB {
+    0% { opacity: 0.9; transform: scale(1); filter: drop-shadow(0 0 6px rgba(253,240,195,0.8)); }
+    100% { opacity: 0.1; transform: scale(0.4); filter: drop-shadow(0 0 0px transparent); }
+}
+
+@keyframes xatTwinkleC {
+    0% { opacity: 0.6; transform: scale(0.8); }
+    100% { opacity: 0.8; transform: scale(0.95); }
+}
+
+/* Ubicación y tamaños variados de las 12 estrellas cruzadas por el cielo */
+.e1  { top: 12%; left: 15%; width: 8px;  height: 8px; }
+.e2  { top: 28%; left: 82%; width: 12px; height: 12px; }
+.e3  { top: 68%; left: 9%;  width: 10px; height: 10px; }
+.e4  { top: 15%; left: 45%; width: 6px;  height: 6px; }
+.e5  { top: 85%; left: 74%; width: 11px; height: 11px; }
+.e6  { top: 40%; left: 23%; width: 7px;  height: 7px; }
+.e7  { top: 72%; left: 91%; width: 9px;  height: 9px; }
+.e8  { top: 5%;  left: 70%; width: 14px; height: 14px; } /* Estrella grande alta */
+.e9  { top: 55%; left: 87%; width: 6px;  height: 6px; }
+.e10 { top: 90%; left: 20%; width: 10px; height: 10px; }
+.e11 { top: 32%; left: 64%; width: 8px;  height: 8px; }
+.e12 { top: 62%; left: 33%; width: 13px; height: 13px; }
+
+/* CONTENEDOR CENTRAL */
+.contenedor-nombre {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* GABY EN AMARILLO NEÓN CHAMPAÑA */
+.texto-caligrafico-glow {
+    font-family: 'Great Vibes', cursive, serif;
+    font-size: 13rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 10px 40px;
+    line-height: 1.1;
+    user-select: none;
+    display: block;
+    color: #fffdf9;
+    
+    text-shadow: 
+        0 0 10px #dbf1ff, 
+        0 0 20px rgba(195, 233, 253, 0.9), 
+        0 0 35px rgba(169, 211, 246, 0.6),
+        0 0 50px rgba(142, 181, 235, 0.3);
+}
+
+/* DIVISOR CON CORAZÓN */
+.xat-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -15px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.xat-divider::before, .xat-divider::after {
+    content: "";
+    width: 90px;
+    height: 1.5px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6) 50%, transparent);
+}
+
+.xat-heart {
+    width: 6px;
+    height: 6px;
+    background-color: #fffdf9;
+    position: relative;
+    transform: rotate(45deg);
+    margin: 0 12px;
+    box-shadow: 0 0 8px rgba(253, 240, 195, 0.9);
+}
+.xat-heart::before, .xat-heart::after {
+    content: ""; width: 6px; height: 6px; background-color: #fffdf9; border-radius: 50%; position: absolute;
+}
+.xat-heart::before { top: -3px; left: 0; }
+.xat-heart::after { top: 0; left: -3px; }
+
+/* REPRODUCTOR CRISTAL */
+.reproductor-lindo {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    padding: 10px 24px;
+    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.01);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.reproductor-lindo i { color: #ffffff; font-size: 0.85rem; text-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+.reproductor-lindo span { color: #ffffff; font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-shadow: 0 0 3px rgba(255, 255, 255, 0.3); }
+
+/* SISTEMA: CORAZONES BURBUJA SVG */
+.burbujas-corazon-contenedor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3; /* Un nivel arriba de las estrellas */
+}
+
+.corazon-burbuja {
+    position: absolute;
+    bottom: -15%;
+    fill: rgba(253, 240, 195, 0.22);
+    stroke: rgba(255, 251, 235, 0.45);
+    stroke-width: 1px;
+    filter: drop-shadow(0 0 6px rgba(253, 240, 195, 0.25));
+    animation: flotarCorazonReal 13s infinite ease-in-out;
+    opacity: 0;
+}
+
+@keyframes flotarCorazonReal {
+    0% { bottom: -15%; transform: translateX(0) scale(0.6) rotate(0deg); opacity: 0; }
+    15% { opacity: 0.75; }
+    50% { transform: translateX(50px) scale(1) rotate(8deg); }
+    80% { opacity: 0.6; }
+    100% { bottom: 115%; transform: translateX(-25px) scale(0.85) rotate(-8deg); opacity: 0; }
+}
+
+.c1  { left: 6%;   width: 24px; height: 24px; animation-delay: 0s;   animation-duration: 12s; }
+.c2  { left: 24%;  width: 38px; height: 38px; animation-delay: 3s;   animation-duration: 16s; fill: rgba(253, 240, 195, 0.15); }
+.c3  { left: 38%;  width: 18px; height: 18px; animation-delay: 7s;   animation-duration: 14s; }
+.c4  { left: 50%;  width: 30px; height: 30px; animation-delay: 1.5s; animation-duration: 18s; }
+.c5  { left: 63%;  width: 44px; height: 44px; animation-delay: 9s;   animation-duration: 15s; fill: rgba(253, 240, 195, 0.12); }
+.c6  { left: 76%;  width: 26px; height: 26px; animation-delay: 4.5s; animation-duration: 13s; }
+.c7  { left: 89%;  width: 34px; height: 34px; animation-delay: 11s;  animation-duration: 17s; }
+.c8  { left: 14%;  width: 22px; height: 22px; animation-delay: 13s;  animation-duration: 15s; }
+.c9  { left: 56%;  width: 28px; height: 28px; animation-delay: 5.5s; animation-duration: 14s; }
+.c10 { left: 82%;  width: 36px; height: 36px; animation-delay: 2.5s; animation-duration: 19s; fill: rgba(253, 240, 195, 0.18); }
+
+/* ===== FOOTER ===== */
+
+footer{
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 9999;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,.75);
+    user-select: none;
+}
+
+footer a{
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    transition: .3s;
+}
+
+footer a:hover{
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255,255,255,.8);
+}
+
+footer #year{
+    margin-left: 4px;
+}

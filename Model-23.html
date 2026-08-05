@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByDesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Model-23.css">
+	
+</head>
+<body>
+
+    <div class="xat-space-escenario">
+
+        <div class="xat-cielo-estrellado">
+            <div class="estrella-real est-a e1"></div>
+            <div class="estrella-real est-b e2"></div>
+            <div class="estrella-real est-a e3"></div>
+            <div class="estrella-real est-c e4"></div>
+            <div class="estrella-real est-b e5"></div>
+            <div class="estrella-real est-a e6"></div>
+            <div class="estrella-real est-c e7"></div>
+            <div class="estrella-real est-b e8"></div>
+            <div class="estrella-real est-a e9"></div>
+            <div class="estrella-real est-b e10"></div>
+            <div class="estrella-real est-c e11"></div>
+            <div class="estrella-real est-a e12"></div>
+        </div>
+
+        <div class="burbujas-corazon-contenedor">
+            <svg class="corazon-burbuja c1" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c2" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c3" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c4" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c5" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c6" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c7" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c8" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c9" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+            <svg class="corazon-burbuja c10" viewBox="0 0 32 32"><path d="M16 28.5S2 18.2 2 10.5A6.5 6.5 0 0 1 15 7.5a6.5 6.5 0 0 1 13 0c0 7.7-14 18-14 18z"/></svg>
+        </div>
+
+        <div class="contenedor-nombre">
+            <h1 class="texto-caligrafico-glow">You Name</h1>
+            
+            <div class="xat-divider">
+                <div class="xat-heart"></div>
+            </div>
+            
+            <div class="reproductor-bajo-nombre">
+                <button id="btn-reproductor" class="reproductor-lindo">
+                    <i id="icono-reproductor" class="fas fa-play"></i>
+                    <span id="texto-reproductor">MUSIC</span>
+                </button>
+            </div>
+        </div>
+
+        <audio id="musica-fondo" src="https://files.catbox.moe/rshch0.mp3" loop></audio>
+
+
+ <!-- FOOTER AICI -->
+    <footer>
+        <a href="https://xat.me/xDesignx" target="_blank">
+            &copy; Copyright - ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋
+        </a>
+        <span id="year"></span>
+    </footer>
+	<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+    </div>
+	
+	
+	
+
+    <script>
+        const musica = document.getElementById('musica-fondo');
+        const boton = document.getElementById('btn-reproductor');
+        const icono = document.getElementById('icono-reproductor');
+
+        function alternarMusica() {
+            if (musica.paused) {
+                musica.play().then(() => {
+                    icono.className = 'fas fa-pause';
+                }).catch(error => console.log("Interacción requerida"));
+            } else {
+                musica.pause();
+                icono.className = 'fas fa-play';
+            }
+        }
+
+        boton.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            alternarMusica();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            musica.play().then(() => {
+                icono.className = 'fas fa-pause';
+            }).catch(() => {
+                const activarConInteraccion = () => {
+                    musica.play().then(() => {
+                        icono.className = 'fas fa-pause';
+                        document.removeEventListener('click', activarConInteraccion);
+                    });
+                };
+                document.addEventListener('click', activarConInteraccion);
+            });
+        });
+</script>
+
+<!-- BLOCK RIGHT CLICK -->
+<script type="text/javascript">
+    document.onkeydown = function () { return false; };
+    document.oncontextmenu = function () { return false; };
+</script>
+</body>
+</html>
