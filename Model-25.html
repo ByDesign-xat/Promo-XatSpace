@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ByDesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Model-25.css">
+	<script src="Model-25.js"></script>
+	
+			  <!-- BLOCK -->
+  <script type="text/javascript">
+  document.onkeydown = function(){return false};
+  document.oncontextmenu = function(){return false}
+  </script>	
+	
+</head>
+<body>
+
+    <div class="pantalla-entrada" id="overlay-entrada">
+        <button class="btn-entrar" id="boton-entrar">Enter</button>
+    </div>
+
+    <div class="lienzo-principal" id="escenario">
+        
+        <div class="layout-perfil">
+            
+            <div class="tarjeta-principal cristal">
+                
+                <div id="seccion-principal" class="seccion-contenido">
+                    <h1 class="titulo-nombre">Name<span class="bandera-mx"></span></h1>
+                    <p class="frase-inspiradora" id="texto-poetico"></p>
+                </div>
+
+            </div>
+
+            <div class="columna-lateral">
+                <div class="anillo-foto cristal" id="contenedor-foto">
+                    <div class="foto-wrapper" id="nieve-interna">
+                        <img src="https://xatimg.com/image/uFncq7ySHSIy.png" alt="Foto">
+                    </div>
+                </div>
+
+                <div class="tarjeta-reproductor cristal" id="tarjeta-reproductor">
+                    <img src="https://picsum.photos/200/200?random=1" alt="Album Art" class="album-art" id="portada-album">
+                    <p class="cancion-titulo" id="titulo-cancion">Loading...</p>
+                    
+                    <audio id="musica-fondo">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                    
+                    <div class="controles-musica">
+                        <span id="btn-prev">⏮</span> 
+                        <span id="btn-play">▶</span> 
+                        <span id="btn-next">⏭</span>
+                    </div>
+					
+					<div class="timp-melodie">
+    <span id="timp-curent">0:00</span>
+
+    <input
+        type="range"
+        id="bara-melodie"
+        min="0"
+        max="100"
+        value="0"
+        step="0.1"
+    >
+
+    <span id="timp-total">0:00</span>
+</div>
+                    
+                    <div class="barra-volumen">
+                        <span>🔊</span> 
+                        <input type="range" id="control-volumen" min="0" max="1" step="0.1" value="1">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+		
+
+    <!-- FIRMA -->
+<footer class="copyright-footer">
+    <a href="https://xat.me/xDesignx" target="_blank">
+        &copy; Copyright - ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋
+    </a>
+    <span id="year"></span>
+</footer>		
+
+
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+        /* =========================================
+           1. EL FONDO (Tonos Femeninos y Románticos) 
+           ========================================= */
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; 
+            background-color: #000000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: default;
+        }
+
+        .lienzo-principal {
+            position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #301423 60%, #7b3257 85%, #301423 100%);
+            background-size: 300% 300%;
+            animation: transicionFondo 20s ease-in-out infinite alternate; z-index: 0;
+        }
+
+        @keyframes transicionFondo { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+
+        /* ESCARCHA Y ESTRELLAS */
+        .escarcha { position: absolute; background-color: rgba(255, 228, 225, 0.8); border-radius: 50%; z-index: 1; animation: caerEscarcha linear infinite, parpadeo 2s ease-in-out infinite alternate; }
+        @keyframes caerEscarcha { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
+        @keyframes parpadeo { 0% { opacity: 0.2; } 100% { opacity: 1; box-shadow: 0 0 3px #ffe4e1; } }
+
+        .estrella-cayendo { position: absolute; background-color: #ffe4e1; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); z-index: 2; animation: caerEstrella linear infinite; }
+        .deriva-izq { --desplazamiento-x: -15vw; } .deriva-der { --desplazamiento-x: 15vw; } .deriva-fuerte-izq { --desplazamiento-x: -30vw; } .deriva-fuerte-der { --desplazamiento-x: 30vw; }
+        @keyframes caerEstrella { 0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 0.8; } 100% { transform: translateY(110vh) translateX(var(--desplazamiento-x)) rotate(360deg); opacity: 0; } }
+
+        .palabra-cayendo { position: absolute; color: #ffb6c1; font-family: 'Cinzel', serif; white-space: nowrap; z-index: 3; animation: caerEstrella linear infinite; }
+        .texto-tenue { opacity: 0.3; filter: blur(1px); } .texto-claro { opacity: 0.8; text-shadow: 0 0 5px rgba(255, 182, 193, 0.8); }
+
+        /* =========================================
+           2. PANTALLA DE ENTRADA
+           ========================================= */
+        .pantalla-entrada {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(17, 5, 10, 0.95); 
+            display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 1s ease, visibility 1s ease;
+        }
+        .pantalla-entrada.oculto { opacity: 0; visibility: hidden; }
+        .btn-entrar {
+            background: rgba(255, 182, 193, 0.05); border: 2px solid rgba(255, 182, 193, 0.5); color: #ffffff; font-size: 20px; font-weight: bold; letter-spacing: 5px;
+            padding: 18px 60px; border-radius: 40px; cursor: pointer; font-family: Arial, sans-serif; animation: latidoBoton 2s infinite; transition: all 0.3s ease;
+        }
+        .btn-entrar:hover { transform: scale(1.05); background: rgba(255, 182, 193, 0.2); }
+        @keyframes latidoBoton {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,182,193,0.1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,182,193,0.5); border-color: #ffb6c1; }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,182,193,0.1); }
+        }
+
+        /* =========================================
+           3. DISEÑO DEL PERFIL 
+           ========================================= */
+        .layout-perfil { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; gap: 20px; z-index: 10; align-items: flex-start; }
+
+        .cristal {
+            background: rgba(255, 182, 193, 0.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 192, 203, 0.25); box-shadow: 0 8px 32px 0 rgba(48, 20, 35, 0.5); color: #ffffff;
+        }
+
+        .columna-lateral { display: flex; flex-direction: column; gap: 15px; margin-top: -20px; }
+
+        /* FOTO Y EFECTOS */
+        @keyframes vaYviene { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); box-shadow: 0 12px 30px rgba(255, 182, 193, 0.4); } 100% { transform: translateY(0px); } }
+        .anillo-foto { width: 190px; height: 190px; border-radius: 50%; padding: 8px; display: flex; justify-content: center; align-items: center; position: relative; animation: vaYviene 4s ease-in-out infinite; }
+        .foto-wrapper { position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; z-index: 2; }
+        .foto-wrapper img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1; }
+        .copo-nieve { position: absolute; background: rgba(255, 255, 255, 0.9); border-radius: 50%; z-index: 3; animation: caerNieveInterna linear infinite; }
+        @keyframes caerNieveInterna { 0% { transform: translateY(-20px); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(200px); opacity: 0; } }
+        .estrella-rosa { position: absolute; color: #ffd1dc; text-shadow: 0 0 5px #ffffff, 0 0 15px #ffb6c1; z-index: 4; animation: destelloRosa ease-in-out infinite alternate; }
+        @keyframes destelloRosa { 0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.6) rotate(0deg); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1) rotate(45deg); } }
+
+        /* =========================================
+           REPRODUCTOR MODIFICADO (EFECTO SUTIL AL 15%)
+           ========================================= */
+        .tarjeta-reproductor { 
+            width: 140px; border-radius: 20px; padding: 20px; 
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1; 
+            border: 1px solid rgba(255, 192, 203, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(48, 20, 35, 0.5); 
+            color: #ffffff;
+        }
+
+        /* La capa de fondo borrosa basada en la imagen (Opacidad fija base del 15%) */
+        .tarjeta-reproductor::before {
+            content: "";
+            position: absolute;
+            top: -25px; left: -25px; right: -25px; bottom: -25px; 
+            background-image: var(--bg-album, none);
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px); 
+            opacity: 0.15; /* Base muy sutil */
+            z-index: -1; 
+            transition: background-image 0.5s ease; 
+        }
+
+        /* Animación del Borde (Destellos muy suaves del bajo hacia afuera) */
+        @keyframes efectoBoomBorde {
+            0% { box-shadow: 0 8px 32px 0 rgba(48, 20, 35, 0.5); }
+            15% { box-shadow: 0 0 30px 5px rgba(255, 182, 193, 0.15), 0 0 10px 2px rgba(255, 255, 255, 0.05); } 
+            35% { box-shadow: 0 0 15px 2px rgba(255, 182, 193, 0.05); }
+            55% { box-shadow: 0 0 20px 3px rgba(255, 182, 193, 0.10); }
+            100% { box-shadow: 0 8px 32px 0 rgba(48, 20, 35, 0.5); }
+        }
+
+        /* Animación del Fondo (Sutiles cambios de opacidad) */
+        @keyframes pulsoLuzFondo {
+            0% { opacity: 0.15; }
+            15% { opacity: 0.25; } /* El 'boom' sube un poco la opacidad pero sigue tenue */
+            35% { opacity: 0.15; }
+            55% { opacity: 0.18; }
+            100% { opacity: 0.15; }
+        }
+
+        /* Aplicación de los destellos sin mover el reproductor */
+        .tarjeta-reproductor.sonando {
+
+            animation: efectoBoomBorde 0.85s infinite; 
+        }
+
+        .tarjeta-reproductor.sonando::before {
+            animation: pulsoLuzFondo 0.85s infinite;
+        }
+
+        /* Animación del disco (Gira solo al reproducir) */
+        @keyframes girarDisco { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        .album-art { 
+            width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; 
+            background: #222; object-fit: cover; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 2px solid rgba(255,182,193,0.3); 
+            animation: girarDisco 10s linear infinite; 
+            animation-play-state: paused; 
+        }
+
+        .tarjeta-reproductor.sonando .album-art {
+            animation-play-state: running;
+        }
+
+        .cancion-titulo { font-size: 12px; font-weight: bold; margin: 5px 0 15px 0; color: #ffe4e1; text-shadow: 0 0 5px rgba(0,0,0,0.8); }
+        
+        .controles-musica { display: flex; gap: 15px; margin-bottom: 15px; font-size: 14px; cursor: pointer; user-select: none; }
+        .controles-musica span { transition: color 0.3s ease, transform 0.2s ease; }
+        .controles-musica span:hover { color: #ffb6c1; transform: scale(1.2); }
+
+        .barra-volumen { display: flex; align-items: center; gap: 8px; width: 100%; font-size: 12px; }
+        .barra-volumen input[type=range] { width: 100%; height: 4px; background: rgba(255,182,193,0.3); outline: none; border-radius: 2px; -webkit-appearance: none; cursor: pointer; }
+        .barra-volumen input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; background: #ffb6c1; border-radius: 50%; }
+
+        /* TARJETA PRINCIPAL */
+        .tarjeta-principal { width: 480px; height: 460px; border-radius: 30px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+
+        /* =========================================
+           4. SECCIONES
+           ========================================= */
+        .seccion-contenido { display: flex; flex-direction: column; align-items: center; width: 100%; animation: fadeSeccion 0.6s ease; }
+        @keyframes fadeSeccion { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* =========================================
+           5. ANIMACIONES ORIGINALES
+           ========================================= */
+        @keyframes colorYDesenfoque { 0% { color: #ffb6c1; text-shadow: 0 0 15px rgba(255,182,193,0.8); filter: blur(0px); } 33% { color: #d690a6; text-shadow: 0 0 5px rgba(214,144,166,0.5); filter: blur(3px); } 66% { color: #ffe4e1; text-shadow: 0 0 15px rgba(255,228,225,0.4); filter: blur(4px); } 100% { color: #ffb6c1; text-shadow: 0 0 10px rgba(255,182,193,0.8); filter: blur(0px); } }
+        @keyframes flamearBandera { 0%, 100% { transform: rotate(0deg) skew(0deg); } 25% { transform: rotate(10deg) skew(-5deg); } 75% { transform: rotate(-10deg) skew(5deg); } }
+
+        .titulo-nombre { font-family: 'Cinzel', serif; font-size: 55px; font-weight: 800; margin: 0 0 15px 0; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; animation: colorYDesenfoque 6s infinite alternate; }
+        .bandera-mx { display: inline-block; margin-left: 15px; font-size: 45px; animation: flamearBandera 2.5s ease-in-out infinite; }
+
+        .frase-inspiradora { font-family: 'Caveat', 'Comic Sans MS', cursive; font-size: 20px; line-height: 1; color: rgba(255, 228, 225, 0.9); font-weight: 400; text-align: center; margin: 0; width: 85%; white-space: pre-wrap; height: 260px; letter-spacing: 1px; }
+        .frase-inspiradora::after { content: '|'; animation: parpadeoCursor 1s step-end infinite; }
+        @keyframes parpadeoCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .rastro-cursor { position: absolute; pointer-events: none; z-index: 10000; color: #ffb6c1; text-shadow: 0 0 8px rgba(255, 182, 193, 0.8), 0 0 15px #ffd1dc; animation: desvanecerRastro 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        @keyframes desvanecerRastro { 0% { opacity: 1; transform: scale(1) translate(0, 0); } 100% { opacity: 0; transform: scale(0.1) translate(var(--dir-x), var(--dir-y)); } }
+
+/* =========================================
+   FIRMA CREADOR
+   Același efect ca .titulo-nombre
+   Fără fundal
+   ========================================= */
+
+.copyright-footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+    text-align: center;
+
+    z-index: 50;
+    pointer-events: auto;
+
+    /* Același efect ca titulo-nombre */
+    animation: colorYDesenfoque 6s infinite alternate;
+}
+
+/* Link-ul din footer moștenește efectul */
+.copyright-footer a {
+    color: inherit;
+    text-decoration: none;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* =========================================
+   Efect identic cu .titulo-nombre
+   ========================================= */
+
+@keyframes colorYDesenfoque {
+    0% {
+        color: #ffb6c1;
+        text-shadow: 0 0 15px rgba(255,182,193,0.8);
+        filter: blur(0px);
+    }
+
+    33% {
+        color: #d690a6;
+        text-shadow: 0 0 5px rgba(214,144,166,0.5);
+        filter: blur(3px);
+    }
+
+    66% {
+        color: #ffe4e1;
+        text-shadow: 0 0 15px rgba(255,228,225,0.4);
+        filter: blur(4px);
+    }
+
+    100% {
+        color: #ffb6c1;
+        text-shadow: 0 0 10px rgba(255,182,193,0.8);
+        filter: blur(0px);
+    }
+}
+
+
+/* =========================================
+   TIMP + PROGRES MELODIE
+   ========================================= */
+
+.timp-melodie {
+    width: 100%;
+    max-width: 200px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin: 3px auto 12px auto;
+
+    font-size: 10px;
+    color: #ffb6c1;
+
+    box-sizing: border-box;
+}
+
+#timp-curent,
+#timp-total {
+    width: 20px;
+    min-width: 20px;
+
+    text-align: center;
+    white-space: nowrap;
+
+    text-shadow: 0 0 5px rgba(255,182,193,0.5);
+}
+
+#bara-melodie {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+
+    height: 4px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+
+    /* partea neumplută */
+    background: rgba(255,182,193,0.20);
+
+    box-shadow:
+        0 0 5px rgba(255,182,193,0.25);
+}
+
+/* Chrome / Edge */
+#bara-melodie::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        to right,
+        #ff6f91 0%,
+        #ffb6c1 var(--progress, 0%),
+        rgba(255,182,193,0.20) var(--progress, 0%),
+        rgba(255,182,193,0.20) 100%
+    );
+}
+
+#bara-melodie::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 10px;
+    height: 10px;
+
+    margin-top: -3px;
+
+    background: #ffb6c1;
+    border: none;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 6px rgba(255,182,193,0.9),
+        0 0 12px rgba(255,105,145,0.5);
+
+    cursor: pointer;
+}
+
+/* Firefox */
+#bara-melodie::-moz-range-track {
+    height: 4px;
+    border-radius: 10px;
+    background: rgba(255,182,193,0.20);
+}
+
+#bara-melodie::-moz-range-progress {
+    height: 4px;
+    border-radius: 10px;
+    background: #ff6f91;
+}
+
+#bara-melodie::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+
+    background: #ffb6c1;
+    border: none;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 6px rgba(255,182,193,0.9);
+
+    cursor: pointer;
+}
+
