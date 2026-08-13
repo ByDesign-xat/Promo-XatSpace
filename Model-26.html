@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ByDesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Model-26.css">
+	<script src="Model-26.js" defer></script>
+</head>
+<body>
+
+    <div id="rain-container"></div>
+
+    <div id="auth-panel">
+        <div class="auth-card">
+            <h2>ᑎᗩᙏᙓ</h2>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px;">Password login: <span style="color:#d8b4fe; font-weight:bold;">0000</span></p>
+            <div class="password-box">
+                <input type="password" id="pass-input" placeholder="Password (0000)" maxlength="6">
+                <span class="toggle-eye" id="toggle-eye" title="Ver contraseña">👁️</span>
+            </div>
+            <button onclick="verificarPassword()">Enter</button>
+            <div class="error-msg" id="error-msg">Incorrect password, please try again ✨</div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <div class="title-kawaii">ᑎᗩᙏᙓ</div>
+            <div class="clock" id="live-clock">Loading...</div>
+        </header>
+
+        <nav>
+            <button onclick="switchTab('perfil')" id="btn-perfil" class="active">Profile</button>
+            <button onclick="switchTab('gallery')" id="btn-gallery">Galery</button>
+			<button onclick="switchTab('music')" id="btn-music">Music</button>
+            <button onclick="switchTab('amigos')" id="btn-amigos">Friends</button>
+            <button onclick="switchTab('love')" id="btn-relacion">My Love</button>
+        </nav>
+
+        <div id="sec-perfil" class="section-tab active-section">
+            <div class="profile-container">
+                <div class="avatar-wrap">
+                    <div class="avatar-ring"></div>
+                    <img src="https://xatimg.com/image/uFncq7ySHSIy.png" alt="" class="avatar-img">
+                </div>
+                <div class="profile-handle">✶ 🇦​🇧​🇴​🇺​🇹​ 🇲​🇪 ✶​</div>
+                <div class="profile-bio">
+                    ✦ Hi! I'm "You Name" ✮ United Kingdom — London ✧<br>
+                    ꧁Sign Leo ♌꧂
+                </div>
+<div class="stats-grid">
+
+    <div class="stat-box like-box" onclick="showReaction(this, '👍')">
+        <div class="stat-num">45.2k</div>
+        <div class="stat-label">👍 Like</div>
+    </div>
+
+    <div class="stat-box followers-box" onclick="showReaction(this, '👥')">
+        <div class="stat-num">35.2K</div>
+        <div class="stat-label">👥 Followers</div>
+    </div>
+
+    <div class="stat-box love-box" onclick="showReaction(this, '💖')">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">💖 Love</div>
+    </div>
+
+</div>
+            </div>
+        </div>
+
+<div id="sec-gallery" class="section-tab">
+
+    <div class="gallery-viewer">
+
+        <button class="gallery-arrow gallery-left"
+                onclick="changeGalleryImage(-1)">❮</button>
+
+        <img id="gallery-image"
+             src="https://xatimg.com/image/uFncq7ySHSIy.png"
+             alt="Gallery">
+
+        <button class="gallery-arrow gallery-right"
+                onclick="changeGalleryImage(1)">❯</button>
+
+    </div>
+
+</div>
+
+        <div id="sec-amigos" class="section-tab">
+            <div class="friends-layout">
+                
+                <div class="friend-column">
+                    <h3>Women 💖</h3>
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-kawaii"></div>
+
+            <img src="https://xatimg.com/image/uFncq7ySHSIy.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 1
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-kawaii"></div>
+
+            <img src="https://xatimg.com/image/uFncq7ySHSIy.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 2
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-kawaii"></div>
+
+            <img src="https://xatimg.com/image/uFncq7ySHSIy.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 3
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+                </div>
+
+                <div class="friend-column">
+                    <h3>Boys ✨</h3>
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-dark"></div>
+
+            <img src="https://xatimg.com/image/fiH2GGeslh65.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 1
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-dark"></div>
+
+            <img src="https://xatimg.com/image/fiH2GGeslh65.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 2
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+<a href="https://xat.me/" target="_blank" class="friend-card-link">
+
+    <div class="friend-card">
+
+        <div class="friend-avatar-wrap">
+            <div class="friend-ring-dark"></div>
+
+            <img src="https://xatimg.com/image/fiH2GGeslh65.png"
+                 alt=""
+                 class="friend-img">
+        </div>
+
+        <div class="friend-info">
+
+            <div class="friend-name">
+                Friend 3
+            </div>
+
+            <div style="font-size: 0.8rem; color: #aaa;">
+                Amiga especial 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+                </div>
+
+            </div>
+        </div>
+
+<div id="sec-love" class="section-tab">
+
+    <div class="profile-container">
+	
+	
+	 <div class="profile-handle">
+            My Love 💖
+    </div>
+
+        <div class="avatar-wrap">
+		
+
+            <div class="avatar-ring"></div>
+
+            <img src="https://xatimg.com/image/fiH2GGeslh65.png"
+                 alt="Nume"
+                 class="avatar-img">
+
+        </div>
+
+<div class="friend-name">
+    <a href="https://xat.me/numele" target="_blank">
+        Nume ❤️
+    </a>
+</div>
+
+        <div class="profile-bio">
+            ID<br>
+            Forever & Always ✨
+        </div>
+
+    </div>
+
+</div>
+
+<div id="sec-music" class="section-tab">
+
+    <div class="music-player">
+
+        <!-- PLAYER PRINCIPAL -->
+        <div class="music-main">
+
+            <div class="music-cover-wrap">
+                <div class="music-cover-ring"></div>
+
+                <img id="music-cover"
+                     src=""
+                     alt="Cover">
+
+            </div>
+
+            <div class="music-info">
+
+                <div class="music-artist" id="music-artist">
+                    Artist
+                </div>
+
+                <div class="music-title" id="music-title">
+                    Title
+                </div>
+
+                <div class="music-album" id="music-album">
+                    Album
+                </div>
+
+<div class="music-meta">
+
+    <span id="music-genre">
+        🎵 Genre
+    </span>
+
+</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIMP -->
+<div class="music-progress-container">
+
+    <span id="music-current-time">0:00</span>
+
+    <input
+        type="range"
+        id="music-progress"
+        min="0"
+        max="100"
+        value="0">
+
+    <span id="music-duration">0:00</span>
+
+</div>
+
+
+        <!-- CONTROALE -->
+        <div class="music-controls">
+
+            <button onclick="previousSong()" title="Previous">
+                ⏮
+            </button>
+
+            <button
+                id="music-play"
+                class="music-play-button"
+                onclick="toggleMusic()"
+                title="Play">
+                ▶
+            </button>
+
+            <button onclick="nextSong()" title="Next">
+                ⏭
+            </button>
+
+        </div>
+
+
+        <!-- VOLUM -->
+        <div class="music-volume">
+
+            <span>🔊</span>
+
+            <input
+                type="range"
+                id="music-volume"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1">
+
+            <span id="music-volume-value">
+                100%
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+<!-- FIRMA -->
+<footer class="copyright-footer">
+    <a href="https://xat.me/xDesignx" target="_blank">
+        &copy; Copyright - ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋
+    </a>
+    <span id="year"></span>
+</footer>
+	
+
+<!-- BLOCK RIGHT CLICK -->
+<script>
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+// Blochează combinațiile de taste folosite de obicei pentru inspectare/sursă
+document.addEventListener("keydown", function (e) {
+
+    // Permite tastarea în input-uri
+    if (
+        e.target.tagName === "INPUT" ||
+        e.target.tagName === "TEXTAREA"
+    ) {
+        return;
+    }
+
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Ctrl + U
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + I
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "i"
+    ) {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + J
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "j"
+    ) {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + C
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "c"
+    ) {
+        e.preventDefault();
+    }
+});
+</script>
+
+<script>
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
+</script>
+
+</body>
+</html>
