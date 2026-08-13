@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ByDesign</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Model-24.css">
+</head>
+<body class="flex flex-col items-center min-h-screen p-3 md:p-6 selection:bg-[#AA7522] selection:text-white">
+
+    <!-- ESPACIO RESERVADO PARA FUTURO BANNER SUPERIOR (65px) -->
+    <div class="w-full shrink-0 h-[65px] pointer-events-none"></div>
+
+    <!-- ELEMENTOS DE FONDO -->
+    <div id="animated-bg"></div>
+    <div id="stars-container"></div>
+    <div id="ambient-glows"></div>
+    <div id="cursor-glow"></div>
+
+    <!-- PANTALLA DE INICIO / OVERLAY -->
+    <div id="start-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-1000 ease-in-out px-4 text-center">
+        <div class="absolute inset-0 pointer-events-none opacity-40">
+             <div class="absolute top-1/3 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-[var(--magenta-main)] rounded-full blur-[100px] animate-pulse"></div>
+             <div class="absolute bottom-1/3 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-[var(--gold-brown)] rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <button onclick="enterSite()" class="relative z-10 group flex flex-col items-center gap-6 md:gap-8 cursor-hover outline-none tap-highlight-transparent">
+            <div class="relative w-32 h-32 md:w-40 md:h-40">
+                <div class="absolute inset-0 rounded-full border border-t-[var(--magenta-main)] border-r-[var(--gold-brown)] border-b-[var(--magenta-main)] border-l-[var(--gold-brown)] animate-[spin_6s_linear_infinite] opacity-80"></div>
+                <div class="absolute inset-3 rounded-full border border-white/10"></div>
+                
+                <div class="absolute inset-4 rounded-full overflow-hidden flex items-center justify-center bg-black">
+                    <!-- FOTO INICIO -->
+                    <img src="https://xatimg.com/image/gayJSz1PZeAr.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 scale-110 group-hover:scale-100" onerror="this.src='https://placehold.co/400x400/000000/FFF?text=Subir+inicio.jpg'">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-all">
+                        <i class="fa-solid fa-play text-3xl md:text-4xl text-[var(--gold-shine)] drop-shadow-[0_0_10px_var(--gold-brown)] transform group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <span class="text-lg md:text-xl font-serif italic text-[var(--gold-shine)] tracking-[0.2em] uppercase border-b border-transparent group-hover:border-[var(--magenta-main)] pb-2 transition-all duration-500">
+                Enter
+            </span>
+        </button>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="main-content" class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 opacity-0 scale-95 transition-all duration-1000 ease-out filter blur-sm my-auto pb-6">
+
+        <!-- Columna Izquierda -->
+        <section class="md:col-span-5 flex flex-col gap-4 md:gap-6">
+            
+            <!-- Tarjeta Perfil (z-50 sin overflow-hidden para permitir Tooltip encima) -->
+            <div class="glass-card rounded-3xl p-5 md:p-6 relative group cursor-hover z-50">
+                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[var(--gold-brown)] via-[var(--magenta-main)] to-[var(--gold-brown)]"></div>
+                
+                <div class="text-center mb-6 mt-2">
+                    <h1 class="text-4xl md:text-5xl font-bold py-2 title-glow select-none">
+                        𝕹ᵃ͟ᵐ͟ᵉ *
+                    </h1>
+                    <p class="text-[var(--gold-brown)] text-[10px] md:text-xs tracking-[0.3em] uppercase mt-2 font-semibold border-b border-white/5 pb-3 inline-block">username (ID)</p>
+                </div>
+
+                <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-6 border border-[var(--gold-brown)]/20 shadow-2xl">
+                    <!-- FOTO PERFIL -->
+                    <img src="https://xatimg.com/image/uFncq7ySHSIy.png" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/222/FFF?text=Subir+perfil.jpg'">
+                    
+                    <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-2 py-1 rounded-full border border-[var(--magenta-main)]/30 flex items-center gap-1.5">
+                        <span id="status-indicator" class="w-1.5 h-1.5 bg-[var(--magenta)] rounded-full animate-pulse"></span>
+                        <span id="status-text" class="text-[9px] font-bold text-[var(--gold-shine)] uppercase tracking-wider">Online</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1 text-center pt-2">
+                    <div class="group/stat">
+                        <span class="block text-lg md:text-xl font-bold text-white group-hover/stat:text-[var(--gold-brown)] transition-colors">376</span>
+                        <span class="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider">Posts</span>
+                    </div>
+                    <div class="group/stat">
+                        <span class="block text-lg md:text-xl font-bold text-white group-hover/stat:text-[var(--magenta-main)] transition-colors">27.2k</span>
+                        <span class="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider">Subs</span>
+                    </div>
+                    <div class="group/stat">
+                        <span class="block text-lg md:text-xl font-bold text-white group-hover/stat:text-[var(--gold-brown)] transition-colors">475</span>
+                        <span class="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider">Follows</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 md:gap-3 mt-6">
+                    <!-- BOTÓN LIKE -->
+                    <button onclick="triggerLike(event, this)" class="cursor-hover flex-1 btn-luxury text-white py-2.5 md:py-3 rounded-xl text-xs font-bold tracking-widest uppercase shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+                        Like <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <!-- ICONO 1: Groups (Trade) - ORIGINAL CON ZOOM -->
+                    <a href="https://xat.com/trade" target="_blank" rel="noopener noreferrer" class="cursor-hover shrink-0 w-10 h-10 md:w-12 md:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-white/5 hover:scale-110 transition-all duration-300 border border-[var(--gold-brown)]/20">
+                        <img src="https://xat.com/content/web/R00246/img/navbar/groups.svg" alt="Groups" class="w-5 h-5 md:w-6 md:h-6 pointer-events-none">
+                    </a>
+                    
+                    <!-- ICONO 2: Home () - ORIGINAL CON ZOOM -->
+                    <a href="https://xat.com/fondos" target="_blank" rel="noopener noreferrer" class="cursor-hover shrink-0 w-10 h-10 md:w-12 md:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-white/5 hover:scale-110 transition-all duration-300 border border-[var(--gold-brown)]/20">
+                        <img src="https://xat.com/content/web/R00246/img/navbar/home.svg" alt="Home" class="w-5 h-5 md:w-6 md:h-6 pointer-events-none">
+                    </a>
+
+                    <!-- ICONO 3: Heart con Tooltip - ORIGINAL CON ZOOM -->
+                    <div class="relative group/tooltip shrink-0">
+                        <div class="cursor-hover w-10 h-10 md:w-12 md:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-white/5 hover:scale-110 transition-all duration-300 border border-[var(--gold-brown)]/20">
+                            <img src="https://xat.com/content/web/R00246/img/xatspace/heart.svg" alt="Heart" class="w-5 h-5 md:w-6 md:h-6 pointer-events-none">
+                        </div>
+                        
+                        <!-- Panel de Tooltip Glassmorphism SIEMPRE FRENTE A TODO -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] md:w-[320px] p-3 md:p-4 glass-card rounded-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-[99999] text-center pointer-events-none transform group-hover/tooltip:-translate-y-1">
+                            <h4 class="text-[var(--gold-shine)] font-bold text-[11px] md:text-xs mb-1.5 border-b border-[var(--gold-brown)]/20 pb-1.5">Married: username (ID)</h4>
+                            
+                            <!-- IMAGEN AÑADIDA -->
+                            <img src="https://xatimg.com/image/JyZSyC3kPM1Q.png" alt="Couple" class="w-20 h-20 object-cover rounded-lg mb-2.5 border border-[var(--gold-brown)]/20 shadow-md mx-auto">
+                            
+                            <p class="text-white/90 font-serif italic text-[10px] md:text-[11px] leading-relaxed">
+                                Married.Mesaje  ♡
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTÓN FRIENDS -->
+                <button onclick="openFriendsModal()" class="cursor-hover w-full mt-3 btn-luxury text-white py-2.5 md:py-3 rounded-xl text-xs font-bold tracking-widest uppercase shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    Friends <i class="fa-solid fa-user-group"></i>
+                </button>
+            </div>
+
+            <!-- Mini Bio con Bandera -->
+            <div class="glass-card rounded-3xl p-4 md:p-5 flex items-center gap-3 md:gap-4 cursor-hover border-l-2 border-l-[var(--gold-brown)]">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-[var(--gold-shine)] p-0.5 shrink-0">
+                    <!-- FOTO BIO -->
+                    <img src="https://xatimg.com/image/gayJSz1PZeAr.png" class="w-full h-full object-cover rounded-full" onerror="this.src='https://placehold.co/200x200/222/FFF?text=bio.jpg'">
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-xs md:text-sm font-bold text-white">@username</h3>
+                        <img src="https://xat.com/images/smw/flag/en.png" alt="en" class="h-3 md:h-3.5 rounded-sm">
+                    </div>
+                    <p class="text-[10px] md:text-xs text-gray-400 mt-0.5"> (You ID) <span class="text-[var(--magenta-main)]"></span><span class="text-[var(--gold-brown)]"></span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Columna Derecha -->
+        <section class="md:col-span-7 flex flex-col gap-4 md:gap-6">
+
+            <!-- REPRODUCTOR -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-40 h-40 md:w-64 md:h-64 bg-[var(--gold-brown)]/5 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="absolute -bottom-20 -left-20 w-40 h-40 md:w-64 md:h-64 bg-[var(--magenta-main)]/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+                <div class="flex items-start justify-between mb-6 md:mb-8 relative z-10">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-compact-disc text-[var(--magenta-main)] animate-[spin_4s_linear_infinite]"></i>
+                            <h2 class="text-[10px] md:text-xs font-bold text-[var(--gold-shine)] uppercase tracking-[0.2em]">Now Playing</h2>
+                        </div>
+                        <p class="text-xl md:text-2xl font-serif italic text-white/90">My Playlist</p>
+                    </div>
+                    <div class="flex items-end gap-1 h-6 md:h-8 paused" id="visualizer">
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-6 md:gap-8 items-center relative z-10 text-center sm:text-left">
+                    <div class="w-28 h-28 md:w-36 md:h-36 rounded-full p-1 border border-[var(--gold-brown)]/30 relative flex-shrink-0">
+                         <div class="w-full h-full rounded-full overflow-hidden relative">
+                             <img id="album-art" src="" class="w-full h-full object-cover animate-[spin_12s_linear_infinite]" style="animation-play-state: paused;" onerror="this.src='https://placehold.co/300x300/222/FFF?text=Music'">
+                             <div class="absolute inset-0 bg-black/10"></div>
+                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#1a0b10] rounded-full border border-[var(--gold-brown)]"></div>
+                         </div>
+                    </div>
+
+                    <div class="flex-1 w-full min-w-0">
+                        <div class="mb-4 md:mb-6">
+                            <h3 id="song-title" class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[var(--gold-shine)] to-[var(--gold-brown)] truncate leading-tight pb-1">Song Title</h3>
+                            <p id="artist-name" class="text-xs md:text-sm text-[var(--magenta-main)] font-medium mt-1">Artist Name</p>
+                        </div>
+
+                        <div class="w-full bg-white/5 rounded-full h-1 mb-2 cursor-pointer group cursor-hover tap-area" id="progress-container">
+                            <div id="progress-bar" class="bg-gradient-to-r from-[var(--gold-brown)] to-[var(--magenta-main)] h-1 rounded-full w-0 relative group-hover:h-1.5 transition-all duration-300 shadow-[0_0_10px_var(--magenta-main)]">
+                                <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-2.5 h-2.5 bg-[var(--gold-shine)] rounded-full shadow opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-[9px] md:text-[10px] text-gray-500 mb-4 md:mb-6 font-mono tracking-wider">
+                            <span id="current-time">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center gap-6">
+                                <button onclick="prevSong()" class="cursor-hover p-2 text-gray-500 hover:text-[var(--gold-shine)] transition-colors"><i class="fa-solid fa-backward-step text-lg"></i></button>
+                                
+                                <button onclick="togglePlay()" class="cursor-hover w-12 h-12 md:w-14 md:h-14 rounded-full btn-luxury flex items-center justify-center text-white shadow-xl hover:scale-105 active:scale-95 transition-transform border border-white/20">
+                                    <i id="play-icon" class="fa-solid fa-play ml-1 text-base md:text-lg"></i>
+                                </button>
+                                
+                                <button onclick="nextSong()" class="cursor-hover p-2 text-gray-500 hover:text-[var(--gold-shine)] transition-colors"><i class="fa-solid fa-forward-step text-lg"></i></button>
+                            </div>
+
+                            <div class="flex items-center gap-3 group cursor-hover w-full sm:w-auto justify-center">
+                                <i class="fa-solid fa-volume-low text-xs text-gray-500 group-hover:text-[var(--gold-brown)] transition-colors"></i>
+                                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" class="w-24">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <audio id="audio-player" ontimeupdate="updateProgress()" onended="nextSong()"></audio>
+            </div>
+
+            <!-- Galería MODIFICADA (Carrusel Horizontal Único) -->
+            <div class="relative w-full group/slider">
+                <div id="gallery-slider" class="glass-card rounded-2xl p-2 group cursor-hover h-64 md:h-80 relative flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth">
+                    
+                    <!-- FOTO GALERIA 1 -->
+                    <div class="w-full h-full flex-shrink-0 snap-center relative overflow-hidden rounded-xl">
+                        <img src="https://xatimg.com/image/r7ZxPX8WH155.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://placehold.co/800x400/222/FFF?text=Subir+galeria.jpg'">
+                        
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                             <i class="fa-solid fa-heart text-[var(--magenta-main)] text-4xl animate-bounce drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"></i>
+                        </div>
+                    </div>
+					
+					                    <!-- FOTO GALERIA 2 -->
+                    <div class="w-full h-full flex-shrink-0 snap-center relative overflow-hidden rounded-xl">
+                        <img src="https://xatimg.com/image/yhXycTE2VL9P.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://placehold.co/800x400/222/FFF?text=Subir+galeria.jpg'">
+                        
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                             <i class="fa-solid fa-heart text-[var(--magenta-main)] text-4xl animate-bounce drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"></i>
+                        </div>
+                    </div>
+					
+					                    <!-- FOTO GALERIA 3 -->
+                    <div class="w-full h-full flex-shrink-0 snap-center relative overflow-hidden rounded-xl">
+                        <img src="https://xatimg.com/image/i3Zo2q89TToK.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://placehold.co/800x400/222/FFF?text=Subir+galeria.jpg'">
+                        
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                             <i class="fa-solid fa-heart text-[var(--magenta-main)] text-4xl animate-bounce drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"></i>
+                        </div>
+                    </div>
+
+                    <!-- FOTO Married -->
+                    <div class="w-full h-full flex-shrink-0 snap-center relative overflow-hidden rounded-xl">
+                        <img src="https://xatimg.com/image/JyZSyC3kPM1Q.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://placehold.co/800x400/222/FFF?text=Subir+galeria.jpg'">
+                        
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                             <i class="fa-solid fa-heart text-[var(--magenta-main)] text-4xl animate-bounce drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"></i>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Controles de navegación del carrusel -->
+                <button onclick="document.getElementById('gallery-slider').scrollBy({left: -document.getElementById('gallery-slider').offsetWidth, behavior: 'smooth'})" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-[var(--magenta-main)] hover:text-black border border-white/20"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="document.getElementById('gallery-slider').scrollBy({left: document.getElementById('gallery-slider').offsetWidth, behavior: 'smooth'})" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-[var(--magenta-main)] hover:text-black border border-white/20"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- CITA MODIFICADA -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 text-center border-t border-[var(--gold-brown)]/20">
+                <p class="font-serif italic text-gray-400 text-base md:text-lg leading-relaxed">
+             "............................................."
+                </p>
+                <div class="mt-4 md:mt-6 flex justify-center gap-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--gold-brown)] opacity-50"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--magenta-main)]"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--gold-brown)] opacity-50"></span>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FIRMA -->
+<footer class="copyright-footer">
+    <a href="https://xat.me/xDesignx" target="_blank">
+        &copy; Copyright - ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋
+    </a>
+    <span id="year"></span>
+</footer>
+
+
+    <!-- MODAL FRIENDS -->
+    <div id="friends-modal" class="fixed inset-0 z-[999999] flex items-center justify-center opacity-0 invisible transition-all duration-300 p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeFriendsModal()"></div>
+        <div class="glass-card w-full max-w-sm rounded-3xl p-6 relative transform scale-95 transition-transform duration-300">
+            <button onclick="closeFriendsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h2 class="text-center font-serif italic text-2xl text-[var(--gold-shine)] mb-6">♡ Friends ♡</h2>
+            
+            <div class="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                <!-- 1 -->
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold-brown)]/50 transition-colors group cursor-hover">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[var(--magenta-main)]/20 flex items-center justify-center border border-[var(--magenta-main)]/30 text-[var(--magenta-main)] font-bold shadow-[0_0_10px_rgba(255,183,197,0.2)]">1</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Friends 1</h4>
+                            <p class="text-[10px] text-gray-400 font-mono">ID</p>
+                        </div>
+                    </div>
+                    <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-[var(--gold-brown)]/20 text-[var(--gold-shine)] text-[10px] font-bold border border-[var(--gold-brown)]/30 hover:bg-[var(--gold-brown)] hover:text-white transition-colors cursor-hover">XAT.ME</a>
+                </div>
+                <!-- 2 -->
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold-brown)]/50 transition-colors group cursor-hover">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[var(--magenta-main)]/20 flex items-center justify-center border border-[var(--magenta-main)]/30 text-[var(--magenta-main)] font-bold shadow-[0_0_10px_rgba(255,183,197,0.2)]">2</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Friends 2</h4>
+                            <p class="text-[10px] text-gray-400 font-mono">ID</p>
+                        </div>
+                    </div>
+                    <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-[var(--gold-brown)]/20 text-[var(--gold-shine)] text-[10px] font-bold border border-[var(--gold-brown)]/30 hover:bg-[var(--gold-brown)] hover:text-white transition-colors cursor-hover">XAT.ME</a>
+                </div>
+                <!-- 3 -->
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold-brown)]/50 transition-colors group cursor-hover">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[var(--magenta-main)]/20 flex items-center justify-center border border-[var(--magenta-main)]/30 text-[var(--magenta-main)] font-bold shadow-[0_0_10px_rgba(255,183,197,0.2)]">3</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Friends 3</h4>
+                            <p class="text-[10px] text-gray-400 font-mono">ID</p>
+                        </div>
+                    </div>
+                    <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-[var(--gold-brown)]/20 text-[var(--gold-shine)] text-[10px] font-bold border border-[var(--gold-brown)]/30 hover:bg-[var(--gold-brown)] hover:text-white transition-colors cursor-hover">XAT.ME</a>
+                </div>
+                <!-- 4 -->
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold-brown)]/50 transition-colors group cursor-hover">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[var(--magenta-main)]/20 flex items-center justify-center border border-[var(--magenta-main)]/30 text-[var(--magenta-main)] font-bold shadow-[0_0_10px_rgba(255,183,197,0.2)]">4</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Friends 4</h4>
+                            <p class="text-[10px] text-gray-400 font-mono">ID</p>
+                        </div>
+                    </div>
+                    <a href="https://xat.me/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-[var(--gold-brown)]/20 text-[var(--gold-shine)] text-[10px] font-bold border border-[var(--gold-brown)]/30 hover:bg-[var(--gold-brown)] hover:text-white transition-colors cursor-hover">XAT.ME</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Model-24.js"></script>
+	
+<!-- BLOCK RIGHT CLICK -->
+<script type="text/javascript">
+    document.onkeydown = function () { return false; };
+    document.oncontextmenu = function () { return false; };
+</script>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
