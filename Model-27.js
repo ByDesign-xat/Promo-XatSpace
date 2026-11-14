@@ -295,5 +295,3 @@
         volume.addEventListener('input', () => { audio.volume = Number(volume.value); });
         audio.volume = Number(volume.value);
     })();
-
-
