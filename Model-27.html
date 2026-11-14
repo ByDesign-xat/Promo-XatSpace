@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByDesign</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script&family=Inter:wght@300;400;700&family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Model-27.css">
+	<script src="Model-27.js" defer></script>
+</head>
+<body>
+
+<div id="custom-cursor"></div>
+<video autoplay muted loop playsinline id="bg-video"><source src="Model-27.mp4" type="video/mp4"></video>
+
+<div id="login-overlay" class="overlay-panel">
+    <div class="custom-modal" style="max-width: 350px; text-align:center;">
+        <h2>Acceso Secreto</h2>
+        <p id="login-msg" style="font-size: 12px; color: #888; margin-bottom: 15px;">Cargando seguridad...</p>
+        <input type="password" id="admin-pwd-input" placeholder="Contraseña..." style="text-align: center; font-size: 16px;">
+        <div class="admin-btns">
+            <button onclick="checkPassword()">Entrar</button>
+            <button class="cancel" onclick="closeLoginPanel()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="admin-overlay-panel" class="overlay-panel">
+    <div class="custom-modal">
+        <h2>🛠 Editor de Perfil</h2>
+        <label>Galería (1 link de imagen por línea):</label>
+        <textarea id="edit-gallery" style="min-height: 120px;"></textarea>
+        <div class="admin-btns">
+            <button onclick="saveAdminData()">Guardar y Actualizar</button>
+            <button class="cancel" onclick="closeAdminPanel()">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<div id="admin-btn" onclick="openLoginPanel()">⚙️</div>
+
+<div class="artboard">
+    
+    <div class="main-title anim-fade" style="animation-delay: 0.2s;">
+        <div class="title-row"><span class="title-nath">Name</span><span class="title-exclamation">!!</span></div>
+        <div class="title-dslade-small">You ID</div>
+    </div>
+    
+    <div class="chibi-img clickable anim-fade" style="animation-delay: 0.3s;"></div>
+    
+    <div class="gallery-container glass-panel anim-fade" style="animation-delay: 0.4s;">
+        <div class="gallery-title">GALLERY</div>
+        <div class="gallery-track">
+            <div class="gallery-scroll-viewport" id="gallery-viewport">
+                <div class="gallery-inner" id="gallery-inner"></div>
+            </div>
+            <div class="gallery-nav-dots" id="gallery-dots"></div>
+        </div>
+    </div>
+
+    <div class="right-bg-panel glass-panel anim-fade" id="right-bg" style="animation-delay: 0.6s;"></div>
+    <div class="right-content-wrapper anim-fade" id="right-panel-area" style="animation-delay: 0.6s;">
+        <div class="vertical-line"></div>
+        <div class="top-nav"><span class="clickable">❤</span><div class="nav-tabs"><span class="tab active clickable">Hello</span></div><span class="clickable">❤</span></div>
+        
+        <div class="scroll-viewport">
+            
+            <div class="welcome-text-new">
+                Welcome!<br>
+                <span class="espacio">to my space</span>
+            </div>
+            <div class="sub-welcome-text">Be happy with what you have</div>
+
+            <div id="music-player" class="music-player" aria-label="Music player">
+                <div class="player-main">
+                    <div class="player-cover-wrap">
+                        <img id="player-cover" src="" alt="Album cover">
+                        <span class="player-cover-glow"></span>
+                    </div>
+                    <div class="player-track-info">
+                        <div class="player-eyebrow">NOW PLAYING</div>
+                        <div id="player-title" class="player-title">Alege o melodie</div>
+                        <div id="player-artist" class="player-artist">Playlist muzical</div>
+                    </div>
+                </div>
+                <div class="player-controls-row">
+                    <span id="player-current-time" class="player-time">0:00</span>
+                    <input id="player-progress" class="player-progress" type="range" min="0" max="100" value="0" aria-label="Progress">
+                    <span id="player-duration" class="player-time">0:00</span>
+                </div>
+                <div class="player-bottom-row">
+                    <button id="player-shuffle" class="player-shuffle-btn clickable" type="button" aria-label="Activează amestecarea" aria-pressed="false" title="Amestecă melodiile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3h4v4h-2V6.41l-4.29 4.3-1.42-1.42L17.59 5H17V3zM3 7h3.2c1.1 0 2.15.48 2.87 1.31l7.06 8.13c.34.39.83.61 1.35.61H19v-2h2v4h-3.52c-1.1 0-2.15-.48-2.87-1.31L7.55 9.61C7.21 9.22 6.72 9 6.2 9H3V7zm14-4h4v4h-2V5.41l-3.29 3.3-1.42-1.42L17.59 4H17V3zM3 15h3.2c.52 0 1.01-.22 1.35-.61l1.03-1.18 1.32 1.52-.84.97A3.82 3.82 0 0 1 6.2 17H3v-2z"/></svg><span>SHUFFLE</span></button>
+                    <div class="player-buttons">
+                        <button id="player-prev" class="player-skip-btn clickable" type="button" aria-label="Previous track">
+                            <svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 6v12l-10-6z"/></svg>
+                        </button>
+                        <button id="player-play" class="player-play-btn clickable" type="button" aria-label="Play">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+                        </button>
+                        <button id="player-next" class="player-skip-btn clickable" type="button" aria-label="Next track">
+                            <svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 6v12l10-6z"/></svg>
+                        </button>
+                    </div>
+                    <div class="player-volume-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a3.5 3.5 0 0 0-2-3.16v6.31a3.5 3.5 0 0 0 2-3.15zM14.5 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
+                        <input id="player-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+                    </div>
+                </div>
+                <audio id="player-audio" preload="none"></audio>
+            </div>
+            <div class="clean-artist">FREEDOM IN YOUR SOUL</div>
+
+        </div> 
+    </div>
+
+    <div class="center-card-container anim-fade" id="card-container" style="animation-delay: 0.8s;">
+        <div class="float-wrapper" id="float-wrap">
+            <div class="center-card" id="js-tilt-card">
+                <div class="card-img-wrapper">
+                    <img src="https://xatimg.com/image/CDaGdErM4VNA.png" alt="Name">
+                    <div class="card-glare" id="card-glare"></div>
+                </div>
+                <div class="card-bottom-text"><span class="thin-cursive-love">Name</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-quote">Be happy with what you have</div>
+
+    <a href="https://xat.me/xDesignx" class="watermark clickable anim-fade" target="_blank" style="animation-delay: 1s;">&copy; Copyright - ┋ ๖ۣۜBʏDᴇsɪɢɴۣۜ ┋</a>
+
+</div>
+
+<div id="photo-modal" onclick="closeModal()" style="display:none; position: fixed; inset:0; background:rgba(0,0,0,0.8); z-index:999999; justify-content:center; align-items:center;">
+    <img id="modal-img" src="" alt="Enlarged" onclick="event.stopPropagation()" style="max-width: 90%; max-height: 90%; border-radius: 20px; object-fit: contain;">
+</div>
+
+<!-- BLOCK RIGHT CLICK -->
+<script>
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+// Blochează combinațiile de taste folosite de obicei pentru inspectare/sursă
+document.addEventListener("keydown", function (e) {
+
+    // Permite tastarea în input-uri
+    if (
+        e.target.tagName === "INPUT" ||
+        e.target.tagName === "TEXTAREA"
+    ) {
+        return;
+    }
+
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Ctrl + U
+    if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + I
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "i"
+    ) {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + J
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "j"
+    ) {
+        e.preventDefault();
+    }
+
+    // Ctrl + Shift + C
+    if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        e.key.toLowerCase() === "c"
+    ) {
+        e.preventDefault();
+    }
+});
+</script>
+
+<script>
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
+</script>
+
+</body>
+</html>
