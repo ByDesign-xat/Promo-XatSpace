@@ -80,8 +80,8 @@
         document.body.style.cursor = 'auto'; document.getElementById('custom-cursor').style.display = 'none';
         document.getElementById('admin-pwd-input').value = '';
         const msg = document.getElementById('login-msg');
-        if(!storedHash) { msg.innerText = "Crea una contraseña nueva (se encriptará)."; msg.style.color = "var(--pastel-pink)"; } 
-        else { msg.innerText = "Ingresa tu contraseña para editar."; msg.style.color = "#888"; }
+        if(!storedHash) { msg.innerText = "Create a new password (it will be encrypted)."; msg.style.color = "var(--pastel-pink)"; } 
+        else { msg.innerText = "Enter your password to edit"; msg.style.color = "#888"; }
         document.getElementById('admin-pwd-input').focus();
     }
     function closeLoginPanel() {
@@ -97,14 +97,14 @@
     }
     async function checkPassword() {
         const pwd = document.getElementById('admin-pwd-input').value;
-        if(pwd.trim() === "") { alert("La contraseña no puede estar vacía."); return; }
+        if(pwd.trim() === "") { alert("The password cannot be empty."); return; }
         const inputHash = await hashPassword(pwd);
         if (!storedHash) {
             storedHash = inputHash; localStorage.setItem('adminHash_V35', storedHash);
-            alert("¡Contraseña guardada y encriptada con éxito (SHA-256)!");
+            alert("¡Password successfully saved and encrypted (SHA-256)!");
             closeLoginPanel(); setTimeout(openAdminPanel, 300);
         } else if (inputHash === storedHash) { closeLoginPanel(); setTimeout(openAdminPanel, 300); } 
-        else { alert("Contraseña incorrecta."); }
+        else { alert("Incorrect password."); }
     }
     document.getElementById('admin-pwd-input').addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
 
